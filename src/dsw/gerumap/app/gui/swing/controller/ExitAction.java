@@ -1,4 +1,12 @@
 package dsw.gerumap.app.gui.swing.controller;
 
-public class ExitAction {
+import java.awt.event.ActionEvent;
+
+public class ExitAction extends AbstractGeRuMapAction{
+
+
+    @Override
+    public void actionPerformed(ActionEvent actionEvent) {
+
+    }
 }

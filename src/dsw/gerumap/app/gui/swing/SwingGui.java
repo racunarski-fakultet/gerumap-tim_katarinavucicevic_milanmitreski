@@ -4,7 +4,6 @@ import dsw.gerumap.app.core.Gui;
 import dsw.gerumap.app.gui.swing.view.MainFrame;
 
 public class SwingGui implements Gui {
-
     public MainFrame mainFrame;
 
     public SwingGui() {
