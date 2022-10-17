@@ -1,4 +1,4 @@
 package dsw.gerumap.app.gui.swing.controller;
 
-public class AbstractGeRuMapAction {
+public abstract class AbstractGeRuMapAction {
 }
