@@ -1,5 +1,6 @@
 package dsw.gerumap.app.gui.swing.view;
 
+import dsw.gerumap.app.gui.swing.controller.ActionManager;
 import dsw.gerumap.app.gui.swing.controller.ExitAction;
 
 import javax.swing.*;
@@ -9,11 +10,18 @@ import java.awt.*;
 public class MainFrame extends JFrame {
 
     private static MainFrame instance = null;
+
+    private ActionManager actionManager;
     private MyMenuBar menu;
     private Toolbar toolBar;
 
     private MainFrame() {
 
+    }
+
+    private void initialise(){
+        actionManager = new ActionManager();
+        initialiseGUI();
     }
 
     public void initialiseGUI() {
@@ -46,8 +54,12 @@ public class MainFrame extends JFrame {
     public static MainFrame getInstance() {
         if(instance == null) {
             instance = new MainFrame();
+            instance.initialise();
         }
         return instance;
     }
 
+    public ActionManager getActionManager() {
+        return actionManager;
+    }
 }
