@@ -1,10 +1,8 @@
 package dsw.gerumap.app.gui.swing.view;
 
 import dsw.gerumap.app.gui.swing.controller.ActionManager;
-import dsw.gerumap.app.gui.swing.controller.ExitAction;
 
 import javax.swing.*;
-import javax.tools.Tool;
 import java.awt.*;
 
 public class MainFrame extends JFrame {
@@ -35,7 +33,6 @@ public class MainFrame extends JFrame {
         setTitle("GeRuMap app");
 
         menu = new MyMenuBar();
-        ///menu.add(new JMenuItem(new ExitAction()));
         setJMenuBar(menu);
 
         toolBar = new Toolbar();

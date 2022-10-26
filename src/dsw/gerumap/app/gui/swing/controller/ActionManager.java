@@ -5,6 +5,8 @@ public class ActionManager {
     private ExitAction exitAction;
     private NewProjectAction newProjectAction;
 
+    private InfoAction infoAction;
+
     public ActionManager() {
         initialiseActions();
     }
@@ -12,6 +14,7 @@ public class ActionManager {
     private void initialiseActions() {
         exitAction = new ExitAction();
         newProjectAction = new NewProjectAction();
+        infoAction = new InfoAction();
     }
 
     public ExitAction getExitAction() {
@@ -20,5 +23,9 @@ public class ActionManager {
 
     public NewProjectAction getNewProjectAction() {
         return newProjectAction;
+    }
+
+    public InfoAction getInfoAction() {
+        return infoAction;
     }
 }
