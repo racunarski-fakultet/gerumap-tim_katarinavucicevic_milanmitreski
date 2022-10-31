@@ -6,6 +6,8 @@ import dsw.gerumap.app.mapRepository.implementation.ProjectExplorer;
 
 public interface MapTree {
 
+    // Interfejs kojim opisujemo povezivanje modela definisanog u mapRepository sa GUI-jem
+
     MapTreeView generateTree(ProjectExplorer projectExplorer);
     void addChild(MapTreeItem parent);
     MapTreeItem getSelectedNode();

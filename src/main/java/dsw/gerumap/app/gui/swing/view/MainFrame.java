@@ -1,6 +1,8 @@
 package dsw.gerumap.app.gui.swing.view;
 
 import dsw.gerumap.app.gui.swing.controller.ActionManager;
+import dsw.gerumap.app.gui.swing.tree.MapTree;
+import dsw.gerumap.app.gui.swing.tree.MapTreeImplementation;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,6 +14,10 @@ public class MainFrame extends JFrame {
     private ActionManager actionManager;
     private MyMenuBar menu;
     private Toolbar toolBar;
+
+    private MapTree mapTree;
+
+    private MyTabbedPane tabbedPane;
 
     private MainFrame() {
 
@@ -36,6 +42,8 @@ public class MainFrame extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("GeRuMap app");
 
+        mapTree = new MapTreeImplementation();
+
         menu = new MyMenuBar();
         setJMenuBar(menu);
 
@@ -58,6 +66,14 @@ public class MainFrame extends JFrame {
             instance.initialise();
         }
         return instance;
+    }
+
+    public MapTree getMapTree() {
+        return mapTree;
+    }
+
+    public MyTabbedPane getTabbedPane() {
+        return tabbedPane;
     }
 
     public ActionManager getActionManager() {
