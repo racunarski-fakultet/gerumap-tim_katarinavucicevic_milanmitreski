@@ -9,10 +9,9 @@ public class Project extends MapNodeComposite {
     private String author;
     private String path;
 
-    public Project(String name, MapNode mapNode, String author, String path) {
+    public Project(String name, MapNode mapNode) {
         super(name, mapNode);
         this.name = name;
-        this.author = author;
-        this.path = path;
+
     }
 }
