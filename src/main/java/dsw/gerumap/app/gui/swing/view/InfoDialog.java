@@ -10,7 +10,6 @@ public class InfoDialog extends JDialog {
     private JLabel podaciL1;
     private JLabel podaciL2;
     private String putanjaDoSlike;
-    private JButton exitBtn;
 
 
     public InfoDialog(Frame owner, String title) {
@@ -23,13 +22,10 @@ public class InfoDialog extends JDialog {
         podaciL1 = new JLabel("Student1: Milan Mitreski, 80/21rn");
         podaciL2 = new JLabel("Student2: Katarina Vučićević, 57/21rn");
 
-        exitBtn = new JButton("OK");
 
         add(podaciL1);
         add(podaciL2);
-        add(exitBtn);
 
-        exitBtn.addActionListener(MainFrame.getInstance().getActionManager().getExitAction());
 
 
     }
