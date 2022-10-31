@@ -1,7 +1,5 @@
 package dsw.gerumap.app.mapRepository.composite;
 
-import dsw.gerumap.app.mapRepository.composite.MapNode;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,13 +7,13 @@ public abstract class MapNodeComposite extends MapNode {
 
     List<MapNode> children;
 
-    public MapNodeComposite(String ime, MapNode parent) {
-        super(ime, parent);
+    public MapNodeComposite(String name, MapNode parent) {
+        super(name, parent);
         this.children = new ArrayList<>();
     }
 
-    public MapNodeComposite(String ime, MapNode parent, List<MapNode>) {
-        super(ime, parent);
+    public MapNodeComposite(String name, MapNode parent, List<MapNode>) {
+        super(name, parent);
         this.children = children;
     }
 
@@ -23,7 +21,7 @@ public abstract class MapNodeComposite extends MapNode {
 
     public MapNode getChildByName(String name) {
         for (MapNode child: this.getChildren()) {
-            if (name.equals(child.getIme())) {
+            if (name.equals(child.getName())) {
                 return child;
             }
         }
