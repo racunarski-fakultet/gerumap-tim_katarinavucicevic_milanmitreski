@@ -1,6 +1,8 @@
-package dsw.gerumap.app.MapRepository;
+package dsw.gerumap.app.mapRepository.implementation;
 
-public class Project extends MapNodeComposite{
+import dsw.gerumap.app.mapRepository.composite.MapNodeComposite;
+
+public class Project extends MapNodeComposite {
 
     private String ime;
     private String autor;

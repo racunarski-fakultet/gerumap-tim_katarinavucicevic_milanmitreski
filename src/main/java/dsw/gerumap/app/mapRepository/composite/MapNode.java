@@ -1,4 +1,4 @@
-package dsw.gerumap.app.MapRepository;
+package dsw.gerumap.app.mapRepository.composite;
 
 public abstract class MapNode {
 

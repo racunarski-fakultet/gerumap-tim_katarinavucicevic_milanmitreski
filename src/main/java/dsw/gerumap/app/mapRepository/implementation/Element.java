@@ -1,6 +1,8 @@
-package dsw.gerumap.app.MapRepository;
+package dsw.gerumap.app.mapRepository.implementation;
 
-public class Element extends MapNode{
+import dsw.gerumap.app.mapRepository.composite.MapNode;
+
+public class Element extends MapNode {
 
     /// sve sto ti je u ovom folderu je deo one hijerarhije foldera i fajlova koja
     /// ce u nasem programu biti sa leve strane prozora (kao i u intelliJ ovaj levi deo sa klasama)
