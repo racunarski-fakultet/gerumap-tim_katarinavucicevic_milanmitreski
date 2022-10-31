@@ -2,7 +2,7 @@ package dsw.gerumap.app.mapRepository.composite;
 
 public abstract class MapNode {
 
-    String name;
+    private String name;
     private MapNode parent;
 
     public MapNode(String ime, MapNode parent) {

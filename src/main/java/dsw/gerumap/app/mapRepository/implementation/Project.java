@@ -11,8 +11,6 @@ public class Project extends MapNodeComposite {
 
     public Project(String name, MapNode mapNode) {
         super(name, mapNode);
-        this.name = name;
-
     }
 
     @Override

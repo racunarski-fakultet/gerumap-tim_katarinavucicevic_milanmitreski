@@ -30,10 +30,12 @@ public class MapTreeImplementation implements MapTree{
     // dodaje cvora u drvo
     @Override
     public void addChild(MapTreeItem parent) {
+        if (parent == null) return;
         if (!(parent.getMapNode() instanceof MapNodeComposite))
             return;
 
         MapNode child = createChild(parent.getMapNode());
+        if(child == null) return;
         parent.add(new MapTreeItem(child));
         ((MapNodeComposite) parent.getMapNode()).addChild(child);
         treeView.expandPath(treeView.getSelectionPath());
