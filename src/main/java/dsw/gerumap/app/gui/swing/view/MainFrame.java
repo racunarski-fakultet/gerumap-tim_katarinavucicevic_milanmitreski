@@ -23,10 +23,14 @@ public class MainFrame extends JFrame {
     }
 
     public void initialiseGUI() {
+
+        // Toolkit, Dimension instance sluze za definisanje velicine
         Toolkit kit = Toolkit.getDefaultToolkit();
         Dimension screenSize = kit.getScreenSize();
         int screenHeight = screenSize.height;
         int screenWidth = screenSize.width;
+
+        // Definisanje velicina
         setSize(screenWidth/2, screenHeight/2);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
