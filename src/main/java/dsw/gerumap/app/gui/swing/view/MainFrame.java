@@ -26,6 +26,7 @@ public class MainFrame extends JFrame {
 
     private void initialise(){
         actionManager = new ActionManager();
+        mapTree = new MapTreeImplementation();
         initialiseGUI();
     }
 
@@ -43,7 +44,7 @@ public class MainFrame extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("GeRuMap app");
 
-        mapTree = new MapTreeImplementation();
+
 
         menu = new MyMenuBar();
         setJMenuBar(menu);
