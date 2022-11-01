@@ -21,6 +21,9 @@ public class MyMenuBar extends JMenuBar {
         fileMenu.add(MainFrame.getInstance().getActionManager().getExitAction());
         fileMenu.add(MainFrame.getInstance().getActionManager().getNewProjectAction());
 
+        JMenuItem changeAuthorItem = new JMenuItem("Change author");
+        fileMenu.add(changeAuthorItem);
+
 
         this.add(fileMenu);
         this.add(helpMenu);
@@ -29,7 +32,7 @@ public class MyMenuBar extends JMenuBar {
 
         JMenuItem addItem = new JMenuItem("ADD");
         JMenuItem renameItem = new JMenuItem("RENAME");
-        JMenuItem deleteItem = new JMenuItem("DELETE");
+        JMenuItem deleteItem = new JMenuItem("DELETE");  /// funkcionalnosti vezane za cvorove u stablu
 
         editMenu.add(addItem);
         editMenu.add(renameItem);
