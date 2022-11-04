@@ -10,8 +10,6 @@ import java.awt.event.MouseListener;
 
 public class MyMenuBar extends JMenuBar {
 
-    private boolean isMouseOut = true;
-
     public MyMenuBar() {
 
         JMenu fileMenu = new JMenu("File");

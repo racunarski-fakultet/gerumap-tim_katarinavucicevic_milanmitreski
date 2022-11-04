@@ -9,6 +9,8 @@ public class ActionManager {
 
     private EditAction editAction;
 
+    private DeleteNodeAction deleteNodeAction;
+
     public ActionManager() {
         initialiseActions();
     }
@@ -18,6 +20,7 @@ public class ActionManager {
         newProjectAction = new NewProjectAction();
         infoAction = new InfoAction();
         editAction = new EditAction();
+        deleteNodeAction = new DeleteNodeAction();
     }
 
     public ExitAction getExitAction() {
@@ -34,5 +37,9 @@ public class ActionManager {
 
     public EditAction getEditAction() {
         return editAction;
+    }
+
+    public DeleteNodeAction getDeleteNodeAction() {
+        return deleteNodeAction;
     }
 }

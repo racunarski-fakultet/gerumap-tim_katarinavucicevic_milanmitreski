@@ -2,6 +2,7 @@ package dsw.gerumap.app.gui.swing.tree;
 
 import dsw.gerumap.app.gui.swing.tree.model.MapTreeItem;
 import dsw.gerumap.app.gui.swing.tree.view.MapTreeView;
+import dsw.gerumap.app.gui.swing.view.MainFrame;
 import dsw.gerumap.app.mapRepository.composite.MapNode;
 import dsw.gerumap.app.mapRepository.composite.MapNodeComposite;
 import dsw.gerumap.app.mapRepository.implementation.Element;
@@ -10,7 +11,9 @@ import dsw.gerumap.app.mapRepository.implementation.Project;
 import dsw.gerumap.app.mapRepository.implementation.ProjectExplorer;
 
 import javax.swing.*;
+import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
+import java.awt.*;
 import java.util.Random;
 
 public class MapTreeImplementation implements MapTree{
@@ -59,5 +62,13 @@ public class MapTreeImplementation implements MapTree{
             return new Element("Element" + new Random().nextInt(100), parent);
         }
         return null;
+    }
+
+    @Override
+    public void removeChild(DefaultMutableTreeNode root){
+
+        root = (DefaultMutableTreeNode)treeModel.getRoot();
+        root.removeFromParent();
+        treeModel.reload();
     }
 }
