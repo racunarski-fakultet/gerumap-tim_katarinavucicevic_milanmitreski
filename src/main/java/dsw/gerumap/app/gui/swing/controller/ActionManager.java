@@ -11,6 +11,8 @@ public class ActionManager {
 
     private DeleteNodeAction deleteNodeAction;
 
+    private AddAction addAction;
+
     public ActionManager() {
         initialiseActions();
     }
@@ -21,6 +23,7 @@ public class ActionManager {
         infoAction = new InfoAction();
         editAction = new EditAction();
         deleteNodeAction = new DeleteNodeAction();
+        addAction = new AddAction();
     }
 
     public ExitAction getExitAction() {
@@ -41,5 +44,9 @@ public class ActionManager {
 
     public DeleteNodeAction getDeleteNodeAction() {
         return deleteNodeAction;
+    }
+
+    public AddAction getAddAction() {
+        return addAction;
     }
 }
