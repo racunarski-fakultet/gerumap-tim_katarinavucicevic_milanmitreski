@@ -67,8 +67,9 @@ public class MapTreeImplementation implements MapTree{
     @Override
     public void removeChild(DefaultMutableTreeNode root){
 
-        root = (DefaultMutableTreeNode)treeModel.getRoot();
-        root.removeFromParent();
+        DefaultMutableTreeNode parent = (DefaultMutableTreeNode) root.getParent();
+        parent.remove(root);
+
         treeModel.reload();
     }
 }
