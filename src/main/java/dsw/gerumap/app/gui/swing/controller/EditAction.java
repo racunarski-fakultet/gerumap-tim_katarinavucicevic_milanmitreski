@@ -16,8 +16,6 @@ public class EditAction extends AbstractGeRuMapAction{
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
     }
-
-
-
 }

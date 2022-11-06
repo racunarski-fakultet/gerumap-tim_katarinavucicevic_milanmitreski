@@ -36,24 +36,17 @@ public class MapTreeImplementation implements MapTree{
     // dodaje cvora u drvo
     @Override
     public void addChild(MapTreeItem parent) {
-        if (parent == null) return;
-        if (!(parent.getMapNode() instanceof MapNodeComposite))
-            return;
+        if (parent == null) return; // Provera da li je parent null
+        if (!(parent.getMapNode() instanceof MapNodeComposite)) return; // Provera da li je parent MapNodeComposite
 
-        MapNode child = createChild(parent.getMapNode());
-        if(child == null) return;
-        parent.add(new MapTreeItem(child));
-        ((MapNodeComposite) parent.getMapNode()).addChild(child);
+        MapNode child = createChild(parent.getMapNode()); // Kreiranje deteta za cvor parent
+        parent.add(new MapTreeItem(child)); // Dodavanje child-a u susede cvora parent
+        ((MapNodeComposite) parent.getMapNode()).addChild(child); // Dodavanje MapNode komponente child-a MapNodeComposite komponenti parent-a
         treeView.expandPath(treeView.getSelectionPath());
         SwingUtilities.updateComponentTreeUI(treeView);
     }
 
-
-    @Override
-    public MapTreeItem getSelectedNode() {
-        return (MapTreeItem) treeView.getLastSelectedPathComponent();
-    }
-
+    // Kreiranje child cvora
     private MapNode createChild(MapNode parent) {
         if (parent instanceof ProjectExplorer) {
             return new Project("Project" + new Random().nextInt(100), parent);
@@ -65,12 +58,21 @@ public class MapTreeImplementation implements MapTree{
         return null;
     }
 
+    // Uklanjanje datog cvora iz drveta
     @Override
     public void removeChild(DefaultMutableTreeNode root){
-
+        for(int i = 0; i < root.getChildCount(); i++) {
+            removeChild((DefaultMutableTreeNode) root.getChildAt(i));
+        }
         DefaultMutableTreeNode parent = (DefaultMutableTreeNode) root.getParent();
         parent.remove(root);
+        ((MapNodeComposite)((MapTreeItem)parent).getMapNode()).getChildren().remove(((MapTreeItem) root).getMapNode());
+        treeModel.reload(parent);
+        SwingUtilities.updateComponentTreeUI(treeView);
+    }
 
-        treeModel.reload();
+    @Override
+    public MapTreeItem getSelectedNode() {
+        return (MapTreeItem) treeView.getLastSelectedPathComponent();
     }
 }
