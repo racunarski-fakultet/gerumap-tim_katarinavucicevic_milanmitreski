@@ -2,6 +2,7 @@ package dsw.gerumap.app.mapRepository.implementation;
 
 import dsw.gerumap.app.mapRepository.composite.MapNode;
 import dsw.gerumap.app.mapRepository.composite.MapNodeComposite;
+import dsw.gerumap.app.observer.ISubscriber;
 
 public class Project extends MapNodeComposite {
 
@@ -28,5 +29,20 @@ public class Project extends MapNodeComposite {
 
     public String getAuthor() {
         return author;
+    }
+
+    @Override
+    public void addSubcriber(ISubscriber sub) {
+
+    }
+
+    @Override
+    public void removeSubscriber(ISubscriber sub) {
+
+    }
+
+    @Override
+    public void notifySubscriber(Object notification) {
+
     }
 }

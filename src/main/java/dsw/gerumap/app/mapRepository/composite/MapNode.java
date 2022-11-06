@@ -1,6 +1,8 @@
 package dsw.gerumap.app.mapRepository.composite;
 
-public abstract class MapNode {
+import dsw.gerumap.app.observer.IPublisher;
+
+public abstract class MapNode implements IPublisher {
 
     private String name;
     private MapNode parent;
@@ -31,7 +33,4 @@ public abstract class MapNode {
         this.name = name;
     }
 
-    public void setParent(MapNode parent) {
-        this.parent = parent;
-    }
 }
