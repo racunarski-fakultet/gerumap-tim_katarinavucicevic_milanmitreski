@@ -25,6 +25,7 @@ public class MapTreeImplementation implements MapTree{
     private DefaultTreeModel treeModel;
 
     // Generisemo drvo generisanjem root-a i generisanjem modela i treeView-a
+    @Override
     public MapTreeView generateTree(ProjectExplorer projectExplorer) {
         MapTreeItem root = new MapTreeItem(projectExplorer);
         treeModel = new DefaultTreeModel(root);

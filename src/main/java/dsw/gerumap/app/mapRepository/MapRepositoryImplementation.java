@@ -20,6 +20,6 @@ public class MapRepositoryImplementation implements MapRepository {
 
     @Override
     public void addChild(MapNodeComposite parent, MapNode child) {
-        //TODO: implement add Child method
+        parent.addChild(child);
     }
 }
