@@ -9,24 +9,26 @@ public class InfoDialog extends JDialog {
 
     private JLabel podaciL1;
     private JLabel podaciL2;
+
+    private OkInfoButton okInfoButton;
     private String putanjaDoSlike;
 
 
     public InfoDialog(Frame owner, String title) {
         super(owner, title);
 
-        setBounds(100, 100, 300, 100);
+        setBounds(100, 100, 300, 120);
+        setResizable(false);
         Container dialogContent = getContentPane();
         dialogContent.setLayout(new FlowLayout()); /// ako se promeni ovaj FlowLayout onda moze da se menja raspored komponenti
 
         podaciL1 = new JLabel("Student1: Milan Mitreski, 80/21rn");
         podaciL2 = new JLabel("Student2: Katarina Vučićević, 57/21rn");
-
+        okInfoButton = new OkInfoButton(MainFrame.getInstance().getActionManager().getOkAction(), this);
 
         add(podaciL1);
         add(podaciL2);
-
-
+        add(okInfoButton);
 
     }
 }

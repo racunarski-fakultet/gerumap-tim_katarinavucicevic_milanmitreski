@@ -68,7 +68,6 @@ public class MapTreeImplementation implements MapTree{
         parent.remove(root);
         ((MapNodeComposite)((MapTreeItem)parent).getMapNode()).getChildren().remove(((MapTreeItem) root).getMapNode());
         treeModel.reload(parent);
-        SwingUtilities.updateComponentTreeUI(treeView);
     }
 
     @Override

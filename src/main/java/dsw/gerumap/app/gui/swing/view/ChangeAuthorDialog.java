@@ -7,7 +7,7 @@ import java.awt.*;
 
 public class ChangeAuthorDialog extends JDialog {
 
-    private JLabel podaciL1;
+    private JLabel labelAuthor;
     private JTextField authorData;
     private SaveAuthorButton saveAuthorButton;
 
@@ -21,14 +21,12 @@ public class ChangeAuthorDialog extends JDialog {
         Container dialogContent = getContentPane();
         dialogContent.setLayout(new FlowLayout()); /// ako se promeni ovaj FlowLayout onda moze da se menja raspored komponenti
 
-        podaciL1 = new JLabel("Unesite ime autora: ");
+        labelAuthor = new JLabel("Unesite ime autora: ");
         authorData = new JTextField();
-        saveAuthorButton = new SaveAuthorButton(MainFrame.getInstance().getActionManager().getSaveAction(), this);
-        saveAuthorButton.setName("Sacuvaj");
-
         authorData.setColumns(15);
+        saveAuthorButton = new SaveAuthorButton(MainFrame.getInstance().getActionManager().getSaveAction(), this);
 
-        add(podaciL1);
+        add(labelAuthor);
         add(authorData);
         add(saveAuthorButton);
     }
