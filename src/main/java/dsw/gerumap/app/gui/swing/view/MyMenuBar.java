@@ -1,12 +1,9 @@
 package dsw.gerumap.app.gui.swing.view;
 
-import dsw.gerumap.app.gui.swing.controller.EditAction;
-import dsw.gerumap.app.gui.swing.controller.MouseListenerEdit;
+import dsw.gerumap.app.gui.swing.controller.MyMouseListener;
 
 import javax.swing.*;
 import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 public class MyMenuBar extends JMenuBar {
 
@@ -28,18 +25,16 @@ public class MyMenuBar extends JMenuBar {
 
         JMenu editMenu = new JMenu("Edit");
 
-        JMenuItem addItem = new JMenuItem("ADD");
-        JMenuItem renameItem = new JMenuItem("RENAME");
-        JMenuItem deleteItem = new JMenuItem("DELETE");  /// funkcionalnosti vezane za cvorove u stablu
+        JMenuItem renameItem = new JMenuItem("Rename");  /// ovo mora da se menja koa ovo ispod
 
-        editMenu.add(addItem);
+        editMenu.add(MainFrame.getInstance().getActionManager().getAddAction());
         editMenu.add(renameItem);
-        editMenu.add(deleteItem);
+        editMenu.add(MainFrame.getInstance().getActionManager().getDeleteNodeAction());
         helpMenu.add(editMenu);
 
-        helpMenu.addMouseListener(new MouseListenerEdit(){
+        MyMouseListener mouseListener = new MyMouseListener();
 
-        });
+        helpMenu.addMouseListener(mouseListener);
     }
 
 

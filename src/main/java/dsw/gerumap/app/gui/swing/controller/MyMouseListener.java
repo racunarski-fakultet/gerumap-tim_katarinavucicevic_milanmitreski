@@ -1,10 +1,12 @@
 package dsw.gerumap.app.gui.swing.controller;
 
+import dsw.gerumap.app.gui.swing.view.MainFrame;
+
 import javax.swing.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class MouseListenerEdit implements MouseListener {
+public class MyMouseListener implements MouseListener {
 
     private boolean isMouseOut = false;
 
@@ -14,7 +16,6 @@ public class MouseListenerEdit implements MouseListener {
 
     public void mouseEntered(MouseEvent e) {
         isMouseOut = false;
-        System.out.println("Im in helpMenu region");
         Object eSource = e.getSource();
         if (eSource instanceof EditAction) {
             ((JMenuItem) eSource).doClick();
