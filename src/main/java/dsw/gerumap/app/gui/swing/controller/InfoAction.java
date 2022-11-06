@@ -7,15 +7,15 @@ import java.awt.event.ActionEvent;
 
 public class InfoAction extends AbstractGeRuMapAction{
 
+    private InfoDialog infoDialog;
     public InfoAction(){
         putValue(NAME, "Info");
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        InfoDialog infoDialog = new InfoDialog(MainFrame.getInstance(), "Info");
+        infoDialog = new InfoDialog(MainFrame.getInstance(), "Info");
         infoDialog.setModal(true);
         infoDialog.setVisible(true);
-
     }
 }
