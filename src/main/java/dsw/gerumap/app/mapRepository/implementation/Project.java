@@ -21,4 +21,12 @@ public class Project extends MapNodeComposite {
                 this.getChildren().add(mindMap);
         }
     }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
 }
