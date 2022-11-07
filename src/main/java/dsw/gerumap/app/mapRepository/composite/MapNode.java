@@ -33,4 +33,7 @@ public abstract class MapNode implements IPublisher {
         this.name = name;
     }
 
+    public void setParent(MapNode parent) {
+        this.parent = parent;
+    }
 }

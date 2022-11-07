@@ -67,6 +67,7 @@ public class MapTreeImplementation implements MapTree{
         DefaultMutableTreeNode parent = (DefaultMutableTreeNode) root.getParent();
         parent.remove(root);
         ((MapNodeComposite)((MapTreeItem)parent).getMapNode()).getChildren().remove(((MapTreeItem) root).getMapNode());
+        treeView.expandPath(treeView.getSelectionPath()); /// da se ne uvuce projekat kad brisemo
         treeModel.reload(parent);
     }
 
