@@ -9,6 +9,7 @@ public class MindMap extends MapNodeComposite {
     private String name;
     private boolean template = false;
 
+
     public MindMap(String name, MapNode parent) {
         super(name, parent);
 

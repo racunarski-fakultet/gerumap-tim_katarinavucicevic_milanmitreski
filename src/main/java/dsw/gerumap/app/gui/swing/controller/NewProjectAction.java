@@ -1,6 +1,9 @@
 package dsw.gerumap.app.gui.swing.controller;
 
+import dsw.gerumap.app.AppCore;
 import dsw.gerumap.app.gui.swing.view.MainFrame;
+import dsw.gerumap.app.mapRepository.composite.MapNodeComposite;
+import dsw.gerumap.app.message.MessageType;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -17,7 +20,10 @@ public class NewProjectAction extends AbstractGeRuMapAction{
 
     @Override
     public void actionPerformed(ActionEvent arg0) {
-        MainFrame.getInstance().getMapTree().addChild(MainFrame.getInstance().getMapTree().getSelectedNode());
-        int label = new Random().nextInt(100);
+        if(MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode() instanceof MapNodeComposite) {
+            MainFrame.getInstance().getMapTree().addChild(MainFrame.getInstance().getMapTree().getSelectedNode());
+            return;
+        }
+        AppCore.getInstance().getMessageGenerator().getMessage("Selected node is a leaf", MessageType.NODE_NOT_COMPOSITE);
     }
 }

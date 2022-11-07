@@ -1,5 +1,6 @@
 package dsw.gerumap.app.gui.swing.tree;
 
+import dsw.gerumap.app.AppCore;
 import dsw.gerumap.app.gui.swing.tree.model.MapTreeItem;
 import dsw.gerumap.app.gui.swing.tree.view.MapTreeView;
 import dsw.gerumap.app.gui.swing.view.MainFrame;
@@ -39,7 +40,7 @@ public class MapTreeImplementation implements MapTree{
         if (parent == null) return; // Provera da li je parent null
         if (!(parent.getMapNode() instanceof MapNodeComposite)) return; // Provera da li je parent MapNodeComposite
 
-        MapNode child = createChild(parent.getMapNode()); // Kreiranje deteta za cvor parent
+        MapNode child = createChild((MapNodeComposite) parent.getMapNode()); // Kreiranje deteta za cvor parent
         parent.add(new MapTreeItem(child)); // Dodavanje child-a u susede cvora parent
         ((MapNodeComposite) parent.getMapNode()).addChild(child); // Dodavanje MapNode komponente child-a MapNodeComposite komponenti parent-a
         treeView.expandPath(treeView.getSelectionPath());
@@ -47,15 +48,8 @@ public class MapTreeImplementation implements MapTree{
     }
 
     // Kreiranje child cvora
-    private MapNode createChild(MapNode parent) {
-        if (parent instanceof ProjectExplorer) {
-            return new Project("Project" + new Random().nextInt(100), parent);
-        }else if(parent instanceof Project){
-            return new MindMap("MindMap" + new Random().nextInt(100), parent);
-        } else if (parent instanceof MindMap) {
-            return new Element("Element" + new Random().nextInt(100), parent);
-        }
-        return null;
+    private MapNode createChild(MapNodeComposite parent) {
+        return AppCore.getInstance().getMapRepository().getNodeFactory(parent).getNode(parent);
     }
 
     // Uklanjanje datog cvora iz drveta
