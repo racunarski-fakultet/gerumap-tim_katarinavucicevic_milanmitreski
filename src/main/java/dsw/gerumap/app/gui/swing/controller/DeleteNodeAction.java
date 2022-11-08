@@ -1,18 +1,12 @@
 package dsw.gerumap.app.gui.swing.controller;
 
 
-import com.sun.tools.javac.Main;
 import dsw.gerumap.app.AppCore;
-import dsw.gerumap.app.core.ApplicationFramework;
-import dsw.gerumap.app.gui.swing.tree.MapTree;
 import dsw.gerumap.app.gui.swing.tree.model.MapTreeItem;
 import dsw.gerumap.app.gui.swing.view.MainFrame;
-import dsw.gerumap.app.mapRepository.composite.MapNode;
-import dsw.gerumap.app.mapRepository.composite.MapNodeComposite;
 import dsw.gerumap.app.mapRepository.implementation.ProjectExplorer;
 import dsw.gerumap.app.message.MessageType;
 
-import javax.swing.tree.DefaultMutableTreeNode;
 import java.awt.event.ActionEvent;
 
 

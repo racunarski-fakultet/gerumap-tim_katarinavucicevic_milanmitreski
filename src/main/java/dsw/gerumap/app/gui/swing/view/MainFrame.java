@@ -2,7 +2,7 @@ package dsw.gerumap.app.gui.swing.view;
 
 import dsw.gerumap.app.AppCore;
 import dsw.gerumap.app.gui.swing.controller.ActionManager;
-import dsw.gerumap.app.gui.swing.tree.MapTree;
+import dsw.gerumap.app.core.MapTree;
 import dsw.gerumap.app.gui.swing.tree.MapTreeImplementation;
 
 import javax.swing.*;

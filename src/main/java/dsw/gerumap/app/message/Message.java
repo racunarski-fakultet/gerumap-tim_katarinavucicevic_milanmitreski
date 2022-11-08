@@ -3,6 +3,7 @@ package dsw.gerumap.app.message;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 public class Message {
 
@@ -42,8 +43,7 @@ public class Message {
 
     @Override
     public String toString() {
-        LocalDate localDate = localDateTime.toLocalDate();
-        LocalTime localTime = localDateTime.toLocalTime();
-        return "[" + messageType.toString() + "][" + localDate.getDayOfMonth()+"."+ localDate.getMonthValue()+"."+localDate.getYear()+". " + localTime.getHour()+":"+localTime.getMinute()+":"+localTime.getSecond() + "] " + text;
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss");
+        return "[" + messageType.toString() + "][" + localDateTime.format(dateTimeFormatter) + "] " + text;
     }
 }
