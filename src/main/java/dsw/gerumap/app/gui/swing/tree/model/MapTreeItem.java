@@ -24,4 +24,5 @@ public class MapTreeItem extends DefaultMutableTreeNode {
     public MapNode getMapNode() {
         return mapNode;
     }
+
 }

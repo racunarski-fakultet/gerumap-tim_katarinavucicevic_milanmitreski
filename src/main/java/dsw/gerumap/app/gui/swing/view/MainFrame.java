@@ -43,11 +43,6 @@ public class MainFrame extends JFrame {
         setTitle("GeRuMap app");
 
         /// stvari za TabbedPane
-        tabbedPane = new MyTabbedPane(SwingConstants.TOP, JTabbedPane.SCROLL_TAB_LAYOUT);
-        add(tabbedPane, BorderLayout.EAST);
-
-
-
         menu = new MyMenuBar();
         setJMenuBar(menu);
 
@@ -59,7 +54,8 @@ public class MainFrame extends JFrame {
 
         JScrollPane scroll = new JScrollPane(projectExplorer);
         scroll.setMinimumSize(new Dimension(200, 150));
-        JSplitPane split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, scroll, tabbedPane);
+        JSplitPane split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, scroll, desktop);
+
         getContentPane().add(split,BorderLayout.CENTER);
         split.setDividerLocation(250);
         split.setOneTouchExpandable(true);
