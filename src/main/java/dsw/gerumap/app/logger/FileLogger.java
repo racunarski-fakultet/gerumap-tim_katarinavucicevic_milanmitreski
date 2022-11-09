@@ -1,7 +1,7 @@
 package dsw.gerumap.app.logger;
 
 import dsw.gerumap.app.core.Logger;
-import dsw.gerumap.app.message.Message;
+import dsw.gerumap.app.gui.swing.controller.message.Message;
 
 public class FileLogger implements Logger {
 

@@ -1,9 +1,5 @@
 package dsw.gerumap.app.gui.swing.controller;
 
-import dsw.gerumap.app.AppCore;
-import dsw.gerumap.app.core.ApplicationFramework;
-import dsw.gerumap.app.message.MessageType;
-
 import javax.swing.*;
 import java.net.URL;
 

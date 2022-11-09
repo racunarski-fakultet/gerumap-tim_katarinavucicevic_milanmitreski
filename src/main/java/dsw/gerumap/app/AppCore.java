@@ -8,7 +8,7 @@ import dsw.gerumap.app.logger.ConsoleLogger;
 import dsw.gerumap.app.mapRepository.MapRepository;
 import dsw.gerumap.app.gui.swing.SwingGui;
 import dsw.gerumap.app.mapRepository.MapRepositoryImplementation;
-import dsw.gerumap.app.message.MessageGeneratorImplementation;
+import dsw.gerumap.app.gui.swing.controller.message.MessageGeneratorImplementation;
 
 public class AppCore extends ApplicationFramework {
 

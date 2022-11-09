@@ -7,7 +7,7 @@ import dsw.gerumap.app.gui.swing.tree.view.MapTreeView;
 import dsw.gerumap.app.mapRepository.composite.MapNode;
 import dsw.gerumap.app.mapRepository.composite.MapNodeComposite;
 import dsw.gerumap.app.mapRepository.implementation.ProjectExplorer;
-import dsw.gerumap.app.message.MessageType;
+import dsw.gerumap.app.gui.swing.controller.message.MessageType;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
