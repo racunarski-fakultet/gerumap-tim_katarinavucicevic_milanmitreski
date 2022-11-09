@@ -1,23 +1,20 @@
 package dsw.gerumap.app.gui.swing.tree;
 
 import dsw.gerumap.app.AppCore;
+import dsw.gerumap.app.core.MapTree;
 import dsw.gerumap.app.gui.swing.tree.model.MapTreeItem;
 import dsw.gerumap.app.gui.swing.tree.view.MapTreeView;
-import dsw.gerumap.app.gui.swing.view.MainFrame;
 import dsw.gerumap.app.mapRepository.composite.MapNode;
 import dsw.gerumap.app.mapRepository.composite.MapNodeComposite;
-import dsw.gerumap.app.mapRepository.implementation.Element;
-import dsw.gerumap.app.mapRepository.implementation.MindMap;
-import dsw.gerumap.app.mapRepository.implementation.Project;
 import dsw.gerumap.app.mapRepository.implementation.ProjectExplorer;
+import dsw.gerumap.app.message.MessageType;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
-import java.awt.*;
-import java.util.Random;
+import javax.swing.tree.TreePath;
 
-public class MapTreeImplementation implements MapTree{
+public class MapTreeImplementation implements MapTree {
 
     // Konkretna implementacija interfejsa MapTree
 
@@ -34,15 +31,17 @@ public class MapTreeImplementation implements MapTree{
         return treeView;
     }
 
-    // dodaje cvora u drvo
+    // Dodaje cvor u drvo
     @Override
     public void addChild(MapTreeItem parent) {
-        if (parent == null) return; // Provera da li je parent null
-        if (!(parent.getMapNode() instanceof MapNodeComposite)) return; // Provera da li je parent MapNodeComposite
+        // Vec je provereno da li je parent == null ( u slucaju NewProject znamo da je ProjectExplorer vec instanciran prilikom pokretanja aplikacije)
+        // Provera da li je parent MapNodeComposite je vec uradjena u AddAction-u
 
         MapNode child = createChild((MapNodeComposite) parent.getMapNode()); // Kreiranje deteta za cvor parent
+        if(child == null) {
+            AppCore.getInstance().getMessageGenerator().getMessage("Unable to add child to" + parent.getMapNode().getName(), MessageType.NODE_NOT_CREATED); // Ako Factory vrati null
+        }
         parent.add(new MapTreeItem(child)); // Dodavanje child-a u susede cvora parent
-        ((MapNodeComposite) parent.getMapNode()).addChild(child); // Dodavanje MapNode komponente child-a MapNodeComposite komponenti parent-a
         treeView.expandPath(treeView.getSelectionPath());
         SwingUtilities.updateComponentTreeUI(treeView);
     }
@@ -50,6 +49,14 @@ public class MapTreeImplementation implements MapTree{
     // Kreiranje child cvora
     private MapNode createChild(MapNodeComposite parent) {
         return AppCore.getInstance().getMapRepository().getNodeFactory(parent).getNode(parent);
+    }
+
+    @Override
+    public void newProject() {
+        addChild((MapTreeItem) treeModel.getRoot());
+        TreePath treePath = new TreePath(((MapTreeItem) treeModel.getRoot()).getPath());
+        treeView.expandPath(treePath);
+        treeView.setSelectionPath(null);
     }
 
     // Uklanjanje datog cvora iz drveta
@@ -67,4 +74,5 @@ public class MapTreeImplementation implements MapTree{
     public MapTreeItem getSelectedNode() {
         return (MapTreeItem) treeView.getLastSelectedPathComponent();
     }
+
 }

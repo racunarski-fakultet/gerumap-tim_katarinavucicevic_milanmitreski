@@ -1,4 +1,4 @@
-package dsw.gerumap.app.gui.swing.tree;
+package dsw.gerumap.app.core;
 
 import dsw.gerumap.app.gui.swing.tree.model.MapTreeItem;
 import dsw.gerumap.app.gui.swing.tree.view.MapTreeView;
@@ -15,4 +15,6 @@ public interface MapTree {
     MapTreeItem getSelectedNode();
 
     void removeChild(DefaultMutableTreeNode root);
+
+    void newProject();
 }

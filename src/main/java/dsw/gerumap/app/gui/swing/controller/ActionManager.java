@@ -1,7 +1,5 @@
 package dsw.gerumap.app.gui.swing.controller;
 
-import java.util.Scanner;
-
 public class ActionManager {
 
     private ExitAction exitAction;
@@ -18,9 +16,6 @@ public class ActionManager {
 
     private AddTabAction addTabAction;
 
-    private OkAction okAction;
-
-    private SaveAction saveAction;
     public ActionManager() {
         initialiseActions();
     }
@@ -34,8 +29,6 @@ public class ActionManager {
         addAction = new AddAction();
         addTabAction = new AddTabAction();
         changeAuthorAction = new ChangeAuthorAction();
-        saveAction = new SaveAction();
-        okAction = new OkAction();
     }
 
     public ExitAction getExitAction() {
@@ -68,7 +61,4 @@ public class ActionManager {
 
     public ChangeAuthorAction getChangeAuthorAction() { return changeAuthorAction; }
 
-    public SaveAction getSaveAction() { return saveAction; }
-
-    public OkAction getOkAction() { return okAction; }
 }
