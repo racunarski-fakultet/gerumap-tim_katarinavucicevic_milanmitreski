@@ -31,4 +31,8 @@ public abstract class ApplicationFramework {
     public MessageGenerator getMessageGenerator() {
         return messageGenerator;
     }
+
+    public Logger getLogger() {
+        return logger;
+    }
 }
