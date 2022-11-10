@@ -1,4 +1,4 @@
-package dsw.gerumap.app.message;
+package dsw.gerumap.app.gui.swing.controller.message;
 
 import dsw.gerumap.app.core.MessageGenerator;
 import dsw.gerumap.app.observer.ISubscriber;

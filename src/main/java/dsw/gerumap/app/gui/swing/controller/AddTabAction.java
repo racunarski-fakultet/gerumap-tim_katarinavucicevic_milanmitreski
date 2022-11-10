@@ -6,10 +6,9 @@ import java.awt.event.ActionEvent;
 
 public class AddTabAction extends AbstractGeRuMapAction{
 
-    // na dvoklik necega sto je instanceof MindMap treba da otvori novi tab
+    // na dvoklik necega sto je instanceof MindMap treba da otvori novi Tab
 
     private MyTabbedPane myTabbedPane;
-
 
     @Override
     public void actionPerformed(ActionEvent e) {
