@@ -1,4 +1,4 @@
-package dsw.gerumap.app.gui.swing.controller.message;
+package dsw.gerumap.app.message;
 
 public enum MessageType {
 

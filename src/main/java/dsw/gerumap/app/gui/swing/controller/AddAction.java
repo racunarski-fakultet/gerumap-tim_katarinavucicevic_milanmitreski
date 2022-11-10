@@ -4,7 +4,7 @@ import dsw.gerumap.app.AppCore;
 import dsw.gerumap.app.gui.swing.tree.model.MapTreeItem;
 import dsw.gerumap.app.gui.swing.view.MainFrame;
 import dsw.gerumap.app.mapRepository.composite.MapNodeComposite;
-import dsw.gerumap.app.gui.swing.controller.message.MessageType;
+import dsw.gerumap.app.message.MessageType;
 
 import java.awt.event.ActionEvent;
 

@@ -2,7 +2,7 @@ package dsw.gerumap.app.gui.swing.view;
 
 import dsw.gerumap.app.AppCore;
 import dsw.gerumap.app.mapRepository.implementation.Project;
-import dsw.gerumap.app.gui.swing.controller.message.MessageType;
+import dsw.gerumap.app.message.MessageType;
 
 import javax.swing.*;
 import java.awt.*;

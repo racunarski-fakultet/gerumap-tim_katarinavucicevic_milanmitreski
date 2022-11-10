@@ -1,4 +1,4 @@
-package dsw.gerumap.app.gui.swing.controller.message;
+package dsw.gerumap.app.message;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
