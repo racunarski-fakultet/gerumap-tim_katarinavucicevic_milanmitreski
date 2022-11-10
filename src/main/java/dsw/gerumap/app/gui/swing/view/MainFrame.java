@@ -21,8 +21,6 @@ public class MainFrame extends JFrame {
     private MapTree mapTree;
     private MyTabbedPane tabbedPane;
 
-    private MapTreeView mapTreeView;
-
     private WorkSpaceImplementation workspace;
 
     private JPanel desktop;
@@ -65,7 +63,7 @@ public class MainFrame extends JFrame {
 
         workspace = new WorkSpaceImplementation();
         desktop = new JPanel();
-        //desktop.add(workspace);
+
         //tabbedPane = new MyTabbedPane(JTabbedPane.TOP, JTabbedPane.WRAP_TAB_LAYOUT);
         //desktop.add(tabbedPane);
 

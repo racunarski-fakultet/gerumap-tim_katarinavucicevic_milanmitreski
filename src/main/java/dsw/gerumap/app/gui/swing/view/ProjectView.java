@@ -16,17 +16,18 @@ public class ProjectView extends JPanel implements ISubscriber {
     private MyTabbedPane mapsTabbedPane;
 
     public ProjectView() {
+        this.project = (Project) MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode();
         //project = new Project(this.projName.getText(), project.getParent());
-        //this.projName = new JLabel(this.project.getName());
-        //this.autor = new JLabel(this.project.getAuthor());
+        this.projName = new JLabel(this.project.getName());
+        this.autor = new JLabel(this.project.getAuthor());
         this.mapsTabbedPane = new MyTabbedPane(SwingConstants.TOP, JTabbedPane.SCROLL_TAB_LAYOUT);
 
     }
 
     public void updateWorkspace(JPanel panel){
         panel.removeAll();
-        panel.add(new JLabel("LABELA"));
-        panel.add(new JButton("DUGME"));
+        panel.add(new JLabel(this.projName.getText()));
+        panel.add(new JLabel(this.autor.getText()));
 
     }
 
@@ -48,5 +49,9 @@ public class ProjectView extends JPanel implements ISubscriber {
 
     public JLabel getProjName() {
         return projName;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
     }
 }
