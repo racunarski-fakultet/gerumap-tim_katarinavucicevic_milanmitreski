@@ -17,6 +17,7 @@ public class ProjectView extends JPanel implements ISubscriber {
 
     public ProjectView() {
         this.project = (Project) MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode();
+        this.project.addSubcriber(this);
         //project = new Project(this.projName.getText(), project.getParent());
         this.projName = new JLabel(this.project.getName());
         this.autor = new JLabel(this.project.getAuthor());
@@ -26,9 +27,8 @@ public class ProjectView extends JPanel implements ISubscriber {
 
     public void updateWorkspace(JPanel panel){
         panel.removeAll();
-        panel.add(new JLabel(this.projName.getText()));
-        panel.add(new JLabel(this.autor.getText()));
-
+        panel.add(this.projName);
+        panel.add(this.autor);
     }
 
     @Override

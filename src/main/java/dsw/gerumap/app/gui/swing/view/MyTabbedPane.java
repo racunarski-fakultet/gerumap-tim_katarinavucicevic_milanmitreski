@@ -23,7 +23,7 @@ public class MyTabbedPane extends JTabbedPane {
         // this.add(MainFrame.getInstance().getActionManager().getAddTabAction());
 
     }
-
+    
     @Override
     public JRootPane getRootPane() {
         return super.getRootPane();

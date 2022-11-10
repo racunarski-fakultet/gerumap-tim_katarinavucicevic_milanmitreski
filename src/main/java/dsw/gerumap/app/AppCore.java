@@ -5,6 +5,7 @@ import dsw.gerumap.app.core.Gui;
 import dsw.gerumap.app.core.Logger;
 import dsw.gerumap.app.core.MessageGenerator;
 import dsw.gerumap.app.logger.ConsoleLogger;
+import dsw.gerumap.app.logger.FileLogger;
 import dsw.gerumap.app.mapRepository.MapRepository;
 import dsw.gerumap.app.gui.swing.SwingGui;
 import dsw.gerumap.app.mapRepository.MapRepositoryImplementation;
@@ -33,7 +34,7 @@ public class AppCore extends ApplicationFramework {
 
     public static void main(String[] args) {
         Gui gui = new SwingGui();
-        Logger logger = new ConsoleLogger();
+        Logger logger = new FileLogger();
         MapRepository mapRepository = new MapRepositoryImplementation();
         MessageGenerator messageGenerator = new MessageGeneratorImplementation();
         ApplicationFramework appCore = AppCore.getInstance();

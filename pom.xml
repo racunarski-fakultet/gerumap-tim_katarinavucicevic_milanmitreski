@@ -10,6 +10,17 @@
 
     <dependencies>
     </dependencies>
+    <build>
+        <sourceDirectory>src/main/java</sourceDirectory>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>log.txt</include>
+                </includes>
+            </resource>
+        </resources>
+    </build>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>

@@ -21,7 +21,7 @@ public class FileLogger implements Logger {
     @Override
     public void log(Message message) {
         try {
-           PrintWriter pw = new PrintWriter(new FileOutputStream("log.txt", true));
+           PrintWriter pw = new PrintWriter(new FileOutputStream(getClass().getResource("/log.txt").getFile(), true));
            pw.println(message.toString());
            pw.close();
         } catch (FileNotFoundException e) {

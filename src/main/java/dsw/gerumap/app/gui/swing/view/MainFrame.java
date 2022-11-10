@@ -104,4 +104,8 @@ public class MainFrame extends JFrame {
     public JPanel getDesktop() {
         return desktop;
     }
+
+    public JSplitPane getSplit() {
+        return split;
+    }
 }

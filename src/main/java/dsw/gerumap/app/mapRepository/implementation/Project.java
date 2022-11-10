@@ -28,7 +28,6 @@ public class Project extends MapNodeComposite {
                 this.getChildren().add(mindMap);
 
             }
-
         }
     }
 
