@@ -37,7 +37,13 @@ public class MyMouseListener implements MouseListener {
 
         if(e.getClickCount() == 2){
             if(MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode() instanceof Project){
-                MainFrame.getInstance().getWorkspace().generateWorkspace().updateWorkspace(MainFrame.getInstance().getDesktop());
+                System.out.println("Lol");
+                ProjectView pv = MainFrame.getInstance().getWorkspace().generateWorkspace();
+                MainFrame.getInstance().getDesktop().add(pv);
+                MainFrame.getInstance().getDesktop().revalidate();
+                pv.updateWorkspace(MainFrame.getInstance().getDesktop());
+                System.out.println("Desktop " + MainFrame.getInstance().getDesktop());
+
             }
         }
     }

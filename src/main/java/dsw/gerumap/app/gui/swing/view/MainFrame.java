@@ -27,6 +27,8 @@ public class MainFrame extends JFrame {
 
     private JPanel desktop;
 
+    private JSplitPane split;
+
     private MainFrame() {
 
     }
@@ -69,7 +71,7 @@ public class MainFrame extends JFrame {
 
         JScrollPane scroll = new JScrollPane(projectExplorer);
         scroll.setMinimumSize(new Dimension(200, 150));
-        JSplitPane split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, scroll, desktop);
+        split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, scroll, desktop);
 
         getContentPane().add(split, BorderLayout.CENTER);
         split.setDividerLocation(250);
