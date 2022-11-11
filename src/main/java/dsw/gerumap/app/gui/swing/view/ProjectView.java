@@ -22,6 +22,7 @@ public class ProjectView extends JPanel implements ISubscriber {
         this.projName = new JLabel(this.project.getName());
         this.autor = new JLabel(this.project.getAuthor());
         this.mapsTabbedPane = new MyTabbedPane(SwingConstants.TOP, JTabbedPane.SCROLL_TAB_LAYOUT);
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         add(projName);
         add(autor);
         add(mapsTabbedPane);

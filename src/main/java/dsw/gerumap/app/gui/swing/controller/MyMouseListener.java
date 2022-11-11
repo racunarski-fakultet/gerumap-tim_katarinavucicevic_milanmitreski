@@ -1,19 +1,15 @@
 package dsw.gerumap.app.gui.swing.controller;
 
-import dsw.gerumap.app.AppCore;
-import dsw.gerumap.app.gui.swing.tree.view.MapTreeView;
 import dsw.gerumap.app.gui.swing.view.MainFrame;
 import dsw.gerumap.app.gui.swing.view.MapView;
-import dsw.gerumap.app.gui.swing.view.MyTabbedPane;
 import dsw.gerumap.app.gui.swing.view.ProjectView;
+import dsw.gerumap.app.mapRepository.composite.MapNode;
 import dsw.gerumap.app.mapRepository.implementation.MindMap;
 import dsw.gerumap.app.mapRepository.implementation.Project;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.Arrays;
 
 public class MyMouseListener implements MouseListener {
 
@@ -37,17 +33,20 @@ public class MyMouseListener implements MouseListener {
 
         if(e.getClickCount() == 2){
             if(MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode() instanceof Project){
+                Project p = (Project) MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode();
                 ProjectView pv = MainFrame.getInstance().getWorkspace().generateWorkspace();
                 MainFrame.getInstance().getSplit().setRightComponent(pv);
+                for(MapNode node : p.getChildren()) {
+                    if(node instanceof MindMap) {
+                        MapView mv = new MapView((MindMap) node);
+                        pv.getMapsTabbedPane().addTab(mv.getMindMap().getName(), mv);
+                    }
+                }
             } else if(MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode() instanceof MindMap){
                 if(MainFrame.getInstance().getSplit().getRightComponent() instanceof ProjectView) {
                     ProjectView pv = (ProjectView) MainFrame.getInstance().getSplit().getRightComponent();
-                    MapView mv = new MapView();
-                    mv.setSize(new Dimension(pv.getSize().width, pv.getSize().height - 50));
+                    MapView mv = new MapView((MindMap) MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode());
                     JTabbedPane tabbedPane = pv.getMapsTabbedPane();
-                    tabbedPane.setVisible(true);
-                    tabbedPane.setSize(new Dimension(pv.getSize().width, pv.getSize().height - 50));
-                    System.out.println(tabbedPane);
                     tabbedPane.addTab(mv.getMindMap().getName(), mv);
                 }
             }

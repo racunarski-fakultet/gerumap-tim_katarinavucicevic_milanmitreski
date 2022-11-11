@@ -10,9 +10,8 @@ public class MyTabbedPane extends JTabbedPane {
 
     public MyTabbedPane(int tabPlacement, int tabLayoutPolicy) {
         super(tabPlacement, tabLayoutPolicy);
-        this.setVisible(false);
     }
-    
+
     @Override
     public JRootPane getRootPane() {
         return super.getRootPane();
