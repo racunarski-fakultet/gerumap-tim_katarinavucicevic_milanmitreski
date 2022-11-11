@@ -23,8 +23,6 @@ public class MainFrame extends JFrame {
 
     private WorkSpaceImplementation workspace;
 
-    private JPanel desktop;
-
     private JSplitPane split;
 
     private MainFrame() {
@@ -62,14 +60,11 @@ public class MainFrame extends JFrame {
         projectExplorer.addMouseListener(new MyMouseListener());
 
         workspace = new WorkSpaceImplementation();
-        desktop = new JPanel();
-
-        //tabbedPane = new MyTabbedPane(JTabbedPane.TOP, JTabbedPane.WRAP_TAB_LAYOUT);
-        //desktop.add(tabbedPane);
 
         JScrollPane scroll = new JScrollPane(projectExplorer);
         scroll.setMinimumSize(new Dimension(200, 150));
-        split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, scroll, desktop);
+
+        split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, scroll, new JPanel());
 
         getContentPane().add(split, BorderLayout.CENTER);
         split.setDividerLocation(250);
@@ -99,10 +94,6 @@ public class MainFrame extends JFrame {
 
     public WorkSpaceImplementation getWorkspace() {
         return workspace;
-    }
-
-    public JPanel getDesktop() {
-        return desktop;
     }
 
     public JSplitPane getSplit() {

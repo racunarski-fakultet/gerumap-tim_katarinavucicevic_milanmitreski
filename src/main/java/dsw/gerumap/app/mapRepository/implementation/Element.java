@@ -9,18 +9,4 @@ public class Element extends MapNode {
         super(ime, parent);
     }
 
-    @Override
-    public void addSubcriber(ISubscriber sub) {
-
-    }
-
-    @Override
-    public void removeSubscriber(ISubscriber sub) {
-
-    }
-
-    @Override
-    public void notifySubscriber(Object notification) {
-
-    }
 }

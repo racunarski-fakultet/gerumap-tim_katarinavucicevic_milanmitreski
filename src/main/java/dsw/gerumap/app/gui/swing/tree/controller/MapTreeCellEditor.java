@@ -1,6 +1,8 @@
 package dsw.gerumap.app.gui.swing.tree.controller;
 
+import dsw.gerumap.app.AppCore;
 import dsw.gerumap.app.gui.swing.tree.model.MapTreeItem;
+import dsw.gerumap.app.message.MessageType;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultTreeCellEditor;
@@ -39,11 +41,19 @@ public class MapTreeCellEditor extends DefaultTreeCellEditor implements ActionLi
     }
 
     public void actionPerformed(ActionEvent e){
-
         if (!(clickedOn instanceof MapTreeItem))
             return;
-
         MapTreeItem clicked = (MapTreeItem) clickedOn;
-        clicked.setName(e.getActionCommand());
+        if(edit.getText().equals("")) {
+            AppCore.getInstance().getMessageGenerator().getMessage("Name can't be empty", MessageType.NAME_CANNOT_BE_EMPTY);
+            return;
+        }
+        clicked.setName(edit.getText());
+        stopCellEditing();
+    }
+
+    @Override
+    public boolean stopCellEditing() {
+        return super.stopCellEditing();
     }
 }

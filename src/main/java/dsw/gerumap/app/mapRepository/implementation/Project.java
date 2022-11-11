@@ -13,11 +13,8 @@ public class Project extends MapNodeComposite {
     private String author;
     private String path;
 
-    private List<ISubscriber> subscribers;
-
     public Project(String name, MapNode mapNode) {
         super(name, mapNode);
-        subscribers = new ArrayList<>();
     }
 
     @Override
@@ -31,12 +28,6 @@ public class Project extends MapNodeComposite {
         }
     }
 
-    @Override
-    public void setName(String name) {
-        this.name = name;
-        notifySubscriber(this);
-    }
-
     public void setAuthor(String author) {
         this.author = author;
         notifySubscriber(this);
@@ -44,22 +35,5 @@ public class Project extends MapNodeComposite {
 
     public String getAuthor() {
         return author;
-    }
-
-    @Override
-    public void addSubcriber(ISubscriber sub) {
-        subscribers.add(sub);
-    }
-
-    @Override
-    public void removeSubscriber(ISubscriber sub) {
-        subscribers.remove(sub);
-    }
-
-    @Override
-    public void notifySubscriber(Object notification) {
-        for(ISubscriber sub : subscribers){
-            sub.update(notification);
-        }
     }
 }

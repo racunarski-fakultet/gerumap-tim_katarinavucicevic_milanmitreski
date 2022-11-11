@@ -24,18 +24,4 @@ public class MindMap extends MapNodeComposite {
         }
     }
 
-    @Override
-    public void addSubcriber(ISubscriber sub) {
-
-    }
-
-    @Override
-    public void removeSubscriber(ISubscriber sub) {
-
-    }
-
-    @Override
-    public void notifySubscriber(Object notification) {
-
-    }
 }
