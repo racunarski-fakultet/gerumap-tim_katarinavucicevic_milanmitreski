@@ -8,7 +8,7 @@ import javax.swing.*;
 
 public class MapView extends JPanel implements ISubscriber {
 
-    private MindMap mindMap;
+    private final MindMap mindMap;
 
 
     public MapView(MindMap mindMap) {
@@ -20,10 +20,6 @@ public class MapView extends JPanel implements ISubscriber {
     public void update(Object notification) {
         if(notification instanceof NotificationType) {
             switch((NotificationType) notification) {
-                case NODE_CREATED:
-                    break;
-                case NODE_DELETED:
-                    break;
                 case NAME_CHANGED:
                     setName(mindMap.getName());
                     ((MyTabbedPane)this.getParent()).setTitleAt(((MyTabbedPane)this.getParent()).indexOfComponent(this), this.getName());
@@ -32,10 +28,6 @@ public class MapView extends JPanel implements ISubscriber {
                     break;
             }
         }
-    }
-
-    public MindMap getMindMap() {
-        return mindMap;
     }
 
 }

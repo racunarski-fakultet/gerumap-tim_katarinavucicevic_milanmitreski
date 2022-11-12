@@ -4,7 +4,6 @@ import dsw.gerumap.app.core.ApplicationFramework;
 import dsw.gerumap.app.core.Gui;
 import dsw.gerumap.app.core.Logger;
 import dsw.gerumap.app.core.MessageGenerator;
-import dsw.gerumap.app.logger.ConsoleLogger;
 import dsw.gerumap.app.logger.FileLogger;
 import dsw.gerumap.app.mapRepository.MapRepository;
 import dsw.gerumap.app.gui.swing.SwingGui;

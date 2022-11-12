@@ -3,9 +3,7 @@ package dsw.gerumap.app.gui.swing.view;
 import dsw.gerumap.app.AppCore;
 import dsw.gerumap.app.gui.swing.controller.ActionManager;
 import dsw.gerumap.app.core.MapTree;
-import dsw.gerumap.app.gui.swing.controller.MyMouseListener;
 import dsw.gerumap.app.gui.swing.tree.MapTreeImplementation;
-import dsw.gerumap.app.gui.swing.tree.view.MapTreeView;
 import dsw.gerumap.app.gui.swing.view.rightWorkspace.WorkSpaceImplementation;
 
 import javax.swing.*;
@@ -16,10 +14,7 @@ public class MainFrame extends JFrame {
     private static MainFrame instance = null;
 
     private ActionManager actionManager;
-    private MyMenuBar menu;
-    private Toolbar toolBar;
     private MapTree mapTree;
-    private MyTabbedPane tabbedPane;
 
     private WorkSpaceImplementation workspace;
 
@@ -50,10 +45,10 @@ public class MainFrame extends JFrame {
         setTitle("GeRuMap app");
 
 
-        menu = new MyMenuBar();
+        MyMenuBar menu = new MyMenuBar();
         setJMenuBar(menu);
 
-        toolBar = new Toolbar();
+        Toolbar toolBar = new Toolbar();
         add(toolBar, BorderLayout.NORTH);
 
         JTree projectExplorer = mapTree.generateTree(AppCore.getInstance().getMapRepository().getProjectExplorer());
@@ -82,10 +77,6 @@ public class MainFrame extends JFrame {
 
     public MapTree getMapTree() {
         return mapTree;
-    }
-
-    public MyTabbedPane getTabbedPane() {
-        return tabbedPane;
     }
 
     public ActionManager getActionManager() {

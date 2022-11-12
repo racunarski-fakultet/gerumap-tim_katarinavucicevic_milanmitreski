@@ -6,8 +6,7 @@ import dsw.gerumap.app.mapRepository.composite.MapNodeComposite;
 public abstract class NodeFactory {
 
     public MapNode getNode(MapNodeComposite parent){
-        MapNode n = createNode(parent);
-        return n;
+        return createNode(parent);
     }
 
     protected abstract MapNode createNode(MapNodeComposite parent);

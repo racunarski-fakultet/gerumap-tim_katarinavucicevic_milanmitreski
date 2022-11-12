@@ -12,7 +12,7 @@ public abstract class MapNode implements IPublisher {
     private String name;
     private MapNode parent;
 
-    private List<ISubscriber> subscribers;
+    private final List<ISubscriber> subscribers;
     public MapNode(String ime, MapNode parent) {
         this.name = ime;
         this.parent = parent;
@@ -21,7 +21,7 @@ public abstract class MapNode implements IPublisher {
 
     @Override
     public boolean equals(Object obj) {
-        if(obj != null && obj instanceof MapNode){
+        if(obj instanceof MapNode){
             MapNode altObj = (MapNode) obj;
             return this.getName().equals(altObj.getName());
         }

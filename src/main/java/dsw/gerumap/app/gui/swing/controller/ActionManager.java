@@ -45,10 +45,7 @@ public class ActionManager {
     public InfoAction getInfoAction() {
         return infoAction;
     }
-
-    public EditAction getEditAction() {
-        return editAction;
-    }
+    
 
     public DeleteNodeAction getDeleteNodeAction() {
         return deleteNodeAction;

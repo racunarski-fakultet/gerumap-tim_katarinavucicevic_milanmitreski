@@ -1,9 +1,7 @@
 package dsw.gerumap.app.gui.swing.controller;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.net.URL;
 
 public abstract class AbstractGeRuMapAction extends AbstractAction {

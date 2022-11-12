@@ -11,12 +11,9 @@ import java.awt.event.ActionListener;
 
 public class ChangeAuthorDialog extends JDialog implements ActionListener {
 
-    private JLabel labelAuthor;
-    private JTextField authorData;
-    private JButton saveAuthorButton;
+    private final JTextField authorData;
 
-    private JButton closeButton;
-    private Project project;
+    private final Project project;
 
     public ChangeAuthorDialog(Frame owner, String title, Project project) {
         super(owner, title);
@@ -27,10 +24,10 @@ public class ChangeAuthorDialog extends JDialog implements ActionListener {
         Container dialogContent = getContentPane();
         dialogContent.setLayout(new FlowLayout()); /// ako se promeni ovaj FlowLayout onda moze da se menja raspored komponenti
 
-        labelAuthor = new JLabel("Insert author name: ");
+        JLabel labelAuthor = new JLabel("Insert author name: ");
         authorData = new JTextField();
         authorData.setColumns(15);
-        saveAuthorButton = new JButton();
+        JButton saveAuthorButton = new JButton();
         saveAuthorButton.setAction(new AbstractAction("Save") {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -42,7 +39,7 @@ public class ChangeAuthorDialog extends JDialog implements ActionListener {
                 dispose();
             }
         });
-        closeButton = new JButton();
+        JButton closeButton = new JButton();
         closeButton.setAction(new AbstractAction("Close") {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {

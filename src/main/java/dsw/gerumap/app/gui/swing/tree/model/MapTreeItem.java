@@ -1,5 +1,6 @@
 package dsw.gerumap.app.gui.swing.tree.model;
 
+import dsw.gerumap.app.AppCore;
 import dsw.gerumap.app.mapRepository.composite.MapNode;
 import dsw.gerumap.app.mapRepository.composite.MapNodeComposite;
 
@@ -8,7 +9,7 @@ import javax.swing.tree.MutableTreeNode;
 
 public class MapTreeItem extends DefaultMutableTreeNode {
 
-    private MapNode mapNode;
+    private final MapNode mapNode;
 
     public MapTreeItem(MapNode nodeModel) {
         this.mapNode = nodeModel;
@@ -30,6 +31,6 @@ public class MapTreeItem extends DefaultMutableTreeNode {
     @Override
     public void add(MutableTreeNode newChild) {
         super.add(newChild);
-        ((MapNodeComposite) this.getMapNode()).addChild(((MapTreeItem)newChild).getMapNode());
+        AppCore.getInstance().getMapRepository().addChild(((MapNodeComposite) this.getMapNode()), ((MapTreeItem)newChild).getMapNode());
     }
 }

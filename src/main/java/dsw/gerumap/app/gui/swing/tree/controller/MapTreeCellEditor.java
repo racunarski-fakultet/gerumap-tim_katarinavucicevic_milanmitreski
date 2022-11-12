@@ -34,9 +34,7 @@ public class MapTreeCellEditor extends DefaultTreeCellEditor implements ActionLi
     // metoda kaze da cell moze da se menja ako je na njega kliknuto tri puta
     public boolean isCellEditable(EventObject arg0) {
         if(arg0 instanceof MouseEvent)
-            if(((MouseEvent)arg0).getClickCount() == 3) {
-                return true;
-            }
+            return ((MouseEvent) arg0).getClickCount() == 3;
         return false;
     }
 

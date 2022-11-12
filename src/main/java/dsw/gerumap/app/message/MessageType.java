@@ -8,14 +8,11 @@ public enum MessageType {
     NODE_NOT_COMPOSITE("NODE NOT COMPOSITE"),
     NAME_CANNOT_BE_EMPTY("NAME CANNOT BE EMPTY"),
     NODE_NOT_CREATED("NODE NOT CREATED"),
-
-    FILE_NOT_FOUND("FILE NOT FOUND"),
-
     NODE_CANNOT_BE_RENAMED("NODE CANNOT BE RENAMED");
 
-    private String text;
+    private final String text;
 
-    private MessageType(String text) {
+    MessageType(String text) {
         this.text = text;
     }
 

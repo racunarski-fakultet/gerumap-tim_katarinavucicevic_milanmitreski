@@ -8,8 +8,7 @@ import dsw.gerumap.app.mapRepository.implementation.ProjectExplorer;
 
 public class MapRepositoryImplementation implements MapRepository {
 
-    private NodeFactory nodeFactory;
-    private ProjectExplorer projectExplorer;
+    private final ProjectExplorer projectExplorer;
 
     public MapRepositoryImplementation() {
         projectExplorer = new ProjectExplorer("My Project Explorer");
@@ -27,7 +26,6 @@ public class MapRepositoryImplementation implements MapRepository {
 
     @Override
     public NodeFactory getNodeFactory(MapNodeComposite parent) {
-        nodeFactory = FactoryUtil.getNodeFactory(parent);
-        return nodeFactory;
+        return FactoryUtil.getNodeFactory(parent);
     }
 }

@@ -10,8 +10,6 @@ import java.awt.event.ActionEvent;
 
 public class AddAction extends AbstractGeRuMapAction{
 
-    private MapTreeItem item;
-
     public AddAction() {
 
         putValue(NAME, "Add");

@@ -8,10 +8,10 @@ import java.util.List;
 
 public class MessageGeneratorImplementation implements MessageGenerator {
 
-    private List<ISubscriber> subscribers;
+    private final List<ISubscriber> subscribers;
 
     public MessageGeneratorImplementation() {
-        this.subscribers = new LinkedList<ISubscriber>();
+        this.subscribers = new LinkedList<>();
     }
 
     @Override

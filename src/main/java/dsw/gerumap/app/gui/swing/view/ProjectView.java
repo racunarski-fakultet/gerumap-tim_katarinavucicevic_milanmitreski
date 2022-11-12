@@ -7,17 +7,16 @@ import dsw.gerumap.app.mapRepository.implementation.Project;
 import dsw.gerumap.app.observer.ISubscriber;
 
 import javax.swing.*;
-import java.awt.*;
 import java.util.List;
 
 public class ProjectView extends JPanel implements ISubscriber {
 
-    private JLabel projName;
-    private JLabel autor;
+    private final JLabel projName;
+    private final JLabel autor;
 
     private Project project;
 
-    private MyTabbedPane mapsTabbedPane;
+    private final MyTabbedPane mapsTabbedPane;
 
     public ProjectView() {
         this.project = (Project) MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode();
@@ -63,18 +62,6 @@ public class ProjectView extends JPanel implements ISubscriber {
 
     public Project getProject() {
         return project;
-    }
-
-    public JLabel getAutor() {
-        return autor;
-    }
-
-    public JLabel getProjName() {
-        return projName;
-    }
-
-    public MyTabbedPane getMapsTabbedPane() {
-        return mapsTabbedPane;
     }
 
     public void setProject(Project project) {
