@@ -13,13 +13,15 @@ public class AddAction extends AbstractGeRuMapAction{
     private MapTreeItem item;
 
     public AddAction() {
+
         putValue(NAME, "Add");
+        putValue(SMALL_ICON, loadIcon("/addBtn.png"));
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if(MainFrame.getInstance().getMapTree().getSelectedNode() == null ) {
-            AppCore.getInstance().getMessageGenerator().getMessage("No selected node to delete.", MessageType.NODE_NOT_SELECTED);
+            AppCore.getInstance().getMessageGenerator().getMessage("No selected node", MessageType.NODE_NOT_SELECTED);
         }
         else if(MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode() instanceof MapNodeComposite) {
             MainFrame.getInstance().getMapTree().addChild(MainFrame.getInstance().getMapTree().getSelectedNode());

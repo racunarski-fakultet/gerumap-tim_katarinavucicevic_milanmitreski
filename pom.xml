@@ -16,7 +16,7 @@
             <resource>
                 <directory>src/main/resources</directory>
                 <includes>
-                    <include>log.txt</include>
+                    <include>**/*</include>
                 </includes>
             </resource>
         </resources>
