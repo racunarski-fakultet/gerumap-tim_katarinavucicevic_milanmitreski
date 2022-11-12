@@ -20,6 +20,7 @@ public class MapView extends JPanel implements ISubscriber {
         if (notification instanceof MindMap){
             this.setName(((MindMap) notification).getName());
             ((MyTabbedPane)this.getParent()).setTitleAt(((MyTabbedPane)this.getParent()).indexOfComponent(this), this.getName());
+
         }
     }
 
