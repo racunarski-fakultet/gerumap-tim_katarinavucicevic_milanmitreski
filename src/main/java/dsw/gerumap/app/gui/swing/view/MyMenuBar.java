@@ -38,7 +38,7 @@ public class MyMenuBar extends JMenuBar {
         addItem.setIcon(null);
         deleteItem.setAction(MainFrame.getInstance().getActionManager().getDeleteNodeAction());
         deleteItem.setIcon(null);
-        // renameItem.setAction(MainFrame.getInstance().getActionManager().getRenameAction());
+        renameItem.setAction(MainFrame.getInstance().getActionManager().getRenameAction());
         renameItem.setIcon(null);
         editMenu.add(addItem);
         editMenu.add(renameItem);

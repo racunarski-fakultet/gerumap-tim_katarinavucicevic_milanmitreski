@@ -27,7 +27,7 @@ public class ChangeAuthorDialog extends JDialog implements ActionListener {
         Container dialogContent = getContentPane();
         dialogContent.setLayout(new FlowLayout()); /// ako se promeni ovaj FlowLayout onda moze da se menja raspored komponenti
 
-        labelAuthor = new JLabel("Unesite ime autora: ");
+        labelAuthor = new JLabel("Insert author name: ");
         authorData = new JTextField();
         authorData.setColumns(15);
         saveAuthorButton = new JButton();
@@ -54,10 +54,6 @@ public class ChangeAuthorDialog extends JDialog implements ActionListener {
         add(authorData);
         add(saveAuthorButton);
         add(closeButton);
-    }
-
-    public JTextField getAuthorData() {
-        return authorData;
     }
 
     public Project getProject() {

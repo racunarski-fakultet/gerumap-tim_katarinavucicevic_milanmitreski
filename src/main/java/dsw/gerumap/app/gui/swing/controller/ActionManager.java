@@ -16,6 +16,8 @@ public class ActionManager {
 
     private MyMouseListener myMouseListener;
 
+    private RenameAction renameAction;
+
     public ActionManager() {
         initialiseActions();
     }
@@ -29,6 +31,7 @@ public class ActionManager {
         addAction = new AddAction();
         changeAuthorAction = new ChangeAuthorAction();
         myMouseListener = new MyMouseListener();
+        renameAction = new RenameAction();
     }
 
     public ExitAction getExitAction() {
@@ -59,5 +62,9 @@ public class ActionManager {
 
     public MyMouseListener getMyMouseListener() {
         return myMouseListener;
+    }
+
+    public RenameAction getRenameAction() {
+        return renameAction;
     }
 }

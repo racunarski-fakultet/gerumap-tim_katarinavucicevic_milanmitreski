@@ -12,7 +12,7 @@ public class ChangeAuthorAction extends AbstractGeRuMapAction{
 
     public ChangeAuthorDialog changeAuthorDialog;
     public ChangeAuthorAction() {
-        putValue(NAME, "Autor");
+        putValue(NAME, "Author");
         putValue(SMALL_ICON, loadIcon("/authorBtn.png"));
         putValue(SHORT_DESCRIPTION, "Change project author");
     }
@@ -23,7 +23,7 @@ public class ChangeAuthorAction extends AbstractGeRuMapAction{
             AppCore.getInstance().getMessageGenerator().getMessage("No selected Project.", MessageType.NODE_NOT_SELECTED);
         }
         else if(MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode() instanceof Project) {
-            changeAuthorDialog = new ChangeAuthorDialog(MainFrame.getInstance(), "Autor", (Project) MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode());
+            changeAuthorDialog = new ChangeAuthorDialog(MainFrame.getInstance(), "Author", (Project) MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode());
             changeAuthorDialog.setModal(true);
             changeAuthorDialog.setVisible(true);
         } else {
