@@ -28,6 +28,8 @@ public abstract class MapNodeComposite extends MapNode {
         return null;
     }
 
+    public abstract void removeChild(MapNode child);
+
     public List<MapNode> getChildren() {
         return children;
     }

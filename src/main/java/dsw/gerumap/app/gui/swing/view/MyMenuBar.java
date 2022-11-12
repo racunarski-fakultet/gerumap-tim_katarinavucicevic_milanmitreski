@@ -13,28 +13,40 @@ public class MyMenuBar extends JMenuBar {
         JMenu helpMenu = new JMenu(("Help"));
 
         fileMenu.setMnemonic(KeyEvent.VK_F);
-        fileMenu.add(MainFrame.getInstance().getActionManager().getExitAction());
-        fileMenu.add(MainFrame.getInstance().getActionManager().getNewProjectAction());
 
+        JMenuItem newProject = new JMenuItem();
+        JMenuItem exit = new JMenuItem();
         JMenuItem changeAuthorItem = new JMenuItem("Change author");
+        newProject.setAction(MainFrame.getInstance().getActionManager().getNewProjectAction());
+        newProject.setIcon(null);
+        exit.setAction(MainFrame.getInstance().getActionManager().getExitAction());
+        exit.setIcon(null);
+        changeAuthorItem.setAction(MainFrame.getInstance().getActionManager().getChangeAuthorAction());
+        changeAuthorItem.setIcon(null);
+
+        fileMenu.add(newProject);
+        fileMenu.add(exit);
         fileMenu.add(changeAuthorItem);
-
-
-        this.add(fileMenu);
-        this.add(helpMenu);
 
         JMenu editMenu = new JMenu("Edit");
 
         JMenuItem renameItem = new JMenuItem("Rename");  /// ovo mora da se menja koa ovo ispod
+        JMenuItem addItem = new JMenuItem("Add");
+        JMenuItem deleteItem = new JMenuItem("Delete");
 
-        editMenu.add(MainFrame.getInstance().getActionManager().getAddAction());
+        addItem.setAction(MainFrame.getInstance().getActionManager().getAddAction());
+        addItem.setIcon(null);
+        deleteItem.setAction(MainFrame.getInstance().getActionManager().getDeleteNodeAction());
+        deleteItem.setIcon(null);
+        // renameItem.setAction(MainFrame.getInstance().getActionManager().getRenameAction());
+        renameItem.setIcon(null);
+        editMenu.add(addItem);
         editMenu.add(renameItem);
-        editMenu.add(MainFrame.getInstance().getActionManager().getDeleteNodeAction());
+        editMenu.add(deleteItem);
         helpMenu.add(editMenu);
-
-        MyMouseListener mouseListener = new MyMouseListener();
-
-        helpMenu.addMouseListener(mouseListener);
+        helpMenu.addMouseListener(MainFrame.getInstance().getActionManager().getMyMouseListener());
+        this.add(fileMenu);
+        this.add(helpMenu);
     }
 
 

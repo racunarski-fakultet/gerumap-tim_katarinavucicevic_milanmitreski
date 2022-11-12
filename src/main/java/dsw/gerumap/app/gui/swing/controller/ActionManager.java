@@ -14,6 +14,8 @@ public class ActionManager {
 
     private AddAction addAction;
 
+    private MyMouseListener myMouseListener;
+
     public ActionManager() {
         initialiseActions();
     }
@@ -26,6 +28,7 @@ public class ActionManager {
         deleteNodeAction = new DeleteNodeAction();
         addAction = new AddAction();
         changeAuthorAction = new ChangeAuthorAction();
+        myMouseListener = new MyMouseListener();
     }
 
     public ExitAction getExitAction() {
@@ -54,4 +57,7 @@ public class ActionManager {
 
     public ChangeAuthorAction getChangeAuthorAction() { return changeAuthorAction; }
 
+    public MyMouseListener getMyMouseListener() {
+        return myMouseListener;
+    }
 }

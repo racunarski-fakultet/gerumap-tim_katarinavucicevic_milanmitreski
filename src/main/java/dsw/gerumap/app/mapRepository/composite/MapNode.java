@@ -1,5 +1,6 @@
 package dsw.gerumap.app.mapRepository.composite;
 
+import dsw.gerumap.app.mapRepository.NotificationType;
 import dsw.gerumap.app.observer.IPublisher;
 import dsw.gerumap.app.observer.ISubscriber;
 
@@ -37,7 +38,7 @@ public abstract class MapNode implements IPublisher {
 
     public void setName(String name) {
         this.name = name;
-        notifySubscriber(this);
+        notifySubscriber(NotificationType.NAME_CHANGED);
     }
 
     public void setParent(MapNode parent) {

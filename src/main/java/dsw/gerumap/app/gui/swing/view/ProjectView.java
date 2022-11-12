@@ -1,10 +1,14 @@
 package dsw.gerumap.app.gui.swing.view;
 
+import dsw.gerumap.app.mapRepository.NotificationType;
+import dsw.gerumap.app.mapRepository.composite.MapNode;
+import dsw.gerumap.app.mapRepository.implementation.MindMap;
 import dsw.gerumap.app.mapRepository.implementation.Project;
 import dsw.gerumap.app.observer.ISubscriber;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.List;
 
 public class ProjectView extends JPanel implements ISubscriber {
 
@@ -30,9 +34,28 @@ public class ProjectView extends JPanel implements ISubscriber {
 
     @Override
     public void update(Object notification) {
-        if(notification instanceof Project) {
-            this.projName.setText(((Project) notification).getName());
-            this.autor.setText(((Project) notification).getAuthor());
+        if(notification instanceof NotificationType) {
+            switch((NotificationType)notification) {
+                case NAME_CHANGED:
+                    projName.setText(project.getName());
+                    break;
+                case AUTHOR_CHANGED:
+                    autor.setText(project.getAuthor());
+                case NODE_DELETED:
+                    revalidateTabbedPane();
+                case NODE_CREATED:
+                    revalidateTabbedPane();
+                default:
+                    break;
+            }
+
+        }
+    }
+
+    private void revalidateTabbedPane() {
+        mapsTabbedPane.removeAll();
+        for(MapNode m : getMaps()) {
+            mapsTabbedPane.addTab(m.getName(), new MapView((MindMap)m));
         }
     }
 
@@ -54,5 +77,9 @@ public class ProjectView extends JPanel implements ISubscriber {
 
     public void setProject(Project project) {
         this.project = project;
+    }
+
+    private List<MapNode> getMaps() {
+        return project.getChildren();
     }
 }

@@ -57,7 +57,7 @@ public class MainFrame extends JFrame {
         add(toolBar, BorderLayout.NORTH);
 
         JTree projectExplorer = mapTree.generateTree(AppCore.getInstance().getMapRepository().getProjectExplorer());
-        projectExplorer.addMouseListener(new MyMouseListener());
+        projectExplorer.addMouseListener(actionManager.getMyMouseListener());
 
         workspace = new WorkSpaceImplementation();
 
