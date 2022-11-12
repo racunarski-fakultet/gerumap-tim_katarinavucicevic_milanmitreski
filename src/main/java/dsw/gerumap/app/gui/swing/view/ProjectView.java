@@ -26,6 +26,7 @@ public class ProjectView extends JPanel implements ISubscriber {
         this.projName = new JLabel(this.project.getName());
         this.autor = new JLabel(this.project.getAuthor());
         this.mapsTabbedPane = new MyTabbedPane(SwingConstants.TOP, JTabbedPane.SCROLL_TAB_LAYOUT);
+        revalidateTabbedPane();
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         add(projName);
         add(autor);
@@ -43,8 +44,6 @@ public class ProjectView extends JPanel implements ISubscriber {
                     autor.setText(project.getAuthor());
                     break;
                 case NODE_DELETED:
-                    revalidateTabbedPane();
-                    break;
                 case NODE_CREATED:
                     revalidateTabbedPane();
                     break;

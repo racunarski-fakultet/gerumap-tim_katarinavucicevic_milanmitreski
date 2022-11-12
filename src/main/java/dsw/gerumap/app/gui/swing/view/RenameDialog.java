@@ -25,7 +25,7 @@ public class RenameDialog extends JDialog {
         super(owner, title);
 
         this.mapTreeItem = mapTreeItem;
-        setBounds(0, 0, 300, 100);
+        setBounds(0, 0, 325, 100);
         setLocationRelativeTo(null);
         setResizable(false);
         Container dialogContent = getContentPane();

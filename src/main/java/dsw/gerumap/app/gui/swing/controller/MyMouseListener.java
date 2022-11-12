@@ -36,12 +36,6 @@ public class MyMouseListener implements MouseListener {
                 Project p = (Project) MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode();
                 ProjectView pv = MainFrame.getInstance().getWorkspace().generateWorkspace();
                 MainFrame.getInstance().getSplit().setRightComponent(pv);
-                for(MapNode node : p.getChildren()) {
-                    if(node instanceof MindMap) {
-                        MapView mv = new MapView((MindMap) node);
-                        pv.getMapsTabbedPane().addTab(mv.getMindMap().getName(), mv);
-                    }
-                }
             } /**
             else if(MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode() instanceof MindMap){
                 if(MainFrame.getInstance().getSplit().getRightComponent() instanceof ProjectView) {
