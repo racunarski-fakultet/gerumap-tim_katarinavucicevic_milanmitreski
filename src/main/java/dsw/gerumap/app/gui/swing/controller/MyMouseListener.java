@@ -42,14 +42,15 @@ public class MyMouseListener implements MouseListener {
                         pv.getMapsTabbedPane().addTab(mv.getMindMap().getName(), mv);
                     }
                 }
-            } else if(MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode() instanceof MindMap){
+            } /**
+            else if(MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode() instanceof MindMap){
                 if(MainFrame.getInstance().getSplit().getRightComponent() instanceof ProjectView) {
                     ProjectView pv = (ProjectView) MainFrame.getInstance().getSplit().getRightComponent();
                     MapView mv = new MapView((MindMap) MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode());
                     JTabbedPane tabbedPane = pv.getMapsTabbedPane();
                     tabbedPane.addTab(mv.getMindMap().getName(), mv);
                 }
-            }
+            } **/
         }
     }
 
