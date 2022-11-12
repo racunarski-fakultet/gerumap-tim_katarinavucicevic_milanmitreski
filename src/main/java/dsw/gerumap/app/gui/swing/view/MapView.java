@@ -1,5 +1,6 @@
 package dsw.gerumap.app.gui.swing.view;
 
+import dsw.gerumap.app.mapRepository.NotificationType;
 import dsw.gerumap.app.mapRepository.implementation.MindMap;
 import dsw.gerumap.app.observer.ISubscriber;
 
@@ -17,10 +18,19 @@ public class MapView extends JPanel implements ISubscriber {
 
     @Override
     public void update(Object notification) {
-        if (notification instanceof MindMap){
-            this.setName(((MindMap) notification).getName());
-            ((MyTabbedPane)this.getParent()).setTitleAt(((MyTabbedPane)this.getParent()).indexOfComponent(this), this.getName());
-
+        if(notification instanceof NotificationType) {
+            switch((NotificationType) notification) {
+                case NODE_CREATED:
+                    break;
+                case NODE_DELETED:
+                    break;
+                case NAME_CHANGED:
+                    setName(mindMap.getName());
+                    ((MyTabbedPane)this.getParent()).setTitleAt(((MyTabbedPane)this.getParent()).indexOfComponent(this), this.getName());
+                    break;
+                default:
+                    break;
+            }
         }
     }
 

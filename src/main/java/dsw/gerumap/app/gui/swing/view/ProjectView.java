@@ -41,10 +41,13 @@ public class ProjectView extends JPanel implements ISubscriber {
                     break;
                 case AUTHOR_CHANGED:
                     autor.setText(project.getAuthor());
+                    break;
                 case NODE_DELETED:
                     revalidateTabbedPane();
+                    break;
                 case NODE_CREATED:
                     revalidateTabbedPane();
+                    break;
                 default:
                     break;
             }

@@ -1,5 +1,7 @@
 package dsw.gerumap.app.gui.swing.controller;
 
+import dsw.gerumap.app.gui.swing.view.MainFrame;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
@@ -16,6 +18,7 @@ public class ExitAction extends AbstractGeRuMapAction{
         }
 
         public void actionPerformed(ActionEvent arg0) {
+            MainFrame.getInstance().dispose();
             System.exit(0);
         }
 
