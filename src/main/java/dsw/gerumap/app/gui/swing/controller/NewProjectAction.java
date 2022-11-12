@@ -11,7 +11,7 @@ public class NewProjectAction extends AbstractGeRuMapAction{
     public NewProjectAction() {
         putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
         putValue(NAME, "New Project");
-        putValue(SHORT_DESCRIPTION, "Create New Project");
+        putValue(SHORT_DESCRIPTION, "Create new project");
         putValue(SMALL_ICON, loadIcon("/newBtn.png"));
     }
 

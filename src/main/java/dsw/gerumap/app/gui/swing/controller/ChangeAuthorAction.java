@@ -11,7 +11,11 @@ import java.awt.event.ActionEvent;
 public class ChangeAuthorAction extends AbstractGeRuMapAction{
 
     public ChangeAuthorDialog changeAuthorDialog;
-    public ChangeAuthorAction() { putValue(NAME, "Autor"); }
+    public ChangeAuthorAction() {
+        putValue(NAME, "Autor");
+        putValue(SMALL_ICON, loadIcon("/authorBtn.png"));
+        putValue(SHORT_DESCRIPTION, "Change project author");
+    }
 
     @Override
     public void actionPerformed(ActionEvent actionEvent) {

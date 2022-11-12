@@ -16,6 +16,7 @@ public class AddAction extends AbstractGeRuMapAction{
 
         putValue(NAME, "Add");
         putValue(SMALL_ICON, loadIcon("/addBtn.png"));
+        putValue(SHORT_DESCRIPTION, "Add Project/MindMap/Element");
     }
 
     @Override
