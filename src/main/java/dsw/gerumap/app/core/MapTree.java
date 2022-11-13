@@ -14,6 +14,8 @@ public interface MapTree {
     void addChild(MapTreeItem parent);
     MapTreeItem getSelectedNode();
 
+    void rename(MapTreeItem node, String newName);
+
     void removeChild(DefaultMutableTreeNode root);
 
     void newProject();

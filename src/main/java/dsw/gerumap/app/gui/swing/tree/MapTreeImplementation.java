@@ -52,14 +52,13 @@ public class MapTreeImplementation implements MapTree {
     }
 
     @Override
-    public void newProject() {
-        addChild((MapTreeItem) treeModel.getRoot());
-        TreePath treePath = new TreePath(((MapTreeItem) treeModel.getRoot()).getPath());
-        treeView.expandPath(treePath);
-        treeView.setSelectionPath(null);
+    public void rename(MapTreeItem node, String newName) {
+        node.setName(newName);
+        SwingUtilities.updateComponentTreeUI(treeView);
     }
 
     // Uklanjanje datog cvora iz drveta
+
     @Override
     public void removeChild(DefaultMutableTreeNode root){
         for(int i = 0; i < root.getChildCount(); i++) {
@@ -69,10 +68,16 @@ public class MapTreeImplementation implements MapTree {
         treeModel.removeNodeFromParent(root);
         ((MapNodeComposite)((MapTreeItem)parent).getMapNode()).removeChild(((MapTreeItem) root).getMapNode());
     }
+    @Override
+    public void newProject() {
+        addChild((MapTreeItem) treeModel.getRoot());
+        TreePath treePath = new TreePath(((MapTreeItem) treeModel.getRoot()).getPath());
+        treeView.expandPath(treePath);
+        treeView.setSelectionPath(null);
+    }
 
     @Override
     public MapTreeItem getSelectedNode() {
         return (MapTreeItem) treeView.getLastSelectedPathComponent();
     }
-
 }

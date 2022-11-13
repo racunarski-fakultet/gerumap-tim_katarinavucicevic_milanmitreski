@@ -1,6 +1,7 @@
 package dsw.gerumap.app.gui.swing.view;
 
 import dsw.gerumap.app.AppCore;
+import dsw.gerumap.app.gui.swing.tree.MapTreeImplementation;
 import dsw.gerumap.app.gui.swing.tree.model.MapTreeItem;
 import dsw.gerumap.app.message.MessageType;
 
@@ -34,7 +35,7 @@ public class RenameDialog extends JDialog {
                     AppCore.getInstance().getMessageGenerator().getMessage("Name can't be empty", MessageType.NAME_CANNOT_BE_EMPTY);
                     return;
                 }
-                mapTreeItem.setName(tf.getText());
+                MainFrame.getInstance().getMapTree().rename(mapTreeItem, tf.getText());
                 dispose();
             }
         });
