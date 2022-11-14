@@ -1,6 +1,5 @@
 package dsw.gerumap.app.mapRepository.implementation;
 
-import dsw.gerumap.app.mapRepository.NotificationType;
 import dsw.gerumap.app.mapRepository.composite.MapNode;
 import dsw.gerumap.app.mapRepository.composite.MapNodeComposite;
 
@@ -19,7 +18,7 @@ public class Project extends MapNodeComposite {
             MindMap mindMap = (MindMap) child;
             if(!this.getChildren().contains(mindMap)) {
                 this.getChildren().add(mindMap);
-                notifySubscriber(NotificationType.NODE_CREATED);
+                notifySubscriber(child);
             }
         }
     }
@@ -28,13 +27,13 @@ public class Project extends MapNodeComposite {
         if(child instanceof MindMap) {
             MindMap element = (MindMap) child;
             this.getChildren().remove(element);
-            notifySubscriber(NotificationType.NODE_DELETED);
+            notifySubscriber(child);
         }
     }
 
     public void setAuthor(String author) {
         this.author = author;
-        notifySubscriber(NotificationType.AUTHOR_CHANGED);
+        notifySubscriber(this);
     }
 
 

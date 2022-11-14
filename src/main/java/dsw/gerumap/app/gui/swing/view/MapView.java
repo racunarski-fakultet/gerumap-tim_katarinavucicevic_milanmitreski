@@ -1,6 +1,6 @@
 package dsw.gerumap.app.gui.swing.view;
 
-import dsw.gerumap.app.mapRepository.NotificationType;
+import dsw.gerumap.app.mapRepository.implementation.Element;
 import dsw.gerumap.app.mapRepository.implementation.MindMap;
 import dsw.gerumap.app.observer.ISubscriber;
 
@@ -8,7 +8,7 @@ import javax.swing.*;
 
 public class MapView extends JPanel implements ISubscriber {
 
-    private final MindMap mindMap;
+    private MindMap mindMap;
 
 
     public MapView(MindMap mindMap) {
@@ -18,17 +18,13 @@ public class MapView extends JPanel implements ISubscriber {
 
     @Override
     public void update(Object notification) {
-        if(notification instanceof NotificationType) {
-            switch((NotificationType) notification) {
-                case NAME_CHANGED:
-                    setName(mindMap.getName());
-                    ((MyTabbedPane)this.getParent()).setTitleAt(((MyTabbedPane)this.getParent()).indexOfComponent(this), this.getName());
-                    // baca ex
-                    break;
-                default:
-                    break;
-            }
+        if(notification instanceof MindMap) {
+            setName(((MindMap) notification).getName());
+            ((MyTabbedPane)this.getParent()).setTitleAt(((MyTabbedPane)this.getParent()).indexOfComponent(this), this.getName());
         }
     }
 
+    public MindMap getMindMap() {
+        return mindMap;
+    }
 }
