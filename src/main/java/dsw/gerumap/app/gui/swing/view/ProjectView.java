@@ -57,6 +57,7 @@ public class ProjectView extends JPanel implements ISubscriber {
         mapsTabbedPane.removeAll();
         for(MapNode m : getMaps()) {
             mapsTabbedPane.addTab(m.getName(), new MapView((MindMap)m));
+            // nije najoptimalnije :)
         }
     }
 

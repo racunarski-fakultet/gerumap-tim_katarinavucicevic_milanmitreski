@@ -23,6 +23,7 @@ public class MapView extends JPanel implements ISubscriber {
                 case NAME_CHANGED:
                     setName(mindMap.getName());
                     ((MyTabbedPane)this.getParent()).setTitleAt(((MyTabbedPane)this.getParent()).indexOfComponent(this), this.getName());
+                    // baca ex
                     break;
                 default:
                     break;
