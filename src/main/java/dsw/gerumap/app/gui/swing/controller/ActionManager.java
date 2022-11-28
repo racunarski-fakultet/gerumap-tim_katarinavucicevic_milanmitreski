@@ -1,22 +1,23 @@
 package dsw.gerumap.app.gui.swing.controller;
 
+import dsw.gerumap.app.state.controller.*;
+
 public class ActionManager {
 
     private ExitAction exitAction;
     private NewProjectAction newProjectAction;
-
     private ChangeAuthorAction  changeAuthorAction;
     private InfoAction infoAction;
-
     private EditAction editAction;
-
     private DeleteNodeAction deleteNodeAction;
-
     private AddAction addAction;
-
     private MyMouseListener myMouseListener;
-
     private RenameAction renameAction;
+    private AddStateAction addStateAction;
+    private DeleteStateAction deleteStateAction;
+    private MoveStateAction moveStateAction;
+    private SelectStateAction selectStateAction;
+    private ZoomStateAction zoomStateAction;
 
     public ActionManager() {
         initialiseActions();
@@ -32,6 +33,11 @@ public class ActionManager {
         changeAuthorAction = new ChangeAuthorAction();
         myMouseListener = new MyMouseListener();
         renameAction = new RenameAction();
+        addStateAction = new AddStateAction();
+        deleteStateAction = new DeleteStateAction();
+        moveStateAction = new MoveStateAction();
+        selectStateAction = new SelectStateAction();
+        zoomStateAction = new ZoomStateAction();
     }
 
     public ExitAction getExitAction() {
@@ -63,5 +69,25 @@ public class ActionManager {
 
     public RenameAction getRenameAction() {
         return renameAction;
+    }
+
+    public AddStateAction getAddStateAction() {
+        return addStateAction;
+    }
+
+    public DeleteStateAction getDeleteStateAction() {
+        return deleteStateAction;
+    }
+
+    public MoveStateAction getMoveStateAction() {
+        return moveStateAction;
+    }
+
+    public SelectStateAction getSelectStateAction() {
+        return selectStateAction;
+    }
+
+    public ZoomStateAction getZoomStateAction() {
+        return zoomStateAction;
     }
 }
