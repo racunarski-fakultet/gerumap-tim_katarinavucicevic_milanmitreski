@@ -12,4 +12,7 @@ public class WorkSpaceImplementation implements IWorkspace{
         return projectView;
     }
 
+    public ProjectView getProjectView() {
+        return projectView;
+    }
 }

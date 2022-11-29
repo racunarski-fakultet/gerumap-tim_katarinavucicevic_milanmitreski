@@ -4,10 +4,14 @@ import dsw.gerumap.app.mapRepository.composite.MapNode;
 import dsw.gerumap.app.mapRepository.implementation.MindMap;
 import dsw.gerumap.app.mapRepository.implementation.Project;
 import dsw.gerumap.app.observer.ISubscriber;
+import dsw.gerumap.app.state.StateManager;
 
 import javax.swing.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
-public class ProjectView extends JPanel implements ISubscriber {
+public class ProjectView extends JPanel implements ISubscriber, MouseListener {
+// Mediator
 
     private final JLabel projName;
     private final JLabel autor;
@@ -15,6 +19,8 @@ public class ProjectView extends JPanel implements ISubscriber {
     private Project project;
 
     private MyTabbedPane mapsTabbedPane;
+
+    private StateManager stateManager;
 
     public ProjectView() {
         this.project = (Project) MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode();
@@ -60,6 +66,51 @@ public class ProjectView extends JPanel implements ISubscriber {
 
     public void setProject(Project project) {
         this.project = project;
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        // za dodavanje pojma
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
+    }
+
+    public void startAddState(){
+        this.stateManager.setAddState();
+    }
+
+    public void startDeleteState(){
+        this.stateManager.setDeleteState();
+    }
+
+    public void startMoveState(){
+        this.stateManager.setMoveState();
+    }
+
+    public void startZoomState(){
+        this.stateManager.setZoomState();
+    }
+
+    public void startSelectState(){
+        this.stateManager.setSelectState();
     }
 
 }
