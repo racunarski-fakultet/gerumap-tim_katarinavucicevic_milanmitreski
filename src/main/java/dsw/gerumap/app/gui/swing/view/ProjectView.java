@@ -7,10 +7,8 @@ import dsw.gerumap.app.observer.ISubscriber;
 import dsw.gerumap.app.state.StateManager;
 
 import javax.swing.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
-public class ProjectView extends JPanel implements ISubscriber, MouseListener {
+public class ProjectView extends JPanel implements ISubscriber{
 // Mediator
 
     private final JLabel projName;
@@ -35,6 +33,7 @@ public class ProjectView extends JPanel implements ISubscriber, MouseListener {
         add(projName);
         add(autor);
         add(mapsTabbedPane);
+        stateManager = new StateManager();
     }
 
     @Override
@@ -60,38 +59,6 @@ public class ProjectView extends JPanel implements ISubscriber, MouseListener {
         }
     }
 
-    public Project getProject() {
-        return project;
-    }
-
-    public void setProject(Project project) {
-        this.project = project;
-    }
-
-    @Override
-    public void mouseClicked(MouseEvent e) {
-        // za dodavanje pojma
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-
-    }
 
     public void startAddState(){
         this.stateManager.setAddState();
@@ -111,6 +78,19 @@ public class ProjectView extends JPanel implements ISubscriber, MouseListener {
 
     public void startSelectState(){
         this.stateManager.setSelectState();
+    }
+
+
+    public StateManager getStateManager() {
+        return stateManager;
+    }
+
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
     }
 
 }

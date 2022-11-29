@@ -18,6 +18,7 @@ public class StateManager {
         deleteState = new DeleteState();
         moveState = new MoveState();
         zoomState = new ZoomState();
+        selectState = new SelectState();
 
     }
 
@@ -59,5 +60,9 @@ public class StateManager {
 
     public void setZoomState() {
          current = this.zoomState;
+    }
+
+    public State getCurrent() {
+        return current;
     }
 }
