@@ -9,7 +9,7 @@ public class ZoomStateAction extends AbstractGeRuMapAction {
 
     public ZoomStateAction() {
 
-        putValue(NAME, "Zoom element");
+        putValue(NAME, "Z");
         putValue(SHORT_DESCRIPTION, "Zoom Element");
 
     }

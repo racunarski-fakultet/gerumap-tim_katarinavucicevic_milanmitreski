@@ -9,7 +9,7 @@ public class MoveStateAction extends AbstractGeRuMapAction {
 
     public MoveStateAction() {
 
-        putValue(NAME, "Move element");
+        putValue(NAME, "M");
         putValue(SHORT_DESCRIPTION, "Move Element");
 
     }

@@ -9,7 +9,7 @@ public class SelectStateAction extends AbstractGeRuMapAction {
 
     public SelectStateAction() {
 
-        putValue(NAME, "Select element");
+        putValue(NAME, "S");
         putValue(SHORT_DESCRIPTION, "Select Element");
 
     }

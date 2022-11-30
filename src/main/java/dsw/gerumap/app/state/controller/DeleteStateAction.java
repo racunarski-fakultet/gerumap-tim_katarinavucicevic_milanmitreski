@@ -9,7 +9,7 @@ public class DeleteStateAction extends AbstractGeRuMapAction {
 
     public DeleteStateAction() {
 
-        putValue(NAME, "Delete element");
+        putValue(NAME, "D");
         putValue(SHORT_DESCRIPTION, "Delete Element");
 
     }

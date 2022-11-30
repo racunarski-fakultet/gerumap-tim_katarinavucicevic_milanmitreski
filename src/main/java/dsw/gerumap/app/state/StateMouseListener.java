@@ -1,6 +1,8 @@
 package dsw.gerumap.app.state;
 
 import dsw.gerumap.app.gui.swing.view.MainFrame;
+import dsw.gerumap.app.gui.swing.view.MapView;
+import dsw.gerumap.app.mapRepository.implementation.MindMap;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;

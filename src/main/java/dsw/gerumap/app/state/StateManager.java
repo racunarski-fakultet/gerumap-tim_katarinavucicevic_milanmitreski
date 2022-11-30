@@ -19,7 +19,7 @@ public class StateManager {
         moveState = new MoveState();
         zoomState = new ZoomState();
         selectState = new SelectState();
-
+        current = addState;
     }
 
     public AddState getAddState() {

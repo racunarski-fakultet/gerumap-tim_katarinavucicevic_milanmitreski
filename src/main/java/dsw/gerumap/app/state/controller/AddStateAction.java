@@ -9,7 +9,7 @@ public class AddStateAction extends AbstractGeRuMapAction {
 
     public AddStateAction() {
 
-        putValue(NAME, "Add element");
+        putValue(NAME, "A");
         putValue(SHORT_DESCRIPTION, "Add Element");
 
     }

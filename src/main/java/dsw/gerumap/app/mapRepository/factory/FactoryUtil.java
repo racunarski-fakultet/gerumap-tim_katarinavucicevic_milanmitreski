@@ -9,12 +9,9 @@ public class FactoryUtil {
 
     private static final ProjectFactory projectFactory;
     private static final MindMapFactory mindMapFactory;
-    private static final ElementFactory elementFactory;
-
     static {
         projectFactory = new ProjectFactory();
         mindMapFactory = new MindMapFactory();
-        elementFactory = new ElementFactory();
     }
 
     public static NodeFactory getNodeFactory(MapNodeComposite parent) {
@@ -22,8 +19,6 @@ public class FactoryUtil {
             return projectFactory;
         else if (parent instanceof Project)
             return mindMapFactory;
-        else if (parent instanceof MindMap)
-            return elementFactory;
         return null;
     }
 }

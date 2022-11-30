@@ -4,6 +4,7 @@ import dsw.gerumap.app.AppCore;
 import dsw.gerumap.app.gui.swing.tree.model.MapTreeItem;
 import dsw.gerumap.app.gui.swing.view.MainFrame;
 import dsw.gerumap.app.mapRepository.composite.MapNodeComposite;
+import dsw.gerumap.app.mapRepository.implementation.MindMap;
 import dsw.gerumap.app.message.MessageType;
 
 import java.awt.event.ActionEvent;
@@ -23,6 +24,10 @@ public class AddAction extends AbstractGeRuMapAction{
             AppCore.getInstance().getMessageGenerator().getMessage("No selected node", MessageType.NODE_NOT_SELECTED);
         }
         else if(MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode() instanceof MapNodeComposite) {
+            if(MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode() instanceof MindMap) {
+                AppCore.getInstance().getMessageGenerator().getMessage("Element can be added only using SideToolbar", MessageType.ELEMENT_ADDITON_EXCLUSIVE_TO_SIDETOOLBAR);
+                return;
+            }
             MainFrame.getInstance().getMapTree().addChild(MainFrame.getInstance().getMapTree().getSelectedNode());
         }
         else {
