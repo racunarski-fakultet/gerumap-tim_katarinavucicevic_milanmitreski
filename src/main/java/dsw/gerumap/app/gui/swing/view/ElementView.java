@@ -13,7 +13,12 @@ public abstract class ElementView {
     }
 
     public abstract void paint(Graphics2D g);
+    public abstract void paintSelected(Graphics2D g);
     public boolean elementAt(Point pos) {
         return shape.contains(pos);
+    }
+
+    public Element getElement() {
+        return element;
     }
 }

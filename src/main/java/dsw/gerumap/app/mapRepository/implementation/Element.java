@@ -5,7 +5,7 @@ import dsw.gerumap.app.mapRepository.composite.MapNode;
 public abstract class Element extends MapNode {
 
     private int stroke = 2;
-    private int color = 0x555555;
+    private int color = 0xFFFFFF;
     private int xCoordinate;
     private int yCoordinate;
 

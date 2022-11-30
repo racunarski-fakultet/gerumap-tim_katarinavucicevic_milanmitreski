@@ -10,11 +10,13 @@ import java.awt.event.MouseEvent;
 import java.util.Random;
 
 public class AddState implements State {
+
+    private static int count = 0;
     @Override
     public void mousePressed(MouseEvent e) {
         MapView source = (MapView) e.getSource();
         MindMap m = source.getMindMap();
-        m.addChild(new Term("Element" + new Random().nextInt(100), m, e.getX(), e.getY()));
+        m.addChild(new Term("Element" + count++, m, e.getX(), e.getY()));
     }
 
     @Override

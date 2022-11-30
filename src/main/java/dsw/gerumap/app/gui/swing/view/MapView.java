@@ -17,6 +17,8 @@ public class MapView extends JPanel implements ISubscriber {
     private MindMap mindMap;
     private List<ElementView> elementViews;
 
+    private ElementView selected;
+
 
     public MapView(MindMap mindMap) {
         this.mindMap = mindMap;
@@ -54,6 +56,7 @@ public class MapView extends JPanel implements ISubscriber {
         Graphics2D g2 = (Graphics2D) g;
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.8f));
         for(ElementView elementView : elementViews) {
+            if(elementView.equals(selected)) elementView.paintSelected(g2);
             elementView.paint(g2);
         }
     }
@@ -64,5 +67,18 @@ public class MapView extends JPanel implements ISubscriber {
                 return elementView;
         }
         return null;
+    }
+
+    public List<ElementView> getElementViews() {
+        return elementViews;
+    }
+
+    public void setSelected(ElementView selected) {
+        this.selected = selected;
+        repaint();
+    }
+
+    public ElementView getSelected() {
+        return selected;
     }
 }
