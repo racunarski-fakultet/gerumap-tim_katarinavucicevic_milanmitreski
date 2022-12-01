@@ -80,6 +80,14 @@ public class ProjectView extends JPanel implements ISubscriber{
         this.stateManager.setSelectState();
     }
 
+    public void startRefactorState(){
+        this.stateManager.setRefactorState();
+    }
+
+    public void startConnectState(){
+        this.stateManager.setConnectState();
+    }
+
 
     public StateManager getStateManager() {
         return stateManager;

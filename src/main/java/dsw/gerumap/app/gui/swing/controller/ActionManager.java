@@ -1,5 +1,6 @@
 package dsw.gerumap.app.gui.swing.controller;
 
+import dsw.gerumap.app.state.StateMouseListener;
 import dsw.gerumap.app.state.controller.*;
 
 public class ActionManager {
@@ -18,6 +19,11 @@ public class ActionManager {
     private MoveStateAction moveStateAction;
     private SelectStateAction selectStateAction;
     private ZoomStateAction zoomStateAction;
+    private RefactorStateAction refactorStateAction;
+    private StateMouseListener stateMouseListener;
+
+    private ConnectStateAction connectStateAction;
+    private SettingsAction settingsAction;
 
     public ActionManager() {
         initialiseActions();
@@ -38,6 +44,10 @@ public class ActionManager {
         moveStateAction = new MoveStateAction();
         selectStateAction = new SelectStateAction();
         zoomStateAction = new ZoomStateAction();
+        refactorStateAction = new RefactorStateAction();
+        stateMouseListener = new StateMouseListener();
+        connectStateAction = new ConnectStateAction();
+        settingsAction = new SettingsAction();
     }
 
     public ExitAction getExitAction() {
@@ -89,5 +99,21 @@ public class ActionManager {
 
     public ZoomStateAction getZoomStateAction() {
         return zoomStateAction;
+    }
+
+    public RefactorStateAction getRefactorStateAction() {
+        return refactorStateAction;
+    }
+
+    public StateMouseListener getStateMouseListener() {
+        return stateMouseListener;
+    }
+
+    public ConnectStateAction getConnectStateAction() {
+        return connectStateAction;
+    }
+
+    public SettingsAction getSettingsAction() {
+        return settingsAction;
     }
 }

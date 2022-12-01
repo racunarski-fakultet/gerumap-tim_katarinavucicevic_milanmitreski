@@ -24,7 +24,7 @@ public class MapView extends JPanel implements ISubscriber {
         this.mindMap = mindMap;
         this.mindMap.addSubcriber(this);
         this.elementViews = new ArrayList<>();
-        this.addMouseListener(new StateMouseListener());
+        this.addMouseListener(MainFrame.getInstance().getActionManager().getStateMouseListener());
     }
 
     @Override
