@@ -2,6 +2,7 @@ package dsw.gerumap.app.gui.swing.controller;
 
 import dsw.gerumap.app.AppCore;
 import dsw.gerumap.app.gui.swing.view.MainFrame;
+import dsw.gerumap.app.gui.swing.view.ProjectView;
 import dsw.gerumap.app.gui.swing.view.RenameDialog;
 import dsw.gerumap.app.gui.swing.view.SettingsDialog;
 import dsw.gerumap.app.mapRepository.implementation.ProjectExplorer;
@@ -19,10 +20,12 @@ public class SettingsAction extends AbstractGeRuMapAction{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
-        SettingsDialog settingsDialog = new SettingsDialog(MainFrame.getInstance(), "Settings");
-        settingsDialog.setModal(true);
-        settingsDialog.setVisible(true);
+        if(MainFrame.getInstance().getSplit().getRightComponent() instanceof ProjectView && ((ProjectView) MainFrame.getInstance().getSplit().getRightComponent()).getMapsTabbedPane().getTabCount() != 0) {
+            SettingsDialog settingsDialog = new SettingsDialog(MainFrame.getInstance(), "Settings");
+            settingsDialog.setModal(true);
+            settingsDialog.setVisible(true);
+        } else
+            AppCore.getInstance().getMessageGenerator().getMessage("NO MAP VIEW TO CHANGE SETTINGS FOR", MessageType.NO_MAP_VIEW_FOR_SETTINGS);
 
     }
 }

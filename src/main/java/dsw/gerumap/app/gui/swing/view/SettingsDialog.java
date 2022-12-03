@@ -1,5 +1,8 @@
 package dsw.gerumap.app.gui.swing.view;
 
+import dsw.gerumap.app.AppCore;
+import dsw.gerumap.app.message.MessageType;
+
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -14,36 +17,35 @@ public class SettingsDialog extends JDialog {
     public SettingsDialog(Frame owner, String title) {
         super(owner, title);
 
-        setBounds(0, 0, 500, 500);
+        setBounds(0, 0, 700, 500);
         setLocationRelativeTo(null);
         setResizable(true);
         Container dialogContent = getContentPane();
-        dialogContent.setLayout(new FlowLayout()); /// ako se promeni ovaj FlowLayout onda moze da se menja raspored komponenti
+        FlowLayout flowLayout = new FlowLayout();
+        flowLayout.setHgap(10);
+        dialogContent.setLayout(flowLayout); /// ako se promeni ovaj FlowLayout onda moze da se menja raspored komponenti
+        ProjectView pv = (ProjectView) MainFrame.getInstance().getSplit().getRightComponent();
+        MapView mv = (MapView) pv.getMapsTabbedPane().getSelectedComponent();
 
+        JLabel lblStroke = new JLabel("Stroke ");
+        JSlider strokeSlider = new JSlider(0,10,mv.getStroke());
+        strokeSlider.setMajorTickSpacing(5);
+        strokeSlider.setMinorTickSpacing(1);
+        strokeSlider.setPaintTicks(true);
+        strokeSlider.setPaintLabels(true);
 
         JButton saveBtn = new JButton("Save");
         JButton closeBtn = new JButton("Close");
-        JButton colorPickBtn = new JButton("pick a color");
         JColorChooser colorChooser;
         colorChooser = new JColorChooser(Color.BLACK); // defaultna boja je crna
-
-        colorPickBtn.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent arg0) {
-                toggleColorChooser(colorChooser, colorPickBtn); // show i hide za color chooser
+        colorChooser.setColor(mv.getColor());
+        saveBtn.setAction(new AbstractAction("Save") {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                mv.setColor(colorChooser.getColor().getRGB());
+                mv.setStroke(strokeSlider.getValue());
             }
         });
-        colorPickBtn.setBounds(10, 11, 150, 23);
-        add(colorPickBtn);
-
-
-        colorChooser.setBorder(null);
-        colorChooser.getSelectionModel().addChangeListener(new ChangeListener() {
-            public void stateChanged(ChangeEvent e) {
-                colorChanged(colorChooser, colorPickBtn); // da se promeni pozadina dugmeta
-            }
-        });
-
-
 
         closeBtn.setAction(new AbstractAction("Close") {
             @Override
@@ -52,25 +54,10 @@ public class SettingsDialog extends JDialog {
             }
         });
 
-
+        add(lblStroke);
+        add(strokeSlider);
         add(saveBtn);
         add(closeBtn);
-    }
-
-    protected void toggleColorChooser(JColorChooser colorChooser, JButton button) {
-        if (toggled) {
-            remove(colorChooser);
-        } else {
-            colorChooser.setBounds(button.getX(), button.getY() + 20, 600, 300);
-            colorChooser.setVisible(true);
-            add(colorChooser);
-        }
-        toggled = !toggled;
-        validate();
-        repaint();
-    }
-
-    protected void colorChanged(JColorChooser colorChooser, JButton button) {
-        button.setBackground(colorChooser.getSelectionModel().getSelectedColor());
+        add(colorChooser);
     }
 }

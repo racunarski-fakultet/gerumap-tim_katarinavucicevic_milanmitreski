@@ -1,5 +1,6 @@
 package dsw.gerumap.app.gui.swing.controller;
 
+import com.sun.tools.javac.Main;
 import dsw.gerumap.app.gui.swing.view.MainFrame;
 import dsw.gerumap.app.gui.swing.view.ProjectView;
 import dsw.gerumap.app.mapRepository.implementation.Project;
@@ -30,7 +31,14 @@ public class MyMouseListener implements MouseListener {
 
         if(e.getClickCount() == 2){
             if(MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode() instanceof Project){
+                for(ProjectView pv : MainFrame.getInstance().getProjectViews()) {
+                    if(pv.getProject().equals(MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode())) {
+                        MainFrame.getInstance().getSplit().setRightComponent(pv);
+                        return;
+                    }
+                }
                 ProjectView pv = MainFrame.getInstance().getWorkspace().generateWorkspace();
+                MainFrame.getInstance().getProjectViews().add(pv);
                 MainFrame.getInstance().getSplit().setRightComponent(pv);
             } /*
             else if(MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode() instanceof MindMap){

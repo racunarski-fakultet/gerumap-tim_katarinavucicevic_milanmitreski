@@ -6,8 +6,8 @@ public class Relation extends Element{
     private Term termFrom;
     private Term termTo;
 
-    public Relation(String ime, MapNode parent, int x_coordinate, int y_coordinate, Term termFrom, Term termTo) {
-        super(ime, parent, x_coordinate, y_coordinate);
+    public Relation(String ime, MapNode parent, Term termFrom, Term termTo) {
+        super(ime, parent, 2, 0x000000, 0, 0);
         this.termFrom = termFrom;
         this.termTo = termTo;
     }

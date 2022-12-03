@@ -4,15 +4,17 @@ import dsw.gerumap.app.mapRepository.composite.MapNode;
 
 public abstract class Element extends MapNode {
 
-    private int stroke = 2;
-    private int color = 0xFFFFFF;
-    private int xCoordinate;
-    private int yCoordinate;
+    private int stroke;
+    private int color ;
+    private double xCoordinate;
+    private double yCoordinate;
 
-    public Element(String ime, MapNode parent, int xCoordinate, int yCoordinate) {
+    public Element(String ime, MapNode parent, int stroke, int color, double xCoordinate, double yCoordinate) {
         super(ime, parent);
         this.xCoordinate = xCoordinate;
         this.yCoordinate = yCoordinate;
+        this.stroke = stroke;
+        this.color = color;
     }
 
     public void setColor(int color) {
@@ -31,11 +33,11 @@ public abstract class Element extends MapNode {
         return color;
     }
 
-    public int getxCoordinate() {
+    public double getxCoordinate() {
         return xCoordinate;
     }
 
-    public int getyCoordinate() {
+    public double getyCoordinate() {
         return yCoordinate;
     }
 }

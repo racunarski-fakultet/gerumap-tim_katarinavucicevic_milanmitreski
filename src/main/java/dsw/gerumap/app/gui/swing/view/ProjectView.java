@@ -101,4 +101,7 @@ public class ProjectView extends JPanel implements ISubscriber{
         this.project = project;
     }
 
+    public MyTabbedPane getMapsTabbedPane() {
+        return mapsTabbedPane;
+    }
 }

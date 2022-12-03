@@ -8,6 +8,8 @@ import dsw.gerumap.app.gui.swing.view.rightWorkspace.WorkSpaceImplementation;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainFrame extends JFrame {
 
@@ -19,6 +21,7 @@ public class MainFrame extends JFrame {
     private WorkSpaceImplementation workspace;
 
     private JSplitPane split;
+    private List<ProjectView> projectViews;
 
     private MainFrame() {
 
@@ -27,6 +30,7 @@ public class MainFrame extends JFrame {
     private void initialise() {
         actionManager = new ActionManager();
         mapTree = new MapTreeImplementation();
+        projectViews = new ArrayList<>();
         initialiseGUI();
     }
 
@@ -92,5 +96,9 @@ public class MainFrame extends JFrame {
 
     public JSplitPane getSplit() {
         return split;
+    }
+
+    public List<ProjectView> getProjectViews() {
+        return projectViews;
     }
 }

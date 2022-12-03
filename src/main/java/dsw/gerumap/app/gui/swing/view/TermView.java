@@ -17,9 +17,9 @@ public class TermView extends ElementView{
         Ellipse2D.Double ellipse = (Ellipse2D.Double) shape;
 
         g.setStroke(new BasicStroke(element.getStroke()));
-        g.setPaint(new Color(element.getColor()));
+        g.setPaint(new Color(255, 255, 255));
         g.fill(shape);
-        g.setPaint(new Color(0,0,0));
+        g.setPaint(new Color(element.getColor()));
         g.draw(shape);
         FontMetrics metrics = g.getFontMetrics(g.getFont());
         float x = (float) (ellipse.x + (ellipse.width - metrics.stringWidth(element.getName())) / 2);

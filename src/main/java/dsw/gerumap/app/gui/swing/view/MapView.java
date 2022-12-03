@@ -16,8 +16,9 @@ public class MapView extends JPanel implements ISubscriber {
 
     private MindMap mindMap;
     private List<ElementView> elementViews;
-
     private ElementView selected;
+    private int stroke;
+    private int color;
 
 
     public MapView(MindMap mindMap) {
@@ -25,6 +26,8 @@ public class MapView extends JPanel implements ISubscriber {
         this.mindMap.addSubcriber(this);
         this.elementViews = new ArrayList<>();
         this.addMouseListener(MainFrame.getInstance().getActionManager().getStateMouseListener());
+        this.stroke = 2;
+        this.color = 0x000000;
     }
 
     @Override
@@ -80,5 +83,21 @@ public class MapView extends JPanel implements ISubscriber {
 
     public ElementView getSelected() {
         return selected;
+    }
+
+    public int getColor() {
+        return color;
+    }
+
+    public int getStroke() {
+        return stroke;
+    }
+
+    public void setColor(int color) {
+        this.color = color;
+    }
+
+    public void setStroke(int stroke) {
+        this.stroke = stroke;
     }
 }
