@@ -7,7 +7,7 @@ public class Relation extends Element{
     private Term termTo;
 
     public Relation(String ime, MapNode parent, Term termFrom, Term termTo) {
-        super(ime, parent, 2, 0x000000, 0, 0);
+        super(ime, parent, 4, 0x000000, 0, 0);
         this.termFrom = termFrom;
         this.termTo = termTo;
     }

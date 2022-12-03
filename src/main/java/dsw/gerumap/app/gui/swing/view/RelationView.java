@@ -4,19 +4,28 @@ import dsw.gerumap.app.mapRepository.implementation.Relation;
 
 import java.awt.*;
 import java.awt.geom.GeneralPath;
+import java.awt.geom.Line2D;
+import java.awt.geom.Point2D;
 
 public class RelationView extends ElementView{
 
     public RelationView(Relation relation) {
         super(relation);
-        shape = new GeneralPath();
+        //shape = new GeneralPath();
+        double x = relation.getxCoordinate();
+        double y = relation.getyCoordinate();
+        shape = new Line2D.Double(new Point2D.Double(x-75, y-50), new Point2D.Double(x+75, y+50));
     }
 
     @Override
     public void paint(Graphics2D g) {
-        GeneralPath generalPath = (GeneralPath) shape;
+
+        //GeneralPath generalPath = (GeneralPath) shape;
+
+        Line2D.Double line = (Line2D.Double) shape;
         g.setStroke(new BasicStroke(element.getStroke()));
         g.setColor(new Color(element.getColor()));
+        //g.fill(shape);
 
         Relation r = (Relation) element;
 
@@ -49,11 +58,15 @@ public class RelationView extends ElementView{
             yCoordinateTo = yTo + A * B;
         }
 
+        /*
         generalPath.moveTo(xCoordinateFrom, yCoordinateFrom);
         generalPath.lineTo(xCoordinateTo, yCoordinateTo);
         generalPath.closePath();
         g.draw(generalPath);
         g.fill(generalPath);
+
+         */
+        g.drawLine((int)xCoordinateFrom, (int)yCoordinateFrom, (int)xCoordinateTo, (int)yCoordinateTo);
     }
 
     @Override

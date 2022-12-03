@@ -50,6 +50,7 @@ public class ConnectState implements State {
         if(termTo != null && termFrom != null && termTo != termFrom) {
             MindMap m = source.getMindMap();
             m.addChild(new Relation("Connection " + count++, m, (Term) termFrom.getElement(), (Term) termTo.getElement()));
+            System.out.println(m.getChildren());
         }
     }
 
