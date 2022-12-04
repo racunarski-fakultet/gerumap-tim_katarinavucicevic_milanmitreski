@@ -3,7 +3,22 @@ package dsw.gerumap.app.mapRepository.implementation;
 import dsw.gerumap.app.mapRepository.composite.MapNode;
 
 public class Term extends Element{
-    public Term(String ime, MapNode parent, int stroke, int color, double x_coordinate, double y_coordinate) {
-        super(ime, parent, stroke, color, x_coordinate, y_coordinate);
+
+    private double xCoordinate;
+    private double yCoordinate;
+
+
+    public Term(String ime, MapNode parent, int stroke, int color, double xCoordinate,  double yCoordinate) {
+        super(ime, parent, stroke, color);
+        this.xCoordinate = xCoordinate;
+        this.yCoordinate = yCoordinate;
+    }
+
+    public double getXCoordinate() {
+        return xCoordinate;
+    }
+
+    public double getYCoordinate() {
+        return yCoordinate;
     }
 }

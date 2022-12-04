@@ -17,6 +17,7 @@ public class AddState implements State {
     private static int count = 0;
     @Override
     public void mousePressed(MouseEvent e) {
+        if(e.getButton() != MouseEvent.BUTTON1) return;
         MapView source = (MapView) e.getSource();
         for(ElementView ev : source.getElementViews()) {
             if(ev.elementAt(e.getPoint())) {

@@ -60,7 +60,7 @@ public class MapView extends JPanel implements ISubscriber {
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.8f));
         for(ElementView elementView : elementViews) {
             if(elementView.equals(selected)) elementView.paintSelected(g2);
-            elementView.paint(g2);
+            else elementView.paint(g2);
         }
     }
 

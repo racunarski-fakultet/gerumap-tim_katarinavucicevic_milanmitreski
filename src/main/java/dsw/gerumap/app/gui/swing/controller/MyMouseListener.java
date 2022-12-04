@@ -28,7 +28,7 @@ public class MyMouseListener implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-
+        if(e.getButton() != MouseEvent.BUTTON1) return;
         if(e.getClickCount() == 2){
             if(MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode() instanceof Project){
                 for(ProjectView pv : MainFrame.getInstance().getProjectViews()) {
@@ -40,15 +40,7 @@ public class MyMouseListener implements MouseListener {
                 ProjectView pv = MainFrame.getInstance().getWorkspace().generateWorkspace();
                 MainFrame.getInstance().getProjectViews().add(pv);
                 MainFrame.getInstance().getSplit().setRightComponent(pv);
-            } /*
-            else if(MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode() instanceof MindMap){
-                if(MainFrame.getInstance().getSplit().getRightComponent() instanceof ProjectView) {
-                    ProjectView pv = (ProjectView) MainFrame.getInstance().getSplit().getRightComponent();
-                    MapView mv = new MapView((MindMap) MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode());
-                    JTabbedPane tabbedPane = pv.getMapsTabbedPane();
-                    tabbedPane.addTab(mv.getMindMap().getName(), mv);
-                }
-            } */
+            }
         }
     }
 

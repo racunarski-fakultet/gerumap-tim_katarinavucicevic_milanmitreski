@@ -4,36 +4,21 @@ import dsw.gerumap.app.mapRepository.implementation.Relation;
 
 import java.awt.*;
 import java.awt.geom.GeneralPath;
-import java.awt.geom.Line2D;
-import java.awt.geom.Point2D;
+import java.awt.geom.Path2D;
 
 public class RelationView extends ElementView{
 
     public RelationView(Relation relation) {
         super(relation);
-        //shape = new GeneralPath();
-        double x = relation.getxCoordinate();
-        double y = relation.getyCoordinate();
-        shape = new Line2D.Double(new Point2D.Double(x-75, y-50), new Point2D.Double(x+75, y+50));
-    }
-
-    @Override
-    public void paint(Graphics2D g) {
-
-        //GeneralPath generalPath = (GeneralPath) shape;
-
-        Line2D.Double line = (Line2D.Double) shape;
-        g.setStroke(new BasicStroke(element.getStroke()));
-        g.setColor(new Color(element.getColor()));
-        //g.fill(shape);
-
+        shape = new GeneralPath(Path2D.WIND_EVEN_ODD);
+        GeneralPath generalPath = (GeneralPath) shape;
         Relation r = (Relation) element;
 
-        double xFrom = r.getTermFrom().getxCoordinate();
-        double yFrom = r.getTermFrom().getyCoordinate();
+        double xFrom = r.getTermFrom().getXCoordinate();
+        double yFrom = r.getTermFrom().getYCoordinate();
 
-        double xTo = r.getTermTo().getxCoordinate();
-        double yTo = r.getTermTo().getyCoordinate();
+        double xTo = r.getTermTo().getXCoordinate();
+        double yTo = r.getTermTo().getYCoordinate();
 
         double A = (yTo-yFrom)/(xTo-xFrom);
         double B = 150/(Math.sqrt(4+9*A*A));
@@ -58,19 +43,24 @@ public class RelationView extends ElementView{
             yCoordinateTo = yTo + A * B;
         }
 
-        /*
         generalPath.moveTo(xCoordinateFrom, yCoordinateFrom);
         generalPath.lineTo(xCoordinateTo, yCoordinateTo);
         generalPath.closePath();
-        g.draw(generalPath);
-        g.fill(generalPath);
+    }
 
-         */
-        g.drawLine((int)xCoordinateFrom, (int)yCoordinateFrom, (int)xCoordinateTo, (int)yCoordinateTo);
+    @Override
+    public void paint(Graphics2D g) {
+        g.setStroke(new BasicStroke(element.getStroke()));
+        g.setColor(new Color(element.getColor()));
+        g.draw(shape);
+        g.fill(shape);
     }
 
     @Override
     public void paintSelected(Graphics2D g) {
-
+        g.setStroke(new BasicStroke(element.getStroke()));
+        g.setColor(Color.PINK);
+        g.draw(shape);
+        g.fill(shape);
     }
 }

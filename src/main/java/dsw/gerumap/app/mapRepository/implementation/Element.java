@@ -6,13 +6,8 @@ public abstract class Element extends MapNode {
 
     private int stroke;
     private int color ;
-    private double xCoordinate;
-    private double yCoordinate;
-
-    public Element(String ime, MapNode parent, int stroke, int color, double xCoordinate, double yCoordinate) {
+    public Element(String ime, MapNode parent, int stroke, int color) {
         super(ime, parent);
-        this.xCoordinate = xCoordinate;
-        this.yCoordinate = yCoordinate;
         this.stroke = stroke;
         this.color = color;
     }
@@ -33,11 +28,4 @@ public abstract class Element extends MapNode {
         return color;
     }
 
-    public double getxCoordinate() {
-        return xCoordinate;
-    }
-
-    public double getyCoordinate() {
-        return yCoordinate;
-    }
 }

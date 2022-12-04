@@ -3,32 +3,51 @@ package dsw.gerumap.app.state.model;
 import dsw.gerumap.app.gui.swing.view.ElementView;
 import dsw.gerumap.app.gui.swing.view.MapView;
 import dsw.gerumap.app.gui.swing.view.RelationView;
+import dsw.gerumap.app.gui.swing.view.TermView;
+import dsw.gerumap.app.mapRepository.implementation.Element;
 import dsw.gerumap.app.mapRepository.implementation.MindMap;
+import dsw.gerumap.app.mapRepository.implementation.Relation;
 import dsw.gerumap.app.state.State;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 public class DeleteState implements State {
     @Override
     public void mousePressed(MouseEvent e) {
+        if(e.getButton() != MouseEvent.BUTTON1) return;
         MapView mapView = (MapView) e.getSource();
         MindMap mindMap = mapView.getMindMap();
         Point pos = e.getPoint();
+        ElementView deleted = null;
         Iterator<ElementView> it = mapView.getElementViews().iterator();
         while(it.hasNext()) {
             ElementView elementView = it.next();
-            if(elementView.elementAt(pos)) {
-                System.out.println(elementView);
-                System.out.println(elementView.getElement());
-                System.out.println(elementView.elementAt(pos));
-                if(elementView.equals(mapView.getSelected())) mapView.setSelected(null);
+            if (elementView.elementAt(pos)) {
+                if (elementView.equals(mapView.getSelected())) mapView.setSelected(null);
                 mindMap.removeChild(elementView.getElement());
+                deleted = elementView;
                 break;
-            } else if(elementView instanceof RelationView){
-                System.out.println("relation");
-                mindMap.removeChild(elementView.getElement());
+            }
+        }
+        if(deleted instanceof TermView) {
+            List<Relation> relationList = new ArrayList<>();
+            it = mapView.getElementViews().iterator();
+            while (it.hasNext()) {
+                ElementView elementView = it.next();
+                if(elementView instanceof RelationView) {
+                    RelationView relationView = (RelationView) elementView;
+                    Relation relation = (Relation) relationView.getElement();
+                    if(relation.getTermTo().equals(deleted.getElement()) || relation.getTermFrom().equals(deleted.getElement())) {
+                        relationList.add(relation);
+                    }
+                }
+            }
+            for(Relation r : relationList) {
+                mindMap.removeChild(r);
             }
         }
     }
