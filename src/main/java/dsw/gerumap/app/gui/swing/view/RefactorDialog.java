@@ -1,5 +1,8 @@
 package dsw.gerumap.app.gui.swing.view;
 
+import dsw.gerumap.app.AppCore;
+import dsw.gerumap.app.message.MessageType;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -35,6 +38,23 @@ public class RefactorDialog extends JDialog {
         colorChooser = new JColorChooser(Color.BLACK); // defaultna boja je crna
         colorChooser.setColor(mv.getColor());
 
+        // promena imena elementa
+        JLabel renameLbl = new JLabel("Insert new name: ");
+        JTextField renameTf = new JTextField();
+        JButton renameBtn = new JButton("Rename");
+        renameTf.setColumns(20);
+
+        renameBtn.setAction(new AbstractAction("Rename") {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                if(renameTf.getText().equals("")) {
+                    AppCore.getInstance().getMessageGenerator().getMessage("Name can't be empty", MessageType.NAME_CANNOT_BE_EMPTY);
+                    return;
+                }
+                current.getElement().setName(renameTf.getText());
+            }
+        });
+
         saveBtn.setAction(new AbstractAction("Save") {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -57,6 +77,9 @@ public class RefactorDialog extends JDialog {
         add(saveBtn);
         add(closeBtn);
         add(colorChooser);
+        add(renameLbl);
+        add(renameTf);
+        add(renameBtn);
     }
 
 }
