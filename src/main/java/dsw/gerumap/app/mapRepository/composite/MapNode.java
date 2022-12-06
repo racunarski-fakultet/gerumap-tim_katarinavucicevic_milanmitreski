@@ -45,7 +45,7 @@ public abstract class MapNode implements IPublisher {
     }
 
     @Override
-    public void addSubcriber(ISubscriber sub) {
+    public void addSubscriber(ISubscriber sub) {
         subscribers.add(sub);
     }
 

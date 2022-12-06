@@ -21,4 +21,8 @@ public abstract class ElementView {
     public Element getElement() {
         return element;
     }
+
+    public Shape getShape() {
+        return shape;
+    }
 }

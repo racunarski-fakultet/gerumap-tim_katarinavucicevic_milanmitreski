@@ -15,7 +15,7 @@ public class MessageGeneratorImplementation implements MessageGenerator {
     }
 
     @Override
-    public void addSubcriber(ISubscriber sub) {
+    public void addSubscriber(ISubscriber sub) {
         this.subscribers.add(sub);
     }
 

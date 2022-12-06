@@ -20,8 +20,8 @@ public abstract class ApplicationFramework {
         this.gui = gui;
         this.messageGenerator = messageGenerator;
         this.logger = logger;
-        messageGenerator.addSubcriber(logger);
-        messageGenerator.addSubcriber(gui);
+        messageGenerator.addSubscriber(logger);
+        messageGenerator.addSubscriber(gui);
     }
 
     public MapRepository getMapRepository() {

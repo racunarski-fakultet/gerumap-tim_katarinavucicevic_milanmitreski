@@ -5,10 +5,12 @@ import dsw.gerumap.app.mapRepository.implementation.MindMap;
 import dsw.gerumap.app.mapRepository.implementation.Relation;
 import dsw.gerumap.app.mapRepository.implementation.Term;
 import dsw.gerumap.app.observer.ISubscriber;
-import dsw.gerumap.app.state.StateMouseListener;
+import dsw.gerumap.app.state.SelectorModel;
+import dsw.gerumap.app.state.SelectorView;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,14 +22,22 @@ public class MapView extends JPanel implements ISubscriber {
     private int stroke;
     private int color;
 
+    private SelectorView selectorView;
+
+    private List<ElementView>  selectedElements;
+
+    private AffineTransform transform; // na tabbedPane se dodaje ScrollPane koji ce imati mapView
+
 
     public MapView(MindMap mindMap) {
         this.mindMap = mindMap;
-        this.mindMap.addSubcriber(this);
+        this.mindMap.addSubscriber(this);
         this.elementViews = new ArrayList<>();
         this.addMouseListener(MainFrame.getInstance().getActionManager().getStateMouseListener());
         this.stroke = 2;
         this.color = 0x000000;
+        transform = new AffineTransform();
+        selectedElements = new ArrayList<>();
     }
 
     @Override
@@ -45,6 +55,12 @@ public class MapView extends JPanel implements ISubscriber {
                 else elementViews.remove(contains);
             }
             repaint();
+        } else if (notification instanceof SelectorModel) {
+            //if(selectedElements.isEmpty()){
+                selectorView = new SelectorView((SelectorModel) notification);
+                System.out.println("SelectorView u update: " + selectorView);
+
+            //}
         }
     }
 
@@ -61,6 +77,10 @@ public class MapView extends JPanel implements ISubscriber {
         for(ElementView elementView : elementViews) {
             if(elementView.equals(selected)) elementView.paintSelected(g2);
             else elementView.paint(g2);
+        }
+        if(selectorView != null){
+            System.out.println("Ulazi u repaint: " + selectorView);
+            selectorView.repaint(g2);
         }
     }
 
@@ -99,5 +119,17 @@ public class MapView extends JPanel implements ISubscriber {
 
     public void setStroke(int stroke) {
         this.stroke = stroke;
+    }
+
+    public List<ElementView> getSelectedElements() {
+        return selectedElements;
+    }
+
+    public SelectorView getSelectorView() {
+        return selectorView;
+    }
+
+    public void setSelectorView(SelectorView selectorView) {
+        this.selectorView = selectorView;
     }
 }
