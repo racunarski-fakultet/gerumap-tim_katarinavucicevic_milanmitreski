@@ -58,7 +58,6 @@ public class MapView extends JPanel implements ISubscriber {
         } else if (notification instanceof SelectorModel) {
             //if(selectedElements.isEmpty()){
                 selectorView = new SelectorView((SelectorModel) notification);
-                System.out.println("SelectorView u update: " + selectorView);
 
             //}
         }
@@ -79,7 +78,6 @@ public class MapView extends JPanel implements ISubscriber {
             else elementView.paint(g2);
         }
         if(selectorView != null){
-            System.out.println("Ulazi u repaint: " + selectorView);
             selectorView.repaint(g2);
         }
     }

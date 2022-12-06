@@ -11,7 +11,7 @@ import java.awt.event.MouseEvent;
 
 public class SelectState implements State {
 
-    private boolean drag = false;
+    private boolean drag;
 
     private SelectorModel selectorModel;
 
@@ -30,7 +30,7 @@ public class SelectState implements State {
         selectorModel = new SelectorModel(pos);
         selectorModel.addSubscriber(mapView);
         mapView.update(selectorModel);
-        selectorModel.notifySubscriber(selectorModel); //ovde je lista subova prazna
+        selectorModel.notifySubscriber(selectorModel);
         selectorModel.setStartPoint(pos);
         selectorModel.setCurrentPoint(pos);
 
@@ -50,9 +50,13 @@ public class SelectState implements State {
     @Override
     public void mouseDragged(MouseEvent e) {
         MapView mapView = (MapView) e.getSource();
+        drag = true;
         while(drag){
             Point pos = e.getPoint();
-            selectorModel.setDragPoint(pos.x, pos.y);
+            System.out.println("Usao");
+            selectorModel.setCurrentPoint(pos);
+            selectorModel.setRect(selectorModel.getStartPoint().x, selectorModel.getStartPoint().y, selectorModel.getCurrentPoint().x, selectorModel.getCurrentPoint().y);
+
             selectorModel.notifySubscriber(selectorModel);
             for(ElementView ev : mapView.getElementViews()){
                 if(mapView.getSelectorView().getSelectorModel().intersects(ev.getShape().getBounds())){
@@ -60,6 +64,7 @@ public class SelectState implements State {
                     mapView.repaint();
                 }
             }
+            mapView.repaint();
         }
         // selection model je publisher
         // lista elementView, lista selektovanih i pravougaonik
