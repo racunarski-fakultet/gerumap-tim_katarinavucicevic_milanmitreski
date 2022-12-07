@@ -34,6 +34,7 @@ public class MapView extends JPanel implements ISubscriber {
         this.mindMap.addSubscriber(this);
         this.elementViews = new ArrayList<>();
         this.addMouseListener(MainFrame.getInstance().getActionManager().getStateMouseListener());
+        this.addMouseMotionListener(MainFrame.getInstance().getActionManager().getStateMouseListener());
         this.stroke = 2;
         this.color = 0x000000;
         transform = new AffineTransform();

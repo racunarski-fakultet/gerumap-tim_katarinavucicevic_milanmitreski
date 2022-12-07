@@ -13,7 +13,7 @@ public class SelectState implements State {
 
     private boolean drag;
 
-    private SelectorModel selectorModel;
+    private SelectorModel selectorModel = null;
 
     @Override
     public void mousePressed(MouseEvent e) {
@@ -26,13 +26,21 @@ public class SelectState implements State {
             }
             mapView.setSelected(null);
         }
-        drag = true;
-        selectorModel = new SelectorModel(pos);
-        selectorModel.addSubscriber(mapView);
-        mapView.update(selectorModel);
-        selectorModel.notifySubscriber(selectorModel);
-        selectorModel.setStartPoint(pos);
-        selectorModel.setCurrentPoint(pos);
+
+        if(!drag) {
+            selectorModel = new SelectorModel(pos);
+            selectorModel.addSubscriber(mapView);
+            selectorModel.setStartPoint(pos);
+            drag = true;
+        }
+
+        if(selectorModel != null)
+        {
+            selectorModel.notifySubscriber(selectorModel);
+            selectorModel.setCurrentPoint(pos);
+            mapView.update(selectorModel);
+
+        }
 
         mapView.repaint();
 
@@ -44,28 +52,29 @@ public class SelectState implements State {
         mapView.setSelectorView(null);
         drag = false;
         mapView.repaint();
-
     }
 
     @Override
     public void mouseDragged(MouseEvent e) {
         MapView mapView = (MapView) e.getSource();
-        drag = true;
-        while(drag){
-            Point pos = e.getPoint();
-            System.out.println("Usao");
-            selectorModel.setCurrentPoint(pos);
-            selectorModel.setRect(selectorModel.getStartPoint().x, selectorModel.getStartPoint().y, selectorModel.getCurrentPoint().x, selectorModel.getCurrentPoint().y);
 
-            selectorModel.notifySubscriber(selectorModel);
-            for(ElementView ev : mapView.getElementViews()){
-                if(mapView.getSelectorView().getSelectorModel().intersects(ev.getShape().getBounds())){
-                    mapView.getSelectedElements().add(ev);
-                    mapView.repaint();
-                }
+        Point pos = e.getPoint();
+        selectorModel.setCurrentPoint(pos);
+
+        float width = Math.abs(selectorModel.getCurrentPoint().x - selectorModel.getStartPoint().x);
+        float height = Math.abs(selectorModel.getCurrentPoint().y - selectorModel.getStartPoint().y);
+
+
+        selectorModel.setFrameFromDiagonal(selectorModel.getStartPoint(), selectorModel.getCurrentPoint());
+
+        selectorModel.notifySubscriber(selectorModel);
+        for(ElementView ev : mapView.getElementViews()){
+            if(selectorModel.contains(ev.getShape().getBounds())){
+                mapView.getSelectedElements().add(ev);
+                mapView.repaint();
             }
-            mapView.repaint();
         }
+        mapView.repaint();
         // selection model je publisher
         // lista elementView, lista selektovanih i pravougaonik
     }
