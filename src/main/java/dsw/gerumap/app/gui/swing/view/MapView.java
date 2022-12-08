@@ -11,6 +11,7 @@ import dsw.gerumap.app.state.SelectorView;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
+import java.awt.geom.NoninvertibleTransformException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +22,10 @@ public class MapView extends JPanel implements ISubscriber {
     private ElementView selected;
     private int stroke;
     private int color;
+
+    private double scalingFactor;
+    private double xTranslate;
+    private double yTranslate;
 
     private SelectorView selectorView;
 
@@ -37,15 +42,20 @@ public class MapView extends JPanel implements ISubscriber {
         this.addMouseMotionListener(MainFrame.getInstance().getActionManager().getStateMouseListener());
         this.stroke = 2;
         this.color = 0x000000;
+        this.setBounds(0, 0,200, 300);
         transform = new AffineTransform();
+        this.scalingFactor = 1;
+        this.xTranslate = 0;
+        this.yTranslate = 0;
         selectedElements = new ArrayList<>();
     }
-
     @Override
     public void update(Object notification) {
+        JScrollPane scrollPane = (JScrollPane)this.getParent().getParent();
+        MyTabbedPane myTabbedPane = (MyTabbedPane) scrollPane.getParent();
         if(notification instanceof MindMap) {
             setName(((MindMap) notification).getName());
-            ((MyTabbedPane)this.getParent()).setTitleAt(((MyTabbedPane)this.getParent()).indexOfComponent(this), this.getName());
+            myTabbedPane.setTitleAt(myTabbedPane.indexOfComponent(scrollPane), this.getName());
         } else if(notification instanceof Element) {
             ElementView contains = containsElementView((Element) notification);
             if(notification instanceof Relation) {
@@ -71,9 +81,9 @@ public class MapView extends JPanel implements ISubscriber {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-
         Graphics2D g2 = (Graphics2D) g;
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.8f));
+        g2.setTransform(transform);
         for(ElementView elementView : elementViews) {
             if(elementView.equals(selected)) elementView.paintSelected(g2);
             else elementView.paint(g2);
@@ -81,6 +91,35 @@ public class MapView extends JPanel implements ISubscriber {
         if(selectorView != null){
             selectorView.repaint(g2);
         }
+    }
+
+    public void zoomIn() {
+        scalingFactor *= 1.2;
+        if(scalingFactor > 5) {
+            scalingFactor = 5;
+        }
+        System.out.println(scalingFactor);
+        xTranslate = 0;
+        yTranslate = 0;
+        setupTransform();
+    }
+
+    public void zoomOut() {
+        scalingFactor /= 1.2;
+        if(scalingFactor < 0.2) {
+            scalingFactor = 0.2;
+        }
+        System.out.println(scalingFactor);
+        xTranslate = 0;
+        yTranslate = 0;
+        setupTransform();
+    }
+
+    private void setupTransform() {
+        transform.setToIdentity();
+        transform.scale(scalingFactor, scalingFactor);
+        transform.translate(xTranslate, yTranslate);
+        repaint();
     }
 
     private ElementView containsElementView(Element element) {

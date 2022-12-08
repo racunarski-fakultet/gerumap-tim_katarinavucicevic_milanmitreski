@@ -9,7 +9,6 @@ public class StateManager {
     private DeleteState deleteState;
     private SelectState selectState;
     private MoveState moveState;
-    private ZoomState zoomState;
     private RefactorState refactorState;
     private ConnectState connectState;
 
@@ -19,7 +18,6 @@ public class StateManager {
         addState = new AddState();
         deleteState = new DeleteState();
         moveState = new MoveState();
-        zoomState = new ZoomState();
         selectState = new SelectState();
         refactorState = new RefactorState();
         connectState = new ConnectState();
@@ -58,13 +56,6 @@ public class StateManager {
         current = this.moveState;
     }
 
-    public ZoomState getZoomState() {
-        return zoomState;
-    }
-
-    public void setZoomState() {
-         current = this.zoomState;
-    }
 
     public RefactorState getRefactorState() {
         return refactorState;

@@ -7,6 +7,7 @@ import dsw.gerumap.app.observer.ISubscriber;
 import dsw.gerumap.app.state.StateManager;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class ProjectView extends JPanel implements ISubscriber{
 // Mediator
@@ -55,13 +56,14 @@ public class ProjectView extends JPanel implements ISubscriber{
 
     private void revalidateTabbedPane(MindMap m) {
         if(project.getChildren().contains(m)) {
-            this.mapsTabbedPane.addTab(m.getName(), new MapView(m));
+            JScrollPane scrollPane = new JScrollPane(new MapView(m), ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+            this.mapsTabbedPane.addTab(m.getName(), scrollPane);
         } else {
             System.out.println(mapsTabbedPane);
             for(int i = 0; i < mapsTabbedPane.getTabCount(); i++) {
-                MapView mv = (MapView) mapsTabbedPane.getComponentAt(i);
-                if(mv.getMindMap().equals(m))
-                    mapsTabbedPane.remove(mv);
+                JScrollPane scrollPane = (JScrollPane) mapsTabbedPane.getComponentAt(i);
+                if(scrollPane.getViewport().getView() instanceof MapView && ((MapView)scrollPane.getViewport().getView()).getMindMap().equals(m))
+                    mapsTabbedPane.remove(scrollPane);
             }
         }
     }
@@ -77,10 +79,6 @@ public class ProjectView extends JPanel implements ISubscriber{
 
     public void startMoveState(){
         this.stateManager.setMoveState();
-    }
-
-    public void startZoomState(){
-        this.stateManager.setZoomState();
     }
 
     public void startSelectState(){

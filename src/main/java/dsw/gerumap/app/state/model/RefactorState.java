@@ -8,10 +8,12 @@ import java.awt.event.MouseEvent;
 public class RefactorState implements State {
     @Override
     public void mousePressed(MouseEvent e) {
-
-        RefactorDialog refactorDialog = new RefactorDialog(MainFrame.getInstance(), "Refactor Dialog");
-        refactorDialog.setModal(true);
-        refactorDialog.setVisible(true);
+        MapView source = (MapView) e.getSource();
+        if(source.getSelected() != null) {
+            RefactorDialog refactorDialog = new RefactorDialog(MainFrame.getInstance(), "Refactor Dialog");
+            refactorDialog.setModal(true);
+            refactorDialog.setVisible(true);
+        }
 
     }
 
