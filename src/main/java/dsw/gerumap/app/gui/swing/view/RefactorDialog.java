@@ -23,7 +23,7 @@ public class RefactorDialog extends JDialog {
         dialogContent.setLayout(flowLayout); /// ako se promeni ovaj FlowLayout onda moze da se menja raspored komponenti
         ProjectView pv = (ProjectView) MainFrame.getInstance().getSplit().getRightComponent();
         MapView mv = (MapView)pv.getMapsTabbedPane().getSelectedComponent();
-        ElementView current = mv.getSelected();
+        ElementView current = mv.getSelectedElements().get(1); // ovde treba izmena mozda
 
         JLabel lblStroke = new JLabel("Stroke ");
         JSlider strokeSlider = new JSlider(0,10, mv.getStroke());

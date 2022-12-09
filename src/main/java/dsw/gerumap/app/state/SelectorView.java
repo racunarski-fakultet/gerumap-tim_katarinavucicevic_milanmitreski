@@ -10,12 +10,6 @@ public class SelectorView{
         this.selectorModel = selectorModel;
 
     }
-
-    public SelectorModel getSelectorModel() {
-        return selectorModel;
-    }
-
-
     public void repaint(Graphics2D g) {
         g.setPaint(Color.BLUE);
         g.fill(selectorModel);

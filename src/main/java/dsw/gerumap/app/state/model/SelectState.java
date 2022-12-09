@@ -21,10 +21,13 @@ public class SelectState implements State {
         Point pos = e.getPoint();
         for(ElementView elementView : mapView.getElementViews()) {
             if(elementView.elementAt(pos)) {
-                mapView.setSelected(elementView);
-                break;
+                mapView.getSelectedElements().add(elementView);
+                mapView.repaint();
+            } else {
+                mapView.getSelectedElements().removeAll(mapView.getSelectedElements());
+                mapView.repaint();
             }
-            mapView.setSelected(null);
+
         }
 
         if(!drag) {
@@ -60,22 +63,19 @@ public class SelectState implements State {
 
         Point pos = e.getPoint();
         selectorModel.setCurrentPoint(pos);
-
-        float width = Math.abs(selectorModel.getCurrentPoint().x - selectorModel.getStartPoint().x);
-        float height = Math.abs(selectorModel.getCurrentPoint().y - selectorModel.getStartPoint().y);
-
+        mapView.setSelected(null);
 
         selectorModel.setFrameFromDiagonal(selectorModel.getStartPoint(), selectorModel.getCurrentPoint());
 
         selectorModel.notifySubscriber(selectorModel);
         for(ElementView ev : mapView.getElementViews()){
-            if(selectorModel.contains(ev.getShape().getBounds())){
+            if(selectorModel.intersects(ev.getShape().getBounds())){
                 mapView.getSelectedElements().add(ev);
+                mapView.setSelected(ev);
                 mapView.repaint();
             }
         }
         mapView.repaint();
-        // selection model je publisher
-        // lista elementView, lista selektovanih i pravougaonik
+
     }
 }

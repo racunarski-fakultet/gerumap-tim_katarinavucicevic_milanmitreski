@@ -11,7 +11,6 @@ import dsw.gerumap.app.state.SelectorView;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
-import java.awt.geom.NoninvertibleTransformException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +18,6 @@ public class MapView extends JPanel implements ISubscriber {
 
     private MindMap mindMap;
     private List<ElementView> elementViews;
-    private ElementView selected;
     private int stroke;
     private int color;
     private List<ElementView>  selectedElements;
@@ -61,9 +59,7 @@ public class MapView extends JPanel implements ISubscriber {
             }
             repaint();
         } else if (notification instanceof SelectorModel) {
-            //if(selectedElements.isEmpty()){
-                selectorView = new SelectorView((SelectorModel) notification);
-            //}
+            selectorView = new SelectorView((SelectorModel) notification);
         }
     }
 
@@ -83,7 +79,8 @@ public class MapView extends JPanel implements ISubscriber {
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.8f));
         g2.transform(transform);
         for(ElementView elementView : elementViews) {
-            if(elementView.equals(selected)) elementView.paintSelected(g2);
+            if(selectedElements.contains(elementView))
+                elementView.paintSelected(g2);
             else elementView.paint(g2);
         }
         if(selectorView != null){
@@ -135,12 +132,8 @@ public class MapView extends JPanel implements ISubscriber {
     }
 
     public void setSelected(ElementView selected) {
-        this.selected = selected;
+        selectedElements.add(selected);
         repaint();
-    }
-
-    public ElementView getSelected() {
-        return selected;
     }
 
     public int getColor() {
