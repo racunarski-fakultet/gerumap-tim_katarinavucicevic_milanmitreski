@@ -18,8 +18,7 @@ public class ZoomInAction extends AbstractGeRuMapAction{
     public void actionPerformed(ActionEvent actionEvent) {
         if(MainFrame.getInstance().getSplit().getRightComponent() instanceof ProjectView) {
             ProjectView pv = (ProjectView) MainFrame.getInstance().getSplit().getRightComponent();
-            JScrollPane scrollPane = (JScrollPane) pv.getMapsTabbedPane().getSelectedComponent();
-            MapView mv = (MapView) scrollPane.getViewport().getView();
+            MapView mv = (MapView) pv.getMapsTabbedPane().getSelectedComponent();
             mv.zoomIn();
         }
     }

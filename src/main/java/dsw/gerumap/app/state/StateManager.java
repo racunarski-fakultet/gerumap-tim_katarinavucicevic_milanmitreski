@@ -12,6 +12,8 @@ public class StateManager {
     private RefactorState refactorState;
     private ConnectState connectState;
 
+    private MoveMapState moveMapState;
+
 
     public StateManager() {
 
@@ -21,6 +23,7 @@ public class StateManager {
         selectState = new SelectState();
         refactorState = new RefactorState();
         connectState = new ConnectState();
+        moveMapState = new MoveMapState();
         current = addState;
     }
 
@@ -56,7 +59,6 @@ public class StateManager {
         current = this.moveState;
     }
 
-
     public RefactorState getRefactorState() {
         return refactorState;
     }
@@ -72,6 +74,10 @@ public class StateManager {
     public void setConnectState() {
         current = this.connectState;
     }
+
+    public void setMoveMapState() { current = this.moveMapState; }
+
+    public MoveMapState getMoveMapState() { return moveMapState; }
 
     public State getCurrent() {
         return current;

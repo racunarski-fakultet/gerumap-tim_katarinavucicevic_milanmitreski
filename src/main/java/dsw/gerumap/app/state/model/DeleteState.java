@@ -21,7 +21,7 @@ public class DeleteState implements State {
         if(e.getButton() != MouseEvent.BUTTON1) return;
         MapView mapView = (MapView) e.getSource();
         MindMap mindMap = mapView.getMindMap();
-        Point pos = e.getPoint();
+        Point pos = new Point((int) (e.getPoint().getX()/mapView.getScalingFactor() - mapView.getxTranslate()), (int) (e.getPoint().getY()/mapView.getScalingFactor() - mapView.getyTranslate()));
         ElementView deleted = null;
         Iterator<ElementView> it = mapView.getElementViews().iterator();
         while(it.hasNext()) {

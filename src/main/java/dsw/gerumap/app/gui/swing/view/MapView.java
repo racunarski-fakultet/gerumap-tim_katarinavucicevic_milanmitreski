@@ -22,16 +22,12 @@ public class MapView extends JPanel implements ISubscriber {
     private ElementView selected;
     private int stroke;
     private int color;
-
+    private List<ElementView>  selectedElements;
+    private SelectorView selectorView;
+    private AffineTransform transform; // na tabbedPane se dodaje ScrollPane koji ce imati mapView
     private double scalingFactor;
     private double xTranslate;
     private double yTranslate;
-
-    private SelectorView selectorView;
-
-    private List<ElementView>  selectedElements;
-
-    private AffineTransform transform; // na tabbedPane se dodaje ScrollPane koji ce imati mapView
 
 
     public MapView(MindMap mindMap) {
@@ -42,7 +38,6 @@ public class MapView extends JPanel implements ISubscriber {
         this.addMouseMotionListener(MainFrame.getInstance().getActionManager().getStateMouseListener());
         this.stroke = 2;
         this.color = 0x000000;
-        this.setBounds(0, 0,200, 300);
         transform = new AffineTransform();
         this.scalingFactor = 1;
         this.xTranslate = 0;
@@ -51,11 +46,10 @@ public class MapView extends JPanel implements ISubscriber {
     }
     @Override
     public void update(Object notification) {
-        JScrollPane scrollPane = (JScrollPane)this.getParent().getParent();
-        MyTabbedPane myTabbedPane = (MyTabbedPane) scrollPane.getParent();
+        MyTabbedPane myTabbedPane = (MyTabbedPane) this.getParent();
         if(notification instanceof MindMap) {
             setName(((MindMap) notification).getName());
-            myTabbedPane.setTitleAt(myTabbedPane.indexOfComponent(scrollPane), this.getName());
+            myTabbedPane.setTitleAt(myTabbedPane.indexOfComponent(this), this.getName());
         } else if(notification instanceof Element) {
             ElementView contains = containsElementView((Element) notification);
             if(notification instanceof Relation) {
@@ -69,9 +63,13 @@ public class MapView extends JPanel implements ISubscriber {
         } else if (notification instanceof SelectorModel) {
             //if(selectedElements.isEmpty()){
                 selectorView = new SelectorView((SelectorModel) notification);
-
             //}
         }
+    }
+
+    @Override
+    public Dimension getPreferredSize() {
+        return this.getSize();
     }
 
     public MindMap getMindMap() {
@@ -83,7 +81,7 @@ public class MapView extends JPanel implements ISubscriber {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.8f));
-        g2.setTransform(transform);
+        g2.transform(transform);
         for(ElementView elementView : elementViews) {
             if(elementView.equals(selected)) elementView.paintSelected(g2);
             else elementView.paint(g2);
@@ -99,8 +97,6 @@ public class MapView extends JPanel implements ISubscriber {
             scalingFactor = 5;
         }
         System.out.println(scalingFactor);
-        xTranslate = 0;
-        yTranslate = 0;
         setupTransform();
     }
 
@@ -110,15 +106,19 @@ public class MapView extends JPanel implements ISubscriber {
             scalingFactor = 0.2;
         }
         System.out.println(scalingFactor);
-        xTranslate = 0;
-        yTranslate = 0;
+        setupTransform();
+    }
+
+    public void translate(double xTranslate, double yTranslate) {
+        this.xTranslate += xTranslate;
+        this.yTranslate += yTranslate;
         setupTransform();
     }
 
     private void setupTransform() {
         transform.setToIdentity();
-        transform.scale(scalingFactor, scalingFactor);
         transform.translate(xTranslate, yTranslate);
+        transform.scale(scalingFactor, scalingFactor);
         repaint();
     }
 
@@ -161,6 +161,18 @@ public class MapView extends JPanel implements ISubscriber {
 
     public List<ElementView> getSelectedElements() {
         return selectedElements;
+    }
+
+    public double getScalingFactor() {
+        return scalingFactor;
+    }
+
+    public double getxTranslate() {
+        return xTranslate;
+    }
+
+    public double getyTranslate() {
+        return yTranslate;
     }
 
     public SelectorView getSelectorView() {

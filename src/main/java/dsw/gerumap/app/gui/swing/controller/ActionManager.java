@@ -20,12 +20,11 @@ public class ActionManager {
     private SelectStateAction selectStateAction;
     private RefactorStateAction refactorStateAction;
     private StateMouseListener stateMouseListener;
-
     private ConnectStateAction connectStateAction;
     private SettingsAction settingsAction;
-
     private ZoomInAction zoomInAction;
     private ZoomOutAction zoomOutAction;
+    private MoveMapStateAction moveMapAction;
 
     public ActionManager() {
         initialiseActions();
@@ -51,6 +50,7 @@ public class ActionManager {
         settingsAction = new SettingsAction();
         zoomInAction = new ZoomInAction();
         zoomOutAction = new ZoomOutAction();
+        moveMapAction = new MoveMapStateAction();
     }
 
     public ExitAction getExitAction() {
@@ -122,4 +122,6 @@ public class ActionManager {
     public ZoomOutAction getZoomOutAction() {
         return zoomOutAction;
     }
+
+    public MoveMapStateAction getMoveMapAction() { return moveMapAction; }
 }

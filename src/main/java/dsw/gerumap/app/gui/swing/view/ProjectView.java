@@ -56,14 +56,14 @@ public class ProjectView extends JPanel implements ISubscriber{
 
     private void revalidateTabbedPane(MindMap m) {
         if(project.getChildren().contains(m)) {
-            JScrollPane scrollPane = new JScrollPane(new MapView(m), ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-            this.mapsTabbedPane.addTab(m.getName(), scrollPane);
+            MapView mv = new MapView(m);
+            this.mapsTabbedPane.addTab(m.getName(), mv);
         } else {
             System.out.println(mapsTabbedPane);
             for(int i = 0; i < mapsTabbedPane.getTabCount(); i++) {
-                JScrollPane scrollPane = (JScrollPane) mapsTabbedPane.getComponentAt(i);
-                if(scrollPane.getViewport().getView() instanceof MapView && ((MapView)scrollPane.getViewport().getView()).getMindMap().equals(m))
-                    mapsTabbedPane.remove(scrollPane);
+                MapView mv = (MapView) mapsTabbedPane.getComponentAt(i);
+                if(mv.getMindMap().equals(m))
+                    mapsTabbedPane.remove(mv);
             }
         }
     }
@@ -93,6 +93,7 @@ public class ProjectView extends JPanel implements ISubscriber{
         this.stateManager.setConnectState();
     }
 
+    public void startMoveMapState() { this.stateManager.setMoveMapState();}
 
     public StateManager getStateManager() {
         return stateManager;
