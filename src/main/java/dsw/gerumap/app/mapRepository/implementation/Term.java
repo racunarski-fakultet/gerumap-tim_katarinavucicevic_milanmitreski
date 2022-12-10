@@ -21,4 +21,12 @@ public class Term extends Element{
     public double getYCoordinate() {
         return yCoordinate;
     }
+
+    public void setXCoordinate(double xCoordinate) {
+        this.xCoordinate = xCoordinate;
+    }
+
+    public void setYCoordinate(double yCoordinate) {
+        this.yCoordinate = yCoordinate;
+    }
 }

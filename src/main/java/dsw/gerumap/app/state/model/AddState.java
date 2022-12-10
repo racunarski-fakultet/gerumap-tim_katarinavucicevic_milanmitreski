@@ -28,7 +28,15 @@ public class AddState implements State {
             }
         }
         MindMap m = source.getMindMap();
-        m.addChild(new Term("Element" + count++, m, source.getStroke(), source.getColor(), e.getPoint().getX()/source.getScalingFactor() - source.getxTranslate(), e.getPoint().getY()/source.getScalingFactor() - source.getyTranslate()));
+        Term t = new Term(
+                "Element" + count++, m, source.getStroke(), source.getColor(),
+                e.getPoint().getX()/source.getScalingFactor() - source.getxTranslate(),
+                e.getPoint().getY()/source.getScalingFactor() - source.getyTranslate()
+        );
+
+        m.addChild(t);
+        t.addSubscriber(source);
+
     }
 
     @Override

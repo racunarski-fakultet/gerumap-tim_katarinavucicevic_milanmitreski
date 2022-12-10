@@ -17,6 +17,7 @@ public class ConnectState implements State {
 
     private static int count = 0;
 
+    private boolean drag;
     private TermView termFrom;
     private TermView termTo;
     @Override
@@ -26,6 +27,8 @@ public class ConnectState implements State {
         for(ElementView ev : source.getElementViews()) {
             if(ev.elementAt(e.getPoint())) {
                 if (ev instanceof TermView) {
+                    drag = true;
+                    ev.getElement().notifySubscriber(ev);
                     termFrom = (TermView) ev;
                     return;
                 }
@@ -39,6 +42,8 @@ public class ConnectState implements State {
     public void mouseReleased(MouseEvent e) {
         if(e.getButton() != MouseEvent.BUTTON1) return;
         MapView source = (MapView) e.getSource();
+        drag = false;
+        /*
         for(ElementView ev : source.getElementViews()) {
             if (ev.elementAt(e.getPoint())) {
                 if (ev instanceof TermView) {
@@ -47,6 +52,7 @@ public class ConnectState implements State {
                 break;
             }
         }
+         */
         if(termTo != null && termFrom != null && termTo != termFrom) {
             for(ElementView ev : source.getElementViews()) {
                 if(ev instanceof RelationView) {
@@ -65,6 +71,17 @@ public class ConnectState implements State {
 
     @Override
     public void mouseDragged(MouseEvent e) {
+        MapView source = (MapView) e.getSource();
+        for(ElementView ev : source.getElementViews()) {
+            if (ev.elementAt(e.getPoint())) {
+                if (ev instanceof TermView) {
+                    ev.getElement().notifySubscriber(ev);
+                    termTo = (TermView) ev;
+                } else termTo = null;
+                break;
+            }
+            source.repaint();
+        }
 
     }
 }

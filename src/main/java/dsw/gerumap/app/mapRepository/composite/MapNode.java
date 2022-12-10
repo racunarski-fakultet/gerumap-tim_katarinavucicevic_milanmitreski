@@ -11,7 +11,7 @@ public abstract class MapNode implements IPublisher {
     private String name;
     private MapNode parent;
 
-    private final List<ISubscriber> subscribers;
+    public final List<ISubscriber> subscribers;
     public MapNode(String ime, MapNode parent) {
         this.name = ime;
         this.parent = parent;
@@ -56,7 +56,9 @@ public abstract class MapNode implements IPublisher {
 
     @Override
     public void notifySubscriber(Object notification) {
+        System.out.println("Subscribers:" + this.subscribers);
         for(ISubscriber sub : subscribers){
+            System.out.println("SUBOVIII: " + subscribers);
             sub.update(notification);
         }
     }

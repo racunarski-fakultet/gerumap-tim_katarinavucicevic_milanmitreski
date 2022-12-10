@@ -63,7 +63,7 @@ public class SelectState implements State {
 
         Point pos = e.getPoint();
         selectorModel.setCurrentPoint(pos);
-        mapView.setSelected(null);
+        //mapView.setSelected(null);
 
         selectorModel.setFrameFromDiagonal(selectorModel.getStartPoint(), selectorModel.getCurrentPoint());
 
@@ -71,7 +71,7 @@ public class SelectState implements State {
         for(ElementView ev : mapView.getElementViews()){
             if(selectorModel.intersects(ev.getShape().getBounds())){
                 mapView.getSelectedElements().add(ev);
-                mapView.setSelected(ev);
+                //mapView.setSelected(ev);
                 mapView.repaint();
             }
         }

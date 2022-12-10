@@ -51,11 +51,20 @@ public class MapView extends JPanel implements ISubscriber {
         } else if(notification instanceof Element) {
             ElementView contains = containsElementView((Element) notification);
             if(notification instanceof Relation) {
-                if(contains == null) elementViews.add(new RelationView((Relation) notification));
-                else elementViews.remove(contains);
+                if(contains == null) {
+                    RelationView r = new RelationView((Relation) notification);
+                    elementViews.add(r);
+                }
+                else{
+                    elementViews.remove(contains);
+                }
             } else {
-                if(contains == null) elementViews.add(new TermView((Term) notification));
-                else elementViews.remove(contains);
+                if(contains == null) {
+                    elementViews.add(new TermView((Term) notification));
+                } else {
+                    elementViews.remove(contains);
+                    elementViews.add(new TermView((Term) notification));
+                }
             }
             repaint();
         } else if (notification instanceof SelectorModel) {
@@ -82,6 +91,7 @@ public class MapView extends JPanel implements ISubscriber {
             if(selectedElements.contains(elementView))
                 elementView.paintSelected(g2);
             else elementView.paint(g2);
+            //System.out.println("REPAINT JEBENI");
         }
         if(selectorView != null){
             selectorView.repaint(g2);
