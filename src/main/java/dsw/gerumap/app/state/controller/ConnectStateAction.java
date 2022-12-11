@@ -14,6 +14,7 @@ public class ConnectStateAction extends AbstractGeRuMapAction {
 
         putValue(NAME, "C");
         putValue(SHORT_DESCRIPTION, "connect");
+        putValue(SMALL_ICON, loadIcon("/connect.png"));
     }
 
     @Override

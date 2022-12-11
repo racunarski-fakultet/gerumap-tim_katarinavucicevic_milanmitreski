@@ -15,6 +15,7 @@ public class SettingsAction extends AbstractGeRuMapAction{
     public SettingsAction() {
 
         putValue(NAME, "S");
+        putValue(SMALL_ICON, loadIcon("/settings.png"));
         putValue(SHORT_DESCRIPTION, "Settings");
     }
 

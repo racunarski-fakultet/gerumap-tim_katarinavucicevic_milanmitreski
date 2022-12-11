@@ -14,6 +14,7 @@ public class MoveStateAction extends AbstractGeRuMapAction {
 
         putValue(NAME, "M");
         putValue(SHORT_DESCRIPTION, "Move Element");
+        putValue(SMALL_ICON, loadIcon("/moveBtn.png"));
 
     }
 

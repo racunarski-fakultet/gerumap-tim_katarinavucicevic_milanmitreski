@@ -15,6 +15,7 @@ public class RefactorStateAction extends AbstractGeRuMapAction {
 
         putValue(NAME, "R");
         putValue(SHORT_DESCRIPTION, "refactor");
+        putValue(SMALL_ICON, loadIcon("/refactorBtn.png"));
     }
 
     @Override

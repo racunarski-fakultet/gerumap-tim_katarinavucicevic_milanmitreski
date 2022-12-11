@@ -15,6 +15,7 @@ public class AddStateAction extends AbstractGeRuMapAction {
 
         putValue(NAME, "A");
         putValue(SHORT_DESCRIPTION, "Add Element");
+        putValue(SMALL_ICON, loadIcon("/addBtn.png"));
 
     }
 

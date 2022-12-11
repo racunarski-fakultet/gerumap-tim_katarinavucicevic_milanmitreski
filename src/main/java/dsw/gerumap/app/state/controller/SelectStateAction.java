@@ -14,6 +14,7 @@ public class SelectStateAction extends AbstractGeRuMapAction {
 
         putValue(NAME, "S");
         putValue(SHORT_DESCRIPTION, "Select Element");
+        putValue(SMALL_ICON, loadIcon("/selectBtn.jpg"));
 
     }
 

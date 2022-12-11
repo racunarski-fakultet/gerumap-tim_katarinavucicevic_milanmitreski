@@ -15,17 +15,17 @@ public abstract class AbstractGeRuMapAction extends AbstractAction {
             icon = new ImageIcon(imageURL){
                 @Override
                 public int getIconHeight() {
-                    return 30;
+                    return 25;
                 }
 
                 @Override
                 public int getIconWidth() {
-                    return 30;
+                    return 25;
                 }
 
                 @Override
                 public synchronized void paintIcon(Component c, Graphics g, int x, int y) {
-                    g.drawImage(getImage(), x, y, 30, 30, null);
+                    g.drawImage(getImage(), x, y, 25, 25, null);
                 }
             };
             // Image image = ((ImageIcon)icon).getImage();

@@ -13,6 +13,7 @@ public class MoveMapStateAction extends AbstractGeRuMapAction {
     public MoveMapStateAction() {
 
         putValue(NAME, "MM");
+        putValue(SMALL_ICON, loadIcon("/moveMap.png"));
         putValue(SHORT_DESCRIPTION, "Move Map");
 
     }

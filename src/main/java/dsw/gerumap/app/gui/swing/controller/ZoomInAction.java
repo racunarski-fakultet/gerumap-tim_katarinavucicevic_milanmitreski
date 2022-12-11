@@ -12,6 +12,7 @@ public class ZoomInAction extends AbstractGeRuMapAction{
     public ZoomInAction() {
 
         putValue(NAME, "Z+");
+        putValue(SMALL_ICON, loadIcon("/zoomIn.png"));
         putValue(SHORT_DESCRIPTION, "Zoom in");
     }
     @Override
