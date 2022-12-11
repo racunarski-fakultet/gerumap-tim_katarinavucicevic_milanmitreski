@@ -141,10 +141,17 @@ public class MapView extends JPanel implements ISubscriber {
         return elementViews;
     }
 
-    public void setSelected(ElementView selected) {
+    public void addSelected(ElementView selected) {
         selectedElements.add(selected);
         repaint();
     }
+
+    public void removeSelected(ElementView selected){
+        selectedElements.remove(selected);
+        repaint();
+    }
+
+
 
     public int getColor() {
         return color;

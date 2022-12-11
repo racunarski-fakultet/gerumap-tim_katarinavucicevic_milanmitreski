@@ -4,7 +4,6 @@ import dsw.gerumap.app.gui.swing.view.ElementView;
 import dsw.gerumap.app.gui.swing.view.MapView;
 import dsw.gerumap.app.gui.swing.view.RelationView;
 import dsw.gerumap.app.gui.swing.view.TermView;
-import dsw.gerumap.app.mapRepository.implementation.Element;
 import dsw.gerumap.app.mapRepository.implementation.MindMap;
 import dsw.gerumap.app.mapRepository.implementation.Relation;
 import dsw.gerumap.app.state.State;
@@ -27,7 +26,7 @@ public class DeleteState implements State {
         while(it.hasNext()) {
             ElementView elementView = it.next();
             if (elementView.elementAt(pos)) {
-                if(mapView.getSelectedElements().contains(elementView)) mapView.setSelected(null);
+                if(mapView.getSelectedElements().contains(elementView)) mapView.addSelected(null);
                 mindMap.removeChild(elementView.getElement());
                 deleted = elementView;
                 break;
