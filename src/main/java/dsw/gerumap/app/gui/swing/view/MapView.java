@@ -60,11 +60,38 @@ public class MapView extends JPanel implements ISubscriber {
                 }
             } else {
                 if(contains == null) {
-                    elementViews.add(new TermView((Term) notification));
+                    TermView tv = new TermView((Term) notification);
+                    elementViews.add(tv);
+                    System.out.println("Posle add-a " + elementViews);
                 }
+                /*
+
                 else {
                     elementViews.remove(contains);
+                    TermView tv = new TermView((Term) notification);
+                    elementViews.add(tv);
                 }
+
+                 */
+
+                else if (getSelectedElements().contains(contains)){
+                    //System.out.println("DODAJE");
+                    elementViews.remove(contains);
+                    this.removeSelected(contains);
+                    TermView tv = new TermView((Term) notification);
+                    elementViews.add(tv);
+                    this.addSelected(tv);
+                } else {
+                    System.out.println("SAMO BRISE");
+                    elementViews.remove(contains);
+                    this.removeSelected(contains);
+
+                    repaint();
+                }
+
+
+
+
             }
             repaint();
         } else if (notification instanceof SelectorModel) {
@@ -91,7 +118,6 @@ public class MapView extends JPanel implements ISubscriber {
             if(selectedElements.contains(elementView))
                 elementView.paintSelected(g2);
             else elementView.paint(g2);
-            //System.out.println("REPAINT JEBENI");
         }
         if(selectorView != null){
             selectorView.repaint(g2);
@@ -142,7 +168,8 @@ public class MapView extends JPanel implements ISubscriber {
     }
 
     public void addSelected(ElementView selected) {
-        selectedElements.add(selected);
+        if(!selectedElements.contains(selected))
+            selectedElements.add(selected);
         repaint();
     }
 
