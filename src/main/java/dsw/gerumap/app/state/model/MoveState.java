@@ -20,6 +20,8 @@ public class MoveState implements State {
         Point pos = e.getPoint();
         for(ElementView elementView : mapView.getSelectedElements()) {
             if(elementView.elementAt(pos)) {
+                // NA NEKU FORU NE DETEKTUJE SELETOVANOST ELEMENTA
+                // ELEMENT KOJI JE BIO U LISTI SELEKTOVANIH, OSTAJE TAMO
                 drag = true;
                 pressed = e;
                 //mapView.repaint();
@@ -45,13 +47,9 @@ public class MoveState implements State {
         for (ElementView ev : mapView.getSelectedElements()) {
 
             if(ev.elementAt(current)) {
-
                 if(ev instanceof TermView) {
-
-                    Point shapeLocation = ev.getShape().getBounds().getLocation();
-
-                    int x = shapeLocation.x - 75 + (int) current.getX();
-                    int y = shapeLocation.y - 50 + (int) current.getY();
+                    int x = (int) current.getX();
+                    int y = (int) current.getY();
                     System.out.println("Prvo X koord: " + ((Term)ev.getElement()).getXCoordinate());
                     //System.out.println("Prvo Y koord: " + ((Term)ev.getElement()).getYCoordinate());
                     ((Term) ev.getElement()).setXCoordinate(x);
@@ -59,13 +57,13 @@ public class MoveState implements State {
                     System.out.println("Drugo X koord: " + ((Term)ev.getElement()).getXCoordinate());
                     //System.out.println("Drugo Y koord: " + ((Term)ev.getElement()).getYCoordinate());
 
-                    ev.getShape().getBounds().setLocation(x, y);
+                    //ev.getShape().getBounds().setLocation(x, y);
                     //ev.getElement().notifySubscriber(ev.getElement());
-                    mapView.update(ev.getElement());
+                    //mapView.updateMove(ev.getElement());
+                    //mapView.update(ev.getElement()); // radi bolje od ovog iznad
                    // mapView.repaint();
                 }
             }
         }
-
     }
 }

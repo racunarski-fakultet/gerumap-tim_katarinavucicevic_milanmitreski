@@ -1,11 +1,12 @@
 package dsw.gerumap.app.gui.swing.view;
 
 import dsw.gerumap.app.mapRepository.implementation.Term;
+import dsw.gerumap.app.observer.ISubscriber;
 
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
 
-public class TermView extends ElementView{
+public class TermView extends ElementView {
 
     public TermView(Term term) {
         super(term);
@@ -41,4 +42,5 @@ public class TermView extends ElementView{
         float y = (float) (ellipse.y + ((ellipse.height - metrics.getHeight()) / 2) + metrics.getAscent());
         g.drawString(element.getName(), x, y);
     }
+
 }

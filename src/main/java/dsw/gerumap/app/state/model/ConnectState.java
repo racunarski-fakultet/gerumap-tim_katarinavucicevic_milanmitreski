@@ -65,7 +65,14 @@ public class ConnectState implements State {
                 }
             }
             MindMap m = source.getMindMap();
-            m.addChild(new Relation("Connection " + count++, m, source.getStroke(), source.getColor(), (Term) termFrom.getElement(), (Term) termTo.getElement()));
+            Relation r = new Relation("Connection " + count++,
+                    m, source.getStroke(),
+                    source.getColor(),
+                    (Term) termFrom.getElement(),
+                    (Term) termTo.getElement());
+
+            m.addChild(r);
+            r.notifySubscriber(source);
         }
     }
 

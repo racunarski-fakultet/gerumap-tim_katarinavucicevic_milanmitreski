@@ -61,9 +61,9 @@ public class MapView extends JPanel implements ISubscriber {
             } else {
                 if(contains == null) {
                     elementViews.add(new TermView((Term) notification));
-                } else {
+                }
+                else {
                     elementViews.remove(contains);
-                    elementViews.add(new TermView((Term) notification));
                 }
             }
             repaint();

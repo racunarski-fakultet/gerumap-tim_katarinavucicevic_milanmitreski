@@ -24,9 +24,11 @@ public class Term extends Element{
 
     public void setXCoordinate(double xCoordinate) {
         this.xCoordinate = xCoordinate;
+        notifySubscriber(this);
     }
 
     public void setYCoordinate(double yCoordinate) {
         this.yCoordinate = yCoordinate;
+        notifySubscriber(this);
     }
 }

@@ -56,9 +56,7 @@ public abstract class MapNode implements IPublisher {
 
     @Override
     public void notifySubscriber(Object notification) {
-        System.out.println("Subscribers:" + this.subscribers);
         for(ISubscriber sub : subscribers){
-            System.out.println("SUBOVIII: " + subscribers);
             sub.update(notification);
         }
     }
