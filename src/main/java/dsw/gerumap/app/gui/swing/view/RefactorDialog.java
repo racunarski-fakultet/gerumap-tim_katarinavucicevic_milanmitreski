@@ -6,6 +6,7 @@ import dsw.gerumap.app.message.MessageType;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.util.Iterator;
 import java.util.List;
 
 public class RefactorDialog extends JDialog {
@@ -62,10 +63,12 @@ public class RefactorDialog extends JDialog {
         saveBtn.setAction(new AbstractAction("Save") {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                for(ElementView current : currents) {
+                Iterator<ElementView> it = currents.iterator();
+                while(it.hasNext()) {
+                    ElementView current = it.next();
                     current.getElement().setColor(colorChooser.getColor().getRGB());
                     current.getElement().setStroke(strokeSlider.getValue());
-                    currents.remove(current);
+                    mv.removeSelected(it);
                 }
                 repaint();
             }

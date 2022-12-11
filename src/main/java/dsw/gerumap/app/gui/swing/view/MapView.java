@@ -12,6 +12,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class MapView extends JPanel implements ISubscriber {
@@ -85,13 +86,7 @@ public class MapView extends JPanel implements ISubscriber {
                     System.out.println("SAMO BRISE");
                     elementViews.remove(contains);
                     this.removeSelected(contains);
-
-                    repaint();
                 }
-
-
-
-
             }
             repaint();
         } else if (notification instanceof SelectorModel) {
@@ -178,7 +173,10 @@ public class MapView extends JPanel implements ISubscriber {
         repaint();
     }
 
-
+    public void removeSelected(Iterator<ElementView> selected){
+        selectedElements.remove(selected);
+        repaint();
+    }
 
     public int getColor() {
         return color;
