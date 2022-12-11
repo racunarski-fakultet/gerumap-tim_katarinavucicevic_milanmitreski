@@ -18,7 +18,6 @@ public class SelectorModel extends Rectangle implements IPublisher {
         this.startPoint = startPoint;
         this.subscribers = new ArrayList<>();
         notifySubscriber(this);
-        startPoint = new Point(0, 0);
         currentPoint = new Point(0, 0);
     }
 

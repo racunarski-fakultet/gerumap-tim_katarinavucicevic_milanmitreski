@@ -20,8 +20,6 @@ public class ConnectState implements State {
     private static int count = 0;
 
     private GeneralPath generalPath;
-
-    private boolean drag;
     private TermView termFrom;
     private TermView termTo;
     @Override
@@ -32,7 +30,6 @@ public class ConnectState implements State {
         for(ElementView ev : source.getElementViews()) {
             if(ev.elementAt(realPoint)) {
                 if (ev instanceof TermView) {
-                    drag = true;
                     ev.getElement().notifySubscriber(ev);
                     termFrom = (TermView) ev;
                     generalPath = new GeneralPath();
@@ -49,7 +46,6 @@ public class ConnectState implements State {
         if(e.getButton() != MouseEvent.BUTTON1) return;
         MapView source = (MapView) e.getSource();
         Point realPoint = new Point((int) ((e.getPoint().getX()-source.getxTranslate())/source.getScalingFactor()), (int) ((e.getPoint().getY()-source.getyTranslate())/source.getScalingFactor()));
-        drag = false;
         for(ElementView ev : source.getElementViews()) {
             if (ev.elementAt(realPoint)) {
                 if (ev instanceof TermView) {

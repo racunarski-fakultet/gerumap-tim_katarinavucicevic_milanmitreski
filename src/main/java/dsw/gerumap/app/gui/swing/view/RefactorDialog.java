@@ -11,7 +11,7 @@ import java.util.List;
 
 public class RefactorDialog extends JDialog {
 
-    private boolean toggled = false;
+
     public RefactorDialog(Frame owner, String title) {
 
         super(owner, title);

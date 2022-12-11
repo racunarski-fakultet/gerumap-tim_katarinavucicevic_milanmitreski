@@ -16,11 +16,8 @@ import static java.lang.Math.abs;
 
 public class MoveState implements State {
     private Point startPoint;
-
     private HashMap<Term, Point> map = new HashMap<>();
     private List <Point> startingPoints = new ArrayList<>();
-    private boolean semaphore = true;
-
 
     @Override
     public void mousePressed(MouseEvent e) {

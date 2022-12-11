@@ -12,7 +12,6 @@ import java.awt.event.ActionListener;
 
 public class SettingsDialog extends JDialog {
 
-    private boolean toggled = false;
 
     public SettingsDialog(Frame owner, String title) {
         super(owner, title);

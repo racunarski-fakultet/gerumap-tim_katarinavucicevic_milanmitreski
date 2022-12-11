@@ -56,34 +56,29 @@ public class MapView extends JPanel implements ISubscriber {
                     RelationView r = new RelationView((Relation) notification);
                     elementViews.add(r);
                 }
-                else{
+                else if (getSelectedElements().contains(contains)){
                     elementViews.remove(contains);
+                    this.removeSelected(contains);
+                    RelationView rv = new RelationView((Relation) notification);
+                    elementViews.add(rv);
+                    this.addSelected(rv);
+                } else {
+                    elementViews.remove(contains);
+                    this.removeSelected(contains);
                 }
             } else {
                 if(contains == null) {
                     TermView tv = new TermView((Term) notification);
                     elementViews.add(tv);
-                    System.out.println("Posle add-a " + elementViews);
                 }
-                /*
-
-                else {
-                    elementViews.remove(contains);
-                    TermView tv = new TermView((Term) notification);
-                    elementViews.add(tv);
-                }
-
-                 */
 
                 else if (getSelectedElements().contains(contains)){
-                    //System.out.println("DODAJE");
                     elementViews.remove(contains);
                     this.removeSelected(contains);
                     TermView tv = new TermView((Term) notification);
                     elementViews.add(tv);
                     this.addSelected(tv);
                 } else {
-                    System.out.println("SAMO BRISE");
                     elementViews.remove(contains);
                     this.removeSelected(contains);
                 }
