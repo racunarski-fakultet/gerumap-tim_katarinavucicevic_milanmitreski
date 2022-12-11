@@ -6,6 +6,7 @@ import dsw.gerumap.app.message.MessageType;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.util.List;
 
 public class RefactorDialog extends JDialog {
 
@@ -23,7 +24,7 @@ public class RefactorDialog extends JDialog {
         dialogContent.setLayout(flowLayout); /// ako se promeni ovaj FlowLayout onda moze da se menja raspored komponenti
         ProjectView pv = (ProjectView) MainFrame.getInstance().getSplit().getRightComponent();
         MapView mv = (MapView)pv.getMapsTabbedPane().getSelectedComponent();
-        ElementView current = mv.getSelectedElements().get(1); // ovde treba izmena mozda
+        List<ElementView> currents = mv.getSelectedElements();
 
         JLabel lblStroke = new JLabel("Stroke ");
         JSlider strokeSlider = new JSlider(0,10, mv.getStroke());
@@ -41,26 +42,31 @@ public class RefactorDialog extends JDialog {
         // promena imena elementa
         JLabel renameLbl = new JLabel("Insert new name: ");
         JTextField renameTf = new JTextField();
+        if(currents.size() > 1) renameTf.setEnabled(false);
         JButton renameBtn = new JButton("Rename");
         renameTf.setColumns(20);
 
         renameBtn.setAction(new AbstractAction("Rename") {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                if(renameTf.getText().equals("")) {
-                    AppCore.getInstance().getMessageGenerator().getMessage("Name can't be empty", MessageType.NAME_CANNOT_BE_EMPTY);
-                    return;
+                if(renameTf.isEnabled()) {
+                    if (renameTf.getText().equals("")) {
+                        AppCore.getInstance().getMessageGenerator().getMessage("Name can't be empty", MessageType.NAME_CANNOT_BE_EMPTY);
+                        return;
+                    }
+                    currents.get(0).getElement().setName(renameTf.getText());
                 }
-                current.getElement().setName(renameTf.getText());
             }
         });
 
         saveBtn.setAction(new AbstractAction("Save") {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                current.getElement().setColor(colorChooser.getColor().getRGB());
-                current.getElement().setStroke(strokeSlider.getValue());
-                mv.setSelected(null);
+                for(ElementView current : currents) {
+                    current.getElement().setColor(colorChooser.getColor().getRGB());
+                    current.getElement().setStroke(strokeSlider.getValue());
+                    currents.remove(current);
+                }
                 repaint();
             }
         });
