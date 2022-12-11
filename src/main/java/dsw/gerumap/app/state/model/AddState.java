@@ -20,7 +20,7 @@ public class AddState implements State {
     public void mousePressed(MouseEvent e) {
         if(e.getButton() != MouseEvent.BUTTON1) return;
         MapView source = (MapView) e.getSource();
-        Point pos = new Point((int) (e.getPoint().getX()/source.getScalingFactor() - source.getxTranslate()), (int) (e.getPoint().getY()/source.getScalingFactor() - source.getyTranslate()));
+        Point pos = new Point((int) ((e.getPoint().getX()-source.getxTranslate())/source.getScalingFactor()), (int) ((e.getPoint().getY()-source.getyTranslate())/source.getScalingFactor()));
         for(ElementView ev : source.getElementViews()) {
             if(ev.elementAt(pos)) {
                 AppCore.getInstance().getMessageGenerator().getMessage("FOUND ELEMENT " + ev.getElement().getName() + " AT (" + e.getX() + ", " + e.getY() + ")", MessageType.ELEMENT_FOUND_AT_POINT);
@@ -30,8 +30,8 @@ public class AddState implements State {
         MindMap m = source.getMindMap();
         Term t = new Term(
                 "Element" + count++, m, source.getStroke(), source.getColor(),
-                e.getPoint().getX()/source.getScalingFactor() - source.getxTranslate(),
-                e.getPoint().getY()/source.getScalingFactor() - source.getyTranslate()
+                (e.getPoint().getX()-source.getxTranslate())/source.getScalingFactor(),
+                (e.getPoint().getY()-source.getyTranslate())/source.getScalingFactor()
         );
 
         m.addChild(t);

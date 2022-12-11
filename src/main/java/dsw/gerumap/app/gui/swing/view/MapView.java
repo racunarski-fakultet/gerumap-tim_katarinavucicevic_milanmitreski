@@ -20,7 +20,7 @@ public class MapView extends JPanel implements ISubscriber {
     private List<ElementView> elementViews;
     private int stroke;
     private int color;
-    private List<ElementView>  selectedElements;
+    private List<ElementView> selectedElements;
     private SelectorView selectorView;
     private AffineTransform transform; // na tabbedPane se dodaje ScrollPane koji ce imati mapView
     private double scalingFactor;
@@ -42,27 +42,26 @@ public class MapView extends JPanel implements ISubscriber {
         this.yTranslate = 0;
         selectedElements = new ArrayList<>();
     }
+
     @Override
     public void update(Object notification) {
         MyTabbedPane myTabbedPane = (MyTabbedPane) this.getParent();
-        if(notification instanceof MindMap) {
+        if (notification instanceof MindMap) {
             setName(((MindMap) notification).getName());
             myTabbedPane.setTitleAt(myTabbedPane.indexOfComponent(this), this.getName());
-        } else if(notification instanceof Element) {
+        } else if (notification instanceof Element) {
             ElementView contains = containsElementView((Element) notification);
-            if(notification instanceof Relation) {
-                if(contains == null) {
+            if (notification instanceof Relation) {
+                if (contains == null) {
                     RelationView r = new RelationView((Relation) notification);
                     elementViews.add(r);
-                }
-                else{
+                } else {
                     elementViews.remove(contains);
                 }
             } else {
-                if(contains == null) {
+                if (contains == null) {
                     elementViews.add(new TermView((Term) notification));
-                }
-                else {
+                } else {
                     elementViews.remove(contains);
                 }
             }
@@ -87,20 +86,19 @@ public class MapView extends JPanel implements ISubscriber {
         Graphics2D g2 = (Graphics2D) g;
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.8f));
         g2.transform(transform);
-        for(ElementView elementView : elementViews) {
-            if(selectedElements.contains(elementView))
+        for (ElementView elementView : elementViews) {
+            if (selectedElements.contains(elementView))
                 elementView.paintSelected(g2);
             else elementView.paint(g2);
-            //System.out.println("REPAINT JEBENI");
         }
-        if(selectorView != null){
+        if (selectorView != null) {
             selectorView.repaint(g2);
         }
     }
 
     public void zoomIn() {
         scalingFactor *= 1.2;
-        if(scalingFactor > 5) {
+        if (scalingFactor > 5) {
             scalingFactor = 5;
         }
         System.out.println(scalingFactor);
@@ -109,7 +107,7 @@ public class MapView extends JPanel implements ISubscriber {
 
     public void zoomOut() {
         scalingFactor /= 1.2;
-        if(scalingFactor < 0.2) {
+        if (scalingFactor < 0.2) {
             scalingFactor = 0.2;
         }
         System.out.println(scalingFactor);
@@ -130,8 +128,8 @@ public class MapView extends JPanel implements ISubscriber {
     }
 
     private ElementView containsElementView(Element element) {
-        for(ElementView elementView : elementViews) {
-            if(elementView.element.equals(element))
+        for (ElementView elementView : elementViews) {
+            if (elementView.element.equals(element))
                 return elementView;
         }
         return null;
@@ -146,11 +144,10 @@ public class MapView extends JPanel implements ISubscriber {
         repaint();
     }
 
-    public void removeSelected(ElementView selected){
+    public void removeSelected(ElementView selected) {
         selectedElements.remove(selected);
         repaint();
     }
-
 
 
     public int getColor() {
@@ -191,5 +188,9 @@ public class MapView extends JPanel implements ISubscriber {
 
     public void setSelectorView(SelectorView selectorView) {
         this.selectorView = selectorView;
+    }
+
+    public AffineTransform getTransform() {
+        return transform;
     }
 }

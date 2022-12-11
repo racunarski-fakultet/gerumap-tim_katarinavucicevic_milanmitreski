@@ -11,11 +11,15 @@ import dsw.gerumap.app.mapRepository.implementation.Term;
 import dsw.gerumap.app.message.MessageType;
 import dsw.gerumap.app.state.State;
 
+import java.awt.*;
 import java.awt.event.MouseEvent;
+import java.awt.geom.GeneralPath;
 
 public class ConnectState implements State {
 
     private static int count = 0;
+
+    private GeneralPath generalPath;
 
     private boolean drag;
     private TermView termFrom;
@@ -24,12 +28,14 @@ public class ConnectState implements State {
     public void mousePressed(MouseEvent e) {
         if(e.getButton() != MouseEvent.BUTTON1) return;
         MapView source = (MapView) e.getSource();
+        Point realPoint =  new Point((int) ((e.getPoint().getX()-source.getxTranslate())/source.getScalingFactor()), (int) ((e.getPoint().getY()-source.getyTranslate())/source.getScalingFactor()));
         for(ElementView ev : source.getElementViews()) {
-            if(ev.elementAt(e.getPoint())) {
+            if(ev.elementAt(realPoint)) {
                 if (ev instanceof TermView) {
                     drag = true;
                     ev.getElement().notifySubscriber(ev);
                     termFrom = (TermView) ev;
+                    generalPath = new GeneralPath();
                     return;
                 }
                 termFrom = null;
@@ -42,17 +48,16 @@ public class ConnectState implements State {
     public void mouseReleased(MouseEvent e) {
         if(e.getButton() != MouseEvent.BUTTON1) return;
         MapView source = (MapView) e.getSource();
+        Point realPoint = new Point((int) ((e.getPoint().getX()-source.getxTranslate())/source.getScalingFactor()), (int) ((e.getPoint().getY()-source.getyTranslate())/source.getScalingFactor()));
         drag = false;
-        /*
         for(ElementView ev : source.getElementViews()) {
-            if (ev.elementAt(e.getPoint())) {
+            if (ev.elementAt(realPoint)) {
                 if (ev instanceof TermView) {
                     termTo = (TermView) ev;
                 } else termTo = null;
                 break;
             }
         }
-         */
         if(termTo != null && termFrom != null && termTo != termFrom) {
             for(ElementView ev : source.getElementViews()) {
                 if(ev instanceof RelationView) {
@@ -78,17 +83,48 @@ public class ConnectState implements State {
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        MapView source = (MapView) e.getSource();
-        for(ElementView ev : source.getElementViews()) {
-            if (ev.elementAt(e.getPoint())) {
-                if (ev instanceof TermView) {
-                    ev.getElement().notifySubscriber(ev);
-                    termTo = (TermView) ev;
-                } else termTo = null;
-                break;
-            }
+        if(termFrom != null) {
+            MapView source = (MapView) e.getSource();
+            Point point = e.getPoint();
+            generalPath.reset();
             source.repaint();
-        }
+            double xFrom = ((Term)termFrom.getElement()).getXCoordinate()*source.getScalingFactor() + source.getxTranslate();
+            double yFrom = ((Term)termFrom.getElement()).getYCoordinate()*source.getScalingFactor() + source.getyTranslate();
 
+            double xTo = (point.getX());//source.getScalingFactor() - source.getxTranslate();
+            double yTo = (point.getY());//source.getScalingFactor() - source.getyTranslate();
+
+            double A = (yTo - yFrom) / (xTo - xFrom);
+            double B = 150 * source.getScalingFactor()/(Math.sqrt(4 + 9 * A * A));
+
+            double xCoordinateFrom;
+            double yCoordinateFrom;
+
+            double xCoordinateTo;
+            double yCoordinateTo;
+
+            if (xTo > xFrom) {
+                xCoordinateFrom = xFrom + B;
+                yCoordinateFrom = yFrom + A * B;
+
+                xCoordinateTo = xTo;
+                yCoordinateTo = yTo;
+            } else {
+                xCoordinateFrom = xFrom - B;
+                yCoordinateFrom = yFrom - A * B;
+
+                xCoordinateTo = xTo;
+                yCoordinateTo = yTo;
+            }
+
+            generalPath.moveTo(xCoordinateFrom, yCoordinateFrom);
+            generalPath.lineTo(xCoordinateTo, yCoordinateTo);
+            generalPath.closePath();
+
+            Graphics2D graphics2D = (Graphics2D) source.getGraphics();
+            graphics2D.setColor(new Color(source.getColor()));
+            graphics2D.setStroke(new BasicStroke(source.getStroke()));
+            graphics2D.draw(generalPath);
+        }
     }
 }

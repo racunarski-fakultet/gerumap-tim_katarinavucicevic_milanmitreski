@@ -18,7 +18,7 @@ public class SelectState implements State {
     @Override
     public void mousePressed(MouseEvent e) {
         MapView mapView = (MapView) e.getSource();
-        Point pos = e.getPoint();
+        Point pos = new Point((int) ((e.getPoint().getX()-mapView.getxTranslate())/mapView.getScalingFactor()), (int) ((e.getPoint().getY()-mapView.getyTranslate())/mapView.getScalingFactor()));
         for(ElementView elementView : mapView.getElementViews()) {
             if(elementView.elementAt(pos)) {
                 mapView.addSelected(elementView);
@@ -61,7 +61,7 @@ public class SelectState implements State {
     public void mouseDragged(MouseEvent e) {
         MapView mapView = (MapView) e.getSource();
 
-        Point pos = e.getPoint();
+        Point pos = new Point((int) ((e.getPoint().getX()-mapView.getxTranslate())/mapView.getScalingFactor()), (int) ((e.getPoint().getY()-mapView.getyTranslate())/mapView.getScalingFactor()));
         selectorModel.setCurrentPoint(pos);
         selectorModel.setFrameFromDiagonal(selectorModel.getStartPoint(), selectorModel.getCurrentPoint());
         selectorModel.notifySubscriber(selectorModel);
