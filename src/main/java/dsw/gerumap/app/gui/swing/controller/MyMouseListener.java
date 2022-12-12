@@ -45,8 +45,6 @@ public class MyMouseListener implements MouseListener {
                     MainFrame.getInstance().getProjectViews().add(pv);
                     MainFrame.getInstance().getSplit().setRightComponent(pv);
                 }
-            } else {
-                AppCore.getInstance().getMessageGenerator().getMessage("NODE NOT SELECTED", MessageType.NODE_NOT_SELECTED);
             }
         }
     }
