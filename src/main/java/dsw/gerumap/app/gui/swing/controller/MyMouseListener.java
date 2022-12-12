@@ -33,16 +33,18 @@ public class MyMouseListener implements MouseListener {
         if(e.getButton() != MouseEvent.BUTTON1) return;
         if(e.getClickCount() == 2){
             if(MainFrame.getInstance().getMapTree().getSelectedNode() != null &&
-                MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode() instanceof Project){
-                for(ProjectView pv : MainFrame.getInstance().getProjectViews()) {
-                    if(pv.getProject().equals(MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode())) {
-                        MainFrame.getInstance().getSplit().setRightComponent(pv);
-                        return;
+                MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode() != null){
+                if(MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode() instanceof Project) {
+                    for (ProjectView pv : MainFrame.getInstance().getProjectViews()) {
+                        if (pv.getProject().equals(MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode())) {
+                            MainFrame.getInstance().getSplit().setRightComponent(pv);
+                            return;
+                        }
                     }
+                    ProjectView pv = MainFrame.getInstance().getWorkspace().generateWorkspace();
+                    MainFrame.getInstance().getProjectViews().add(pv);
+                    MainFrame.getInstance().getSplit().setRightComponent(pv);
                 }
-                ProjectView pv = MainFrame.getInstance().getWorkspace().generateWorkspace();
-                MainFrame.getInstance().getProjectViews().add(pv);
-                MainFrame.getInstance().getSplit().setRightComponent(pv);
             } else {
                 AppCore.getInstance().getMessageGenerator().getMessage("NODE NOT SELECTED", MessageType.NODE_NOT_SELECTED);
             }

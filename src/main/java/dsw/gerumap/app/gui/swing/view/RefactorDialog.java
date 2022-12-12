@@ -63,20 +63,21 @@ public class RefactorDialog extends JDialog {
         saveBtn.setAction(new AbstractAction("Save") {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                Iterator<ElementView> it = currents.iterator();
+                Iterator<ElementView> it = mv.getSelectedElements().iterator();
                 while(it.hasNext()) {
                     ElementView current = it.next();
                     current.getElement().setColor(colorChooser.getColor().getRGB());
                     current.getElement().setStroke(strokeSlider.getValue());
-                    mv.removeSelected(it);
                 }
-                repaint();
+                mv.getSelectedElements().clear();
+                mv.repaint();
             }
         });
 
         closeBtn.setAction(new AbstractAction("Close") {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
+
                 dispose();
             }
         });
