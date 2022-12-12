@@ -2,6 +2,7 @@ package dsw.gerumap.app.gui.swing.tree.controller;
 
 import dsw.gerumap.app.AppCore;
 import dsw.gerumap.app.gui.swing.tree.model.MapTreeItem;
+import dsw.gerumap.app.mapRepository.implementation.ProjectExplorer;
 import dsw.gerumap.app.message.MessageType;
 
 import javax.swing.*;
@@ -34,7 +35,7 @@ public class MapTreeCellEditor extends DefaultTreeCellEditor implements ActionLi
     // metoda kaze da cell moze da se menja ako je na njega kliknuto tri puta
     public boolean isCellEditable(EventObject arg0) {
         if(arg0 instanceof MouseEvent)
-            return ((MouseEvent) arg0).getClickCount() == 3;
+            return ((MouseEvent) arg0).getClickCount() == 3 && !(clickedOn instanceof ProjectExplorer);
         return false;
     }
 

@@ -35,6 +35,20 @@ public class MoveState implements State {
     @Override
     public void mouseReleased(MouseEvent e) {
         MapView mapView = (MapView) e.getSource();
+        for (ElementView elementView : mapView.getSelectedElements()) {
+            for(ElementView ev : mapView.getElementViews()) {
+                if(!mapView.getSelectedElements().contains(ev) && elementView.getShape().intersects(ev.getShape().getBounds())) {
+                    for(Term t : map.keySet()) {
+                        t.setXCoordinate(map.get(t).getX());
+                        t.setYCoordinate(map.get(t).getY());
+                    }
+                    mapView.getSelectedElements().clear();
+                    mapView.repaint();
+                    return;
+                }
+            }
+        }
+        mapView.getSelectedElements().clear();
         mapView.repaint();
     }
 
@@ -46,7 +60,7 @@ public class MoveState implements State {
         for (ElementView elementView : mapView.getSelectedElements()) {
             if (elementView.getElement() instanceof Term) {
                 Term t = (Term) elementView.getElement();
-                help.put(t, new Point((int) (map.get(t).getX() + current.getX() - startPoint.getX()), (int) (map.get(t).getY() + current.getY() - startPoint.getY())));
+                help.put(t, new Point((int) (map.get(t).getX() + (current.getX() - startPoint.getX())/mapView.getScalingFactor()), (int) (map.get(t).getY() + (current.getY() - startPoint.getY())/mapView.getScalingFactor())));
             }
         }
         for (Term t : help.keySet()) {

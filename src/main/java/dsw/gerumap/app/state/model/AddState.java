@@ -21,21 +21,31 @@ public class AddState implements State {
         if(e.getButton() != MouseEvent.BUTTON1) return;
         MapView source = (MapView) e.getSource();
         Point pos = new Point((int) ((e.getPoint().getX()-source.getxTranslate())/source.getScalingFactor()), (int) ((e.getPoint().getY()-source.getyTranslate())/source.getScalingFactor()));
-        for(ElementView ev : source.getElementViews()) {
-            if(ev.elementAt(pos)) {
-                AppCore.getInstance().getMessageGenerator().getMessage("FOUND ELEMENT " + ev.getElement().getName() + " AT (" + e.getX() + ", " + e.getY() + ")", MessageType.ELEMENT_FOUND_AT_POINT);
-                return;
-            }
-        }
         MindMap m = source.getMindMap();
         Term t = new Term(
                 "Element" + count++, m, source.getStroke(), source.getColor(),
                 (e.getPoint().getX()-source.getxTranslate())/source.getScalingFactor(),
                 (e.getPoint().getY()-source.getyTranslate())/source.getScalingFactor()
         );
-
         m.addChild(t);
         t.addSubscriber(source);
+        ElementView tv = null;
+        for(ElementView ev : source.getElementViews()) {
+            if(ev.getElement().equals(t)) tv = ev;
+        }
+        boolean found = false;
+        ElementView eview = null;
+        for(ElementView ev : source.getElementViews()) {
+            if(!ev.equals(tv) && ev.getShape().intersects(tv.getShape().getBounds())) {
+                found = true;
+                eview = ev;
+                break;
+            }
+        }
+        if(found) {
+            m.removeChild(t);
+            AppCore.getInstance().getMessageGenerator().getMessage("FOUND ELEMENT " + eview.getElement().getName() + " AT (" + e.getX() + ", " + e.getY() + ")", MessageType.ELEMENT_FOUND_AT_POINT);
+        }
 
     }
 
