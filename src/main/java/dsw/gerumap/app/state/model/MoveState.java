@@ -2,6 +2,7 @@ package dsw.gerumap.app.state.model;
 
 import dsw.gerumap.app.gui.swing.view.ElementView;
 import dsw.gerumap.app.gui.swing.view.MapView;
+import dsw.gerumap.app.gui.swing.view.TermView;
 import dsw.gerumap.app.mapRepository.implementation.Term;
 import dsw.gerumap.app.state.State;
 
@@ -22,6 +23,7 @@ public class MoveState implements State {
     @Override
     public void mousePressed(MouseEvent e) {
         MapView mapView = (MapView) e.getSource();
+        map.clear();
         startingPoints.clear();
         startPoint = e.getPoint();
         for(ElementView ev : mapView.getSelectedElements()) {
@@ -37,7 +39,7 @@ public class MoveState implements State {
         MapView mapView = (MapView) e.getSource();
         for (ElementView elementView : mapView.getSelectedElements()) {
             for(ElementView ev : mapView.getElementViews()) {
-                if(!mapView.getSelectedElements().contains(ev) && elementView.getShape().intersects(ev.getShape().getBounds())) {
+                if(ev instanceof TermView && elementView instanceof TermView && !mapView.getSelectedElements().contains(ev) && elementView.getShape().intersects(ev.getShape().getBounds())) {
                     for(Term t : map.keySet()) {
                         t.setXCoordinate(map.get(t).getX());
                         t.setYCoordinate(map.get(t).getY());

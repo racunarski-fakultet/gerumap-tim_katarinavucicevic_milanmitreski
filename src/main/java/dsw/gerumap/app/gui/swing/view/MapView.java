@@ -168,11 +168,6 @@ public class MapView extends JPanel implements ISubscriber {
         repaint();
     }
 
-    public void removeSelected(Iterator<ElementView> selected){
-        selectedElements.remove(selected);
-        repaint();
-    }
-
     public int getColor() {
         return color;
     }
