@@ -14,10 +14,12 @@ public abstract class Element extends MapNode {
 
     public void setColor(int color) {
         this.color = color;
+        ((Project)getParent().getParent()).setChanged(true);
     }
 
     public void setStroke(int stroke) {
         this.stroke = stroke;
+        ((Project)getParent().getParent()).setChanged(true);
     }
 
     public int getStroke() {

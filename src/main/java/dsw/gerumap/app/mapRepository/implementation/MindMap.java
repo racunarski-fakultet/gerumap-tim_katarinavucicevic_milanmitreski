@@ -4,10 +4,9 @@ import dsw.gerumap.app.mapRepository.composite.MapNode;
 import dsw.gerumap.app.mapRepository.composite.MapNodeComposite;
 
 public class MindMap extends MapNodeComposite {
-
     private final boolean template;
 
-
+    private final String type = "MindMap";
     public MindMap(String name, MapNode parent) {
         super(name, parent);
         template = false;
@@ -21,6 +20,7 @@ public class MindMap extends MapNodeComposite {
                 this.getChildren().add(element);
                 notifySubscriber(child);
             }
+            ((Project)getParent()).setChanged(true);
         }
     }
 
@@ -31,6 +31,7 @@ public class MindMap extends MapNodeComposite {
             this.getChildren().remove(element);
             notifySubscriber(child);
         }
+        ((Project)getParent()).setChanged(true);
     }
 
 }

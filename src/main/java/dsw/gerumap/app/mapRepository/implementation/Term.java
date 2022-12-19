@@ -7,6 +7,8 @@ public class Term extends Element{
     private double xCoordinate;
     private double yCoordinate;
 
+    private final String type = "Term";
+
 
     public Term(String ime, MapNode parent, int stroke, int color, double xCoordinate,  double yCoordinate) {
         super(ime, parent, stroke, color);
@@ -24,11 +26,13 @@ public class Term extends Element{
 
     public void setXCoordinate(double xCoordinate) {
         this.xCoordinate = xCoordinate;
+        ((Project)getParent().getParent()).setChanged(true);
         notifySubscriber(this);
     }
 
     public void setYCoordinate(double yCoordinate) {
         this.yCoordinate = yCoordinate;
+        ((Project)getParent().getParent()).setChanged(true);
         notifySubscriber(this);
     }
 }

@@ -84,6 +84,10 @@ public class MapTreeImplementation implements MapTree {
 
     @Override
     public void loadProject(Project project) {
-
+        ProjectExplorer projectExplorer = (ProjectExplorer) ((MapTreeItem) treeModel.getRoot()).getMapNode();
+        projectExplorer.addChild(project);
+        ((MapTreeItem) treeModel.getRoot()).add(new MapTreeItem(project));
+        treeView.expandPath(treeView.getSelectionPath());
+        SwingUtilities.updateComponentTreeUI(treeView);
     }
 }
