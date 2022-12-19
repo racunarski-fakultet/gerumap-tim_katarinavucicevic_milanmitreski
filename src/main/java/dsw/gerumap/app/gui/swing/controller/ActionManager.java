@@ -25,6 +25,8 @@ public class ActionManager {
     private ZoomInAction zoomInAction;
     private ZoomOutAction zoomOutAction;
     private MoveMapStateAction moveMapAction;
+    private UndoAction undoAction;
+    private RedoAction redoAction;
 
     public ActionManager() {
         initialiseActions();
@@ -51,6 +53,8 @@ public class ActionManager {
         zoomInAction = new ZoomInAction();
         zoomOutAction = new ZoomOutAction();
         moveMapAction = new MoveMapStateAction();
+        undoAction = new UndoAction();
+        redoAction = new RedoAction();
     }
 
     public ExitAction getExitAction() {
@@ -124,4 +128,12 @@ public class ActionManager {
     }
 
     public MoveMapStateAction getMoveMapAction() { return moveMapAction; }
+
+    public RedoAction getRedoAction() {
+        return redoAction;
+    }
+
+    public UndoAction getUndoAction() {
+        return undoAction;
+    }
 }
