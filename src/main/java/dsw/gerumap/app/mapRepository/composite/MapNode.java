@@ -9,13 +9,12 @@ import java.util.List;
 public abstract class MapNode implements IPublisher {
 
     private String name;
-    private MapNode parent;
+    private transient MapNode parent;
 
-    public final List<ISubscriber> subscribers;
+    public transient List<ISubscriber> subscribers;
     public MapNode(String ime, MapNode parent) {
         this.name = ime;
         this.parent = parent;
-        this.subscribers = new ArrayList<>();
     }
 
     @Override
@@ -46,6 +45,7 @@ public abstract class MapNode implements IPublisher {
 
     @Override
     public void addSubscriber(ISubscriber sub) {
+        if(subscribers == null) this.subscribers = new ArrayList<>();
         subscribers.add(sub);
     }
 

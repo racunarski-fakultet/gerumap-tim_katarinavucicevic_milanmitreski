@@ -7,9 +7,7 @@ public class Project extends MapNodeComposite {
 
     private String author;
     private String filePath;
-
     private boolean changed = false;
-
     public Project(String name, MapNode mapNode) {
         super(name, mapNode);
     }
@@ -22,6 +20,7 @@ public class Project extends MapNodeComposite {
                 this.getChildren().add(mindMap);
                 notifySubscriber(child);
             }
+            changed = true;
         }
     }
 
@@ -31,11 +30,18 @@ public class Project extends MapNodeComposite {
             this.getChildren().remove(element);
             notifySubscriber(child);
         }
+        changed = true;
     }
 
     public void setAuthor(String author) {
         this.author = author;
+        changed = true;
         notifySubscriber(this);
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
+        changed = true;
     }
 
 
@@ -45,10 +51,6 @@ public class Project extends MapNodeComposite {
 
     public String getFilePath() {
         return filePath;
-    }
-
-    public void setFilePath(String filePath) {
-        this.filePath = filePath;
     }
 
     public boolean isChanged() {
