@@ -40,4 +40,8 @@ public abstract class ApplicationFramework {
     }
 
     public Serializer getSerializer() { return serializer; }
+
+    public Gui getGui() {
+        return gui;
+    }
 }

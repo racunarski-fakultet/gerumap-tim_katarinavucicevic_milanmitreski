@@ -1,5 +1,6 @@
 package dsw.gerumap.app.gui.swing;
 
+import dsw.gerumap.app.command.CommandManager;
 import dsw.gerumap.app.core.Gui;
 import dsw.gerumap.app.gui.swing.view.MainFrame;
 import dsw.gerumap.app.gui.swing.view.MessageOptionPane;
@@ -8,6 +9,7 @@ import dsw.gerumap.app.message.Message;
 public class SwingGui implements Gui {
 
     public MainFrame mainFrame;
+    private CommandManager commandManager;
 
     public SwingGui() {
 
@@ -16,7 +18,32 @@ public class SwingGui implements Gui {
     @Override
     public void start() {
         MainFrame mainFrame = MainFrame.getInstance();
+        commandManager = new CommandManager();
+
+        disableRedo();
+        disableUndo();
+
         mainFrame.setVisible(true);
+    }
+
+    @Override
+    public void enableUndo() {
+        MainFrame.getInstance().getActionManager().getUndoAction().setEnabled(true);
+    }
+
+    @Override
+    public void disableUndo() {
+        MainFrame.getInstance().getActionManager().getUndoAction().setEnabled(false);
+    }
+
+    @Override
+    public void enableRedo() {
+        MainFrame.getInstance().getActionManager().getRedoAction().setEnabled(true);
+    }
+
+    @Override
+    public void disableRedo() {
+        MainFrame.getInstance().getActionManager().getRedoAction().setEnabled(false);
     }
 
     @Override
@@ -25,5 +52,10 @@ public class SwingGui implements Gui {
             MessageOptionPane messageOptionPane = new MessageOptionPane(mainFrame, (Message) notification);
             messageOptionPane.setVisible(true);
         }
+    }
+
+    @Override
+    public CommandManager getCommandManager() {
+        return commandManager;
     }
 }
