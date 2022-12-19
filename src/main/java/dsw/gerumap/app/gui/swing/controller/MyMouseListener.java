@@ -24,6 +24,7 @@ public class MyMouseListener implements MouseListener {
         isMouseOut = false;
         Object eSource = e.getSource();
         if (eSource instanceof EditAction) {
+            System.out.println("Nesto");
             ((JMenuItem) eSource).doClick();
         }
     }

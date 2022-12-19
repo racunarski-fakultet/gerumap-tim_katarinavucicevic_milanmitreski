@@ -6,7 +6,9 @@ import dsw.gerumap.app.mapRepository.composite.MapNodeComposite;
 public class Project extends MapNodeComposite {
 
     private String author;
-    private String path;
+    private String filePath;
+
+    private boolean changed = false;
 
     public Project(String name, MapNode mapNode) {
         super(name, mapNode);
@@ -39,5 +41,21 @@ public class Project extends MapNodeComposite {
 
     public String getAuthor() {
         return author;
+    }
+
+    public String getFilePath() {
+        return filePath;
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
+    }
+
+    public boolean isChanged() {
+        return changed;
+    }
+
+    public void setChanged(boolean changed) {
+        this.changed = changed;
     }
 }

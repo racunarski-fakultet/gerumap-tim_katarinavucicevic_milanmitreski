@@ -12,14 +12,17 @@ public abstract class ApplicationFramework {
     private MessageGenerator messageGenerator;
     private Logger logger;
 
+    private Serializer serializer;
+
     public abstract void run(); // pokretanje aplikacije
 
     // initialise je "konstruktor" za komponente koje ce cuvati AppCore
-    public void initialise(Gui gui, MapRepository mapRepository, MessageGenerator messageGenerator, Logger logger) {
+    public void initialise(Gui gui, MapRepository mapRepository, MessageGenerator messageGenerator, Serializer serializer, Logger logger) {
         this.mapRepository = mapRepository;
         this.gui = gui;
         this.messageGenerator = messageGenerator;
         this.logger = logger;
+        this.serializer = serializer;
         messageGenerator.addSubscriber(logger);
         messageGenerator.addSubscriber(gui);
     }
@@ -35,4 +38,6 @@ public abstract class ApplicationFramework {
     public Logger getLogger() {
         return logger;
     }
+
+    public Serializer getSerializer() { return serializer; }
 }

@@ -25,6 +25,9 @@ public class ActionManager {
     private ZoomInAction zoomInAction;
     private ZoomOutAction zoomOutAction;
     private MoveMapStateAction moveMapAction;
+    private OpenAction openAction;
+    private SaveAction saveAction;
+    private SaveAsAction saveAsAction;
 
     public ActionManager() {
         initialiseActions();
@@ -51,6 +54,9 @@ public class ActionManager {
         zoomInAction = new ZoomInAction();
         zoomOutAction = new ZoomOutAction();
         moveMapAction = new MoveMapStateAction();
+        openAction = new OpenAction();
+        saveAction = new SaveAction();
+        saveAsAction = new SaveAsAction();
     }
 
     public ExitAction getExitAction() {
@@ -124,4 +130,10 @@ public class ActionManager {
     }
 
     public MoveMapStateAction getMoveMapAction() { return moveMapAction; }
+
+    public OpenAction getOpenAction() { return openAction; }
+
+    public SaveAction getSaveAction() { return saveAction; }
+
+    public SaveAsAction getSaveAsAction() { return saveAsAction; }
 }

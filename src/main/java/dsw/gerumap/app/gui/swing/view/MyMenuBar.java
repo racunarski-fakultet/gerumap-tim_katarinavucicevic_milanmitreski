@@ -14,6 +14,9 @@ public class MyMenuBar extends JMenuBar {
 
         JMenuItem newProject = new JMenuItem();
         JMenuItem exit = new JMenuItem();
+        JMenuItem save = new JMenuItem();
+        JMenuItem saveAs = new JMenuItem();
+        JMenuItem open = new JMenuItem();
         JMenuItem changeAuthorItem = new JMenuItem("Change author");
         newProject.setAction(MainFrame.getInstance().getActionManager().getNewProjectAction());
         newProject.setIcon(null);
@@ -21,10 +24,19 @@ public class MyMenuBar extends JMenuBar {
         exit.setIcon(null);
         changeAuthorItem.setAction(MainFrame.getInstance().getActionManager().getChangeAuthorAction());
         changeAuthorItem.setIcon(null);
+        save.setAction(MainFrame.getInstance().getActionManager().getSaveAction());
+        save.setIcon(null);
+        saveAs.setAction(MainFrame.getInstance().getActionManager().getSaveAsAction());
+        saveAs.setIcon(null);
+        open.setAction(MainFrame.getInstance().getActionManager().getOpenAction());
+        open.setIcon(null);
 
         fileMenu.add(newProject);
         fileMenu.add(exit);
         fileMenu.add(changeAuthorItem);
+        fileMenu.add(save);
+        fileMenu.add(saveAs);
+        fileMenu.add(open);
 
         JMenu editMenu = new JMenu("Edit");
 
