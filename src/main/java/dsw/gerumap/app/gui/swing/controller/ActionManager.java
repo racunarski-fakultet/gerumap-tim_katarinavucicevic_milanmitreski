@@ -28,6 +28,8 @@ public class ActionManager {
     private OpenAction openAction;
     private SaveAction saveAction;
     private SaveAsAction saveAsAction;
+    private UndoAction undoAction;
+    private RedoAction redoAction;
 
     public ActionManager() {
         initialiseActions();
@@ -57,6 +59,8 @@ public class ActionManager {
         openAction = new OpenAction();
         saveAction = new SaveAction();
         saveAsAction = new SaveAsAction();
+        undoAction = new UndoAction();
+        redoAction = new RedoAction();
     }
 
     public ExitAction getExitAction() {
@@ -136,4 +140,12 @@ public class ActionManager {
     public SaveAction getSaveAction() { return saveAction; }
 
     public SaveAsAction getSaveAsAction() { return saveAsAction; }
+
+    public UndoAction getUndoAction() {
+        return undoAction;
+    }
+
+    public RedoAction getRedoAction() {
+        return redoAction;
+    }
 }
