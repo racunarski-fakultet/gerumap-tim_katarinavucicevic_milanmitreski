@@ -1,8 +1,6 @@
 package dsw.gerumap.app.command;
 
 import dsw.gerumap.app.AppCore;
-import dsw.gerumap.app.core.ApplicationFramework;
-import dsw.gerumap.app.gui.swing.SwingGui;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,4 +43,11 @@ public class CommandManager {
         }
     }
 
+    public int getPointer() {
+        return pointer;
+    }
+
+    public List<AbstractCommand> getCommands() {
+        return commands;
+    }
 }

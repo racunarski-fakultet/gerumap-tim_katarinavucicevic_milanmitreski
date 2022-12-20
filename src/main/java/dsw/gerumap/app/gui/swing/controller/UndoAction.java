@@ -13,6 +13,6 @@ public class UndoAction extends AbstractGeRuMapAction{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        AppCore.getInstance().getGui().getCommandManager().doCommand();
+        AppCore.getInstance().getGui().getCommandManager().undoCommand();
     }
 }
