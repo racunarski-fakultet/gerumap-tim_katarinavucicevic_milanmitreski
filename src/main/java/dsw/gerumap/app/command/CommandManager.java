@@ -35,7 +35,7 @@ public class CommandManager {
     public void undoCommand(){
         if(pointer > 0){
             AppCore.getInstance().getGui().enableRedo();
-            commands.get(pointer--).undoCommand();
+            commands.get(--pointer).undoCommand();
             // logika za impl
         }
         if(pointer == 0){
