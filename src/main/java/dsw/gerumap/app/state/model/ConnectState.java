@@ -55,6 +55,8 @@ public class ConnectState implements State {
             }
         }
         if(termTo != null && termFrom != null && termTo != termFrom) {
+            System.out.println(termTo);
+            System.out.println(termFrom);
             for(ElementView ev : source.getElementViews()) {
                 if(ev instanceof RelationView) {
                     RelationView rv = (RelationView) ev;
@@ -66,7 +68,7 @@ public class ConnectState implements State {
                 }
             }
             MindMap m = source.getMindMap();
-            Relation r = new Relation("Connection " + count++,
+            Relation r = new Relation("Connection " + source.getElementViews().size(),
                     m, source.getStroke(),
                     source.getColor(),
                     (Term) termFrom.getElement(),
