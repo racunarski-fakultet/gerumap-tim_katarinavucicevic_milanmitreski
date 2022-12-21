@@ -30,6 +30,7 @@ public class ActionManager {
     private SaveAsAction saveAsAction;
     private UndoAction undoAction;
     private RedoAction redoAction;
+    private ExportAction exportAction;
     private SetCentralTermStateAction setCentralTermStateAction;
 
     public ActionManager() {
@@ -62,6 +63,7 @@ public class ActionManager {
         saveAsAction = new SaveAsAction();
         undoAction = new UndoAction();
         redoAction = new RedoAction();
+        exportAction = new ExportAction();
         setCentralTermStateAction = new SetCentralTermStateAction();
     }
 
@@ -150,6 +152,8 @@ public class ActionManager {
     public RedoAction getRedoAction() {
         return redoAction;
     }
+
+    public ExportAction getExportAction() { return exportAction; }
 
     public SetCentralTermStateAction getSetCentralTermStateAction() {
         return setCentralTermStateAction;
