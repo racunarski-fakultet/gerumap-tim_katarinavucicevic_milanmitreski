@@ -16,11 +16,11 @@ public class DeleteElementCommand extends AbstractCommand {
 
     @Override
     public void doCommand() {
-        //mindMap.removeChild(element);
+        mindMap.removeChild(element);
     }
 
     @Override
     public void undoCommand() {
-        //mindMap.addChild(element);
+        mindMap.addChild(element);
     }
 }

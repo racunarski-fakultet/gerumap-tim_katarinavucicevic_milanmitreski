@@ -24,7 +24,6 @@ public class CommandManager {
         if(pointer < commands.size()){
             commands.get(pointer++).doCommand();
             AppCore.getInstance().getGui().enableUndo();
-            // logika za impl
         }
         if(pointer == commands.size()){
             AppCore.getInstance().getGui().disableRedo();
@@ -36,18 +35,10 @@ public class CommandManager {
         if(pointer > 0){
             AppCore.getInstance().getGui().enableRedo();
             commands.get(--pointer).undoCommand();
-            // logika za impl
         }
         if(pointer == 0){
             AppCore.getInstance().getGui().disableUndo();
         }
     }
 
-    public int getPointer() {
-        return pointer;
-    }
-
-    public List<AbstractCommand> getCommands() {
-        return commands;
-    }
 }

@@ -19,7 +19,7 @@ public class RelationView extends ElementView{
         generalPath.reset();
         Relation r = (Relation) element;
 
-        System.out.println(r.getTermFrom().getXCoordinate());
+        //System.out.println(r.getTermFrom().getXCoordinate());
         double xFrom = r.getTermFrom().getXCoordinate();
         double yFrom = r.getTermFrom().getYCoordinate();
 

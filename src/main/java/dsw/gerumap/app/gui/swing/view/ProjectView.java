@@ -95,6 +95,10 @@ public class ProjectView extends JPanel implements ISubscriber{
 
     public void startMoveMapState() { this.stateManager.setMoveMapState();}
 
+    public void startSetCentralTermState(){
+        this.stateManager.setSetCentralTermState();
+    }
+
     public StateManager getStateManager() {
         return stateManager;
     }

@@ -10,8 +10,4 @@ public interface MapRepository {
     void addChild(MapNodeComposite parent, MapNode child);
     NodeFactory getNodeFactory(MapNodeComposite parent);
 
-    void removeChild(MapNodeComposite parent, MapNode child);
-
-    void changePos(MapNode mapNode); // element
-
 }

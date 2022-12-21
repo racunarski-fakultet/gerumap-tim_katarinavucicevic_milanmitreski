@@ -9,7 +9,6 @@ import dsw.gerumap.app.message.Message;
 public class SwingGui implements Gui {
 
     public MainFrame mainFrame;
-    private CommandManager commandManager;
 
     public SwingGui() {
 
@@ -18,7 +17,6 @@ public class SwingGui implements Gui {
     @Override
     public void start() {
         MainFrame mainFrame = MainFrame.getInstance();
-        commandManager = new CommandManager();
 
         disableRedo();
         disableUndo();
@@ -54,8 +52,4 @@ public class SwingGui implements Gui {
         }
     }
 
-    @Override
-    public CommandManager getCommandManager() {
-        return commandManager;
-    }
 }

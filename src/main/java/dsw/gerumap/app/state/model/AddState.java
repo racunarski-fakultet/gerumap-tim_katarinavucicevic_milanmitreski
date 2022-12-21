@@ -18,7 +18,7 @@ public class AddState implements State {
 
     private static int count = 0;
 
-    private AddElementCommand addElementCommand;
+    private AddElementCommand addElementCommand; //OVO SE MENJA
 
     @Override
     public void mousePressed(MouseEvent e) {
@@ -31,7 +31,8 @@ public class AddState implements State {
                 (e.getPoint().getX()-source.getxTranslate())/source.getScalingFactor(),
                 (e.getPoint().getY()-source.getyTranslate())/source.getScalingFactor()
         );
-        m.addChild(t);
+        addElementCommand = new AddElementCommand(m, t);
+        //m.addChild(t);
         t.addSubscriber(source);
         ElementView tv = null;
         for(ElementView ev : source.getElementViews()) {

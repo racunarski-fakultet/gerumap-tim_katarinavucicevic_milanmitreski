@@ -9,6 +9,5 @@ public interface Gui extends ISubscriber {
     void disableUndo();
     void enableRedo();
     void disableRedo();
-    CommandManager getCommandManager();
 
 }

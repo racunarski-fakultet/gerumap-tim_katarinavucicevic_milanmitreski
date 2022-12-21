@@ -11,8 +11,8 @@ public class StateManager {
     private MoveState moveState;
     private RefactorState refactorState;
     private ConnectState connectState;
-
     private MoveMapState moveMapState;
+    private SetCentralTermState setCentralTermState;
 
 
     public StateManager() {
@@ -24,6 +24,7 @@ public class StateManager {
         refactorState = new RefactorState();
         connectState = new ConnectState();
         moveMapState = new MoveMapState();
+        setCentralTermState = new SetCentralTermState();
         current = addState;
     }
 
@@ -52,6 +53,10 @@ public class StateManager {
     }
 
     public void setMoveMapState() { current = this.moveMapState; }
+
+    public void setSetCentralTermState() {
+        current = this.setCentralTermState;
+    }
 
     public State getCurrent() {
         return current;

@@ -12,7 +12,7 @@ public class AddElementCommand extends AbstractCommand {
     public AddElementCommand(MindMap mindMap, Element element){
         this.element = element;
         this.mindMap = mindMap;
-
+        mindMap.notifySubscriber(element);
     }
     @Override
     public void doCommand() {

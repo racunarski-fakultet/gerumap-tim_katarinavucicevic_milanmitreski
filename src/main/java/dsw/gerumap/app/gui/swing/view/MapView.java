@@ -211,10 +211,6 @@ public class MapView extends JPanel implements ISubscriber {
         return yTranslate;
     }
 
-    public SelectorView getSelectorView() {
-        return selectorView;
-    }
-
     public void setSelectorView(SelectorView selectorView) {
         this.selectorView = selectorView;
     }

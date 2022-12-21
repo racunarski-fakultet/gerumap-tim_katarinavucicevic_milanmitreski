@@ -37,15 +37,5 @@ public class MapRepositoryImplementation implements MapRepository {
         return FactoryUtil.getNodeFactory(parent);
     }
 
-    @Override
-    public void removeChild(MapNodeComposite parent, MapNode child) {
-        parent.removeChild(child);
-    }
-
-    @Override
-    public void changePos(MapNode mapNode) {
-        // implementacija
-
-    }
 
 }
