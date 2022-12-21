@@ -1,22 +1,45 @@
 package dsw.gerumap.app.serializer;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import dsw.gerumap.app.core.Serializer;
+import dsw.gerumap.app.mapRepository.composite.MapNode;
+import dsw.gerumap.app.mapRepository.composite.MapNodeComposite;
+import dsw.gerumap.app.mapRepository.implementation.MindMap;
 import dsw.gerumap.app.mapRepository.implementation.Project;
+import dsw.gerumap.app.mapRepository.implementation.Relation;
+import dsw.gerumap.app.mapRepository.implementation.Term;
 
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.reflect.Type;
 
 public class GsonSerializer implements Serializer {
+    private final Gson gson = new GsonBuilder().registerTypeAdapter(MapNode.class, new ProjectDeserializer()).create();
 
-    private final Gson gson = new Gson();
 
     @Override
     public Project loadProject(File file) {
         try (FileReader fileReader = new FileReader(file)) {
-            return gson.fromJson(fileReader, Project.class);
+            Project project = gson.fromJson(fileReader, Project.class);
+            for(MapNode child : project.getChildren()) {
+                child.setParent(project);
+                MapNodeComposite childComposite = (MapNodeComposite) child;
+                for(MapNode grandchild : childComposite.getChildren()) {
+                    if(grandchild instanceof Relation) {
+                        Relation relation = (Relation) grandchild;
+                        relation.setTermFrom((Term)childComposite.getChildByName(relation.getTermFrom().getName()));
+                        relation.setTermTo((Term)childComposite.getChildByName(relation.getTermTo().getName()));
+                        System.out.println(relation.getTermFrom() + " " + relation.getTermTo());
+                    } else {
+                        System.out.println(grandchild);
+                    }
+                    grandchild.setParent(childComposite);
+                }
+            }
+            return project;
         } catch (IOException e) {
             e.printStackTrace();
             return null;

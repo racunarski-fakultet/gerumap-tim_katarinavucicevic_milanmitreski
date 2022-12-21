@@ -6,7 +6,6 @@ public class Term extends Element{
 
     private double xCoordinate;
     private double yCoordinate;
-
     private final String type = "Term";
 
 
@@ -35,4 +34,5 @@ public class Term extends Element{
         ((Project)getParent().getParent()).setChanged(true);
         notifySubscriber(this);
     }
+
 }

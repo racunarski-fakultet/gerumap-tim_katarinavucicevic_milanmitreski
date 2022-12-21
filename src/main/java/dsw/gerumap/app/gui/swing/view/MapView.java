@@ -1,5 +1,6 @@
 package dsw.gerumap.app.gui.swing.view;
 
+import dsw.gerumap.app.mapRepository.composite.MapNode;
 import dsw.gerumap.app.mapRepository.implementation.Element;
 import dsw.gerumap.app.mapRepository.implementation.MindMap;
 import dsw.gerumap.app.mapRepository.implementation.Relation;
@@ -33,6 +34,15 @@ public class MapView extends JPanel implements ISubscriber {
         this.mindMap = mindMap;
         this.mindMap.addSubscriber(this);
         this.elementViews = new ArrayList<>();
+        for(MapNode child : mindMap.getChildren()) {
+            if(child instanceof Term) {
+                elementViews.add(new TermView((Term)child));
+                child.addSubscriber(this);
+            } else {
+                elementViews.add(new RelationView((Relation)child));
+                child.addSubscriber(this);
+            }
+        }
         this.addMouseListener(MainFrame.getInstance().getActionManager().getStateMouseListener());
         this.addMouseMotionListener(MainFrame.getInstance().getActionManager().getStateMouseListener());
         this.stroke = 2;
@@ -42,6 +52,7 @@ public class MapView extends JPanel implements ISubscriber {
         this.xTranslate = 0;
         this.yTranslate = 0;
         selectedElements = new ArrayList<>();
+        repaint();
     }
     @Override
     public void update(Object notification) {

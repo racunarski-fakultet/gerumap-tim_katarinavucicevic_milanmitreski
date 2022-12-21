@@ -6,6 +6,7 @@ import dsw.gerumap.app.gui.swing.tree.model.MapTreeItem;
 import dsw.gerumap.app.gui.swing.tree.view.MapTreeView;
 import dsw.gerumap.app.mapRepository.composite.MapNode;
 import dsw.gerumap.app.mapRepository.composite.MapNodeComposite;
+import dsw.gerumap.app.mapRepository.implementation.MindMap;
 import dsw.gerumap.app.mapRepository.implementation.Project;
 import dsw.gerumap.app.mapRepository.implementation.ProjectExplorer;
 import dsw.gerumap.app.message.MessageType;
@@ -85,8 +86,15 @@ public class MapTreeImplementation implements MapTree {
     @Override
     public void loadProject(Project project) {
         ProjectExplorer projectExplorer = (ProjectExplorer) ((MapTreeItem) treeModel.getRoot()).getMapNode();
+        System.out.println(project.getChildren());
         projectExplorer.addChild(project);
-        ((MapTreeItem) treeModel.getRoot()).add(new MapTreeItem(project));
+        MapTreeItem projectItem = new MapTreeItem(project);
+        for(MapNode child : project.getChildren()) {
+            if(child instanceof MindMap) {
+                projectItem.add(new MapTreeItem(child));
+            }
+        }
+        ((MapTreeItem) treeModel.getRoot()).add(projectItem);
         treeView.expandPath(treeView.getSelectionPath());
         SwingUtilities.updateComponentTreeUI(treeView);
     }

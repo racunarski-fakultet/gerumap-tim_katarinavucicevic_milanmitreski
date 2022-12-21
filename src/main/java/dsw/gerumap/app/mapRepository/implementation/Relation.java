@@ -14,6 +14,14 @@ public class Relation extends Element{
         this.termTo = termTo;
     }
 
+    public void setTermFrom(Term termFrom) {
+        this.termFrom = termFrom;
+    }
+
+    public void setTermTo(Term termTo) {
+        this.termTo = termTo;
+    }
+
     public Term getTermFrom() {
         return termFrom;
     }

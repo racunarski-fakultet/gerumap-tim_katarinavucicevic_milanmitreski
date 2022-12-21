@@ -15,7 +15,6 @@ import java.util.Random;
 
 public class AddState implements State {
 
-    private static int count = 0;
     @Override
     public void mousePressed(MouseEvent e) {
         if(e.getButton() != MouseEvent.BUTTON1) return;
@@ -23,7 +22,7 @@ public class AddState implements State {
         Point pos = new Point((int) ((e.getPoint().getX()-source.getxTranslate())/source.getScalingFactor()), (int) ((e.getPoint().getY()-source.getyTranslate())/source.getScalingFactor()));
         MindMap m = source.getMindMap();
         Term t = new Term(
-                "Element" + count++, m, source.getStroke(), source.getColor(),
+                "Element " + source.getElementViews().size(), m, source.getStroke(), source.getColor(),
                 (e.getPoint().getX()-source.getxTranslate())/source.getScalingFactor(),
                 (e.getPoint().getY()-source.getyTranslate())/source.getScalingFactor()
         );
