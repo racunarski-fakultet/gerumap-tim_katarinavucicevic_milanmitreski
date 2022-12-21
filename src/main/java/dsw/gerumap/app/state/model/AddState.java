@@ -32,6 +32,7 @@ public class AddState implements State {
                 (e.getPoint().getY()-source.getyTranslate())/source.getScalingFactor()
         );
         addElementCommand = new AddElementCommand(m, t);
+        m.getCommandManager().addCommand(addElementCommand);
         //m.addChild(t);
         t.addSubscriber(source);
         ElementView tv = null;

@@ -11,7 +11,9 @@ import java.awt.event.ActionEvent;
 public class SetCentralTermStateAction extends AbstractGeRuMapAction {
 
     public SetCentralTermStateAction(){
+
         putValue(NAME, "Set Central Term");
+        putValue(SMALL_ICON, loadIcon("/centralTerm.png"));
     }
 
     @Override
