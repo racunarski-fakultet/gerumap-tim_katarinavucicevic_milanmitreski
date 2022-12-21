@@ -9,9 +9,12 @@ import dsw.gerumap.app.observer.ISubscriber;
 import dsw.gerumap.app.state.SelectorModel;
 import dsw.gerumap.app.state.SelectorView;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -177,6 +180,17 @@ public class MapView extends JPanel implements ISubscriber {
     public void removeSelected(ElementView selected){
         selectedElements.remove(selected);
         repaint();
+    }
+
+    public void exportImage(File imageFile) {
+        BufferedImage image = new BufferedImage(getWidth(),getHeight(), BufferedImage.TYPE_INT_RGB);
+        Graphics2D g2 = image.createGraphics();
+        paint(g2);
+        try{
+            ImageIO.write(image,"jpg", imageFile);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public int getColor() {

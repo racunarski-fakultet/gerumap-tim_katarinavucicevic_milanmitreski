@@ -73,7 +73,6 @@ public class ConnectState implements State {
                     source.getColor(),
                     (Term) termFrom.getElement(),
                     (Term) termTo.getElement());
-
             m.addChild(r);
             r.notifySubscriber(source);
         }
