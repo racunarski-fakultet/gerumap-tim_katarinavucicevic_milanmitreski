@@ -30,7 +30,10 @@ public class DeleteState implements State {
         while(it.hasNext()) {
             ElementView elementView = it.next();
             if (elementView.elementAt(pos)) {
-                if(mapView.getSelectedElements().contains(elementView)) mapView.addSelected(null);
+                if(mapView.getSelectedElements().contains(elementView)) {
+                    mapView.addSelected(null);
+                    break;
+                }
                 deleteElementCommand = new DeleteElementCommand(mindMap, elementView.getElement());
                 mindMap.getCommandManager().addCommand(deleteElementCommand);
                 deleted = elementView;

@@ -32,6 +32,7 @@ public class ActionManager {
     private RedoAction redoAction;
     private ExportAction exportAction;
     private SetCentralTermStateAction setCentralTermStateAction;
+    private SaveTemplateAction saveTemplateAction;
 
     public ActionManager() {
         initialiseActions();
@@ -65,6 +66,7 @@ public class ActionManager {
         redoAction = new RedoAction();
         exportAction = new ExportAction();
         setCentralTermStateAction = new SetCentralTermStateAction();
+        saveTemplateAction = new SaveTemplateAction();
     }
 
     public ExitAction getExitAction() {
@@ -155,7 +157,7 @@ public class ActionManager {
 
     public ExportAction getExportAction() { return exportAction; }
 
-    public SetCentralTermStateAction getSetCentralTermStateAction() {
-        return setCentralTermStateAction;
-    }
+    public SetCentralTermStateAction getSetCentralTermStateAction() { return setCentralTermStateAction; }
+
+    public SaveTemplateAction getSaveTemplateAction() { return saveTemplateAction; }
 }

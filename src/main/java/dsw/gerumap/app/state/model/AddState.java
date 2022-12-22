@@ -54,7 +54,6 @@ public class AddState implements State {
             m.removeChild(t);
             AppCore.getInstance().getMessageGenerator().getMessage("FOUND ELEMENT " + eview.getElement().getName() + " AT (" + e.getX() + ", " + e.getY() + ")", MessageType.ELEMENT_FOUND_AT_POINT);
         }
-
     }
 
     @Override
