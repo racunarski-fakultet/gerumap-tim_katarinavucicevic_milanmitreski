@@ -1,5 +1,6 @@
 package dsw.gerumap.app.state.model;
 
+import dsw.gerumap.app.command.commands.MoveSelectedCommand;
 import dsw.gerumap.app.gui.swing.view.ElementView;
 import dsw.gerumap.app.gui.swing.view.MapView;
 import dsw.gerumap.app.gui.swing.view.TermView;
@@ -18,18 +19,21 @@ import static java.lang.Math.abs;
 public class MoveState implements State {
     private Point startPoint;
     private HashMap<Term, Point> map = new HashMap<>();
-    private List <Point> startingPoints = new ArrayList<>();
+
+    private MoveSelectedCommand moveSelectedCommand;
 
     @Override
     public void mousePressed(MouseEvent e) {
         MapView mapView = (MapView) e.getSource();
         map.clear();
-        startingPoints.clear();
         startPoint = e.getPoint();
         for(ElementView ev : mapView.getSelectedElements()) {
             if (ev.getElement() instanceof Term) {
                 Term t = (Term) ev.getElement();
-                map.put(t, new Point((int) t.getXCoordinate(), (int) t.getYCoordinate()));
+                Point p = new Point((int) t.getXCoordinate(), (int) t.getYCoordinate());
+                map.put(t, p);
+                moveSelectedCommand = new MoveSelectedCommand(mapView.getMindMap(), t, p);
+                mapView.getMindMap().getCommandManager().addCommand(moveSelectedCommand);
             }
         }
     }
@@ -43,6 +47,9 @@ public class MoveState implements State {
                     for(Term t : map.keySet()) {
                         t.setXCoordinate(map.get(t).getX());
                         t.setYCoordinate(map.get(t).getY());
+                        Point p =  new Point((int)t.getXCoordinate(), (int)t.getYCoordinate());
+                        moveSelectedCommand = new MoveSelectedCommand(mapView.getMindMap(), t, p);
+                        mapView.getMindMap().getCommandManager().addCommand(moveSelectedCommand);
                     }
                     mapView.getSelectedElements().clear();
                     mapView.repaint();

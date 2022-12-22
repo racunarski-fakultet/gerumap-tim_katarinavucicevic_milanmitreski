@@ -8,6 +8,8 @@ import dsw.gerumap.app.command.commands.DeleteElementCommand;
 import dsw.gerumap.app.mapRepository.composite.MapNode;
 import dsw.gerumap.app.mapRepository.composite.MapNodeComposite;
 
+import java.awt.*;
+
 public class MindMap extends MapNodeComposite {
     private final boolean template;
 
@@ -45,6 +47,12 @@ public class MindMap extends MapNodeComposite {
         }
 
         ((Project)getParent()).setChanged(true);
+    }
+
+    public void moveSelected(Term t, Point p){
+        /// treba za sve selektovane elemnte
+        t.setXCoordinate(p.getX());
+        t.setYCoordinate(p.getY());
     }
 
     public CommandManager getCommandManager() {
