@@ -14,6 +14,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
+import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
@@ -27,17 +28,18 @@ public class MapView extends JPanel implements ISubscriber {
     private int stroke;
     private int color;
     private List<ElementView>  selectedElements;
+    private TermView centralTerm;
     private SelectorView selectorView;
     private AffineTransform transform; // na tabbedPane se dodaje ScrollPane koji ce imati mapView
     private double scalingFactor;
     private double xTranslate;
     private double yTranslate;
 
-
     public MapView(MindMap mindMap) {
         this.mindMap = mindMap;
         this.mindMap.addSubscriber(this);
         this.elementViews = new ArrayList<>();
+        this.centralTerm = null;
         for(MapNode child : mindMap.getChildren()) {
             if(child instanceof Term) {
                 elementViews.add(new TermView((Term)child));
@@ -51,11 +53,11 @@ public class MapView extends JPanel implements ISubscriber {
         this.addMouseMotionListener(MainFrame.getInstance().getActionManager().getStateMouseListener());
         this.stroke = 2;
         this.color = 0x000000;
-        transform = new AffineTransform();
+        this.transform = new AffineTransform();
         this.scalingFactor = 1;
         this.xTranslate = 0;
         this.yTranslate = 0;
-        selectedElements = new ArrayList<>();
+        this.selectedElements = new ArrayList<>();
         repaint();
     }
     @Override
@@ -194,6 +196,14 @@ public class MapView extends JPanel implements ISubscriber {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void setCentralTerm(TermView termView) {
+        if(centralTerm != null) {
+            centralTerm.setCentralTerm(false);
+        }
+        termView.setCentralTerm(true);
+        centralTerm = termView;
     }
 
     public int getColor() {
