@@ -2,6 +2,7 @@ package dsw.gerumap.app.core;
 
 import dsw.gerumap.app.gui.swing.tree.model.MapTreeItem;
 import dsw.gerumap.app.gui.swing.tree.view.MapTreeView;
+import dsw.gerumap.app.mapRepository.implementation.MindMap;
 import dsw.gerumap.app.mapRepository.implementation.Project;
 import dsw.gerumap.app.mapRepository.implementation.ProjectExplorer;
 
@@ -22,4 +23,6 @@ public interface MapTree {
     void newProject();
 
     void loadProject(Project project);
+
+    void loadTemplate(Project project, MindMap template);
 }
