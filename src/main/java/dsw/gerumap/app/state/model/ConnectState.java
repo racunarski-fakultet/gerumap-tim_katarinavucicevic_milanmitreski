@@ -1,6 +1,7 @@
 package dsw.gerumap.app.state.model;
 
 import dsw.gerumap.app.AppCore;
+import dsw.gerumap.app.command.commands.AddElementCommand;
 import dsw.gerumap.app.gui.swing.view.ElementView;
 import dsw.gerumap.app.gui.swing.view.MapView;
 import dsw.gerumap.app.gui.swing.view.RelationView;
@@ -22,6 +23,8 @@ public class ConnectState implements State {
     private GeneralPath generalPath;
     private TermView termFrom;
     private TermView termTo;
+
+    private AddElementCommand addElementCommand;
     @Override
     public void mousePressed(MouseEvent e) {
         if(e.getButton() != MouseEvent.BUTTON1) return;
@@ -73,7 +76,10 @@ public class ConnectState implements State {
                     source.getColor(),
                     (Term) termFrom.getElement(),
                     (Term) termTo.getElement());
-            m.addChild(r);
+            addElementCommand = new AddElementCommand(m , r);
+            m.getCommandManager().addCommand(addElementCommand);
+
+            //m.addChild(r);
             r.notifySubscriber(source);
         }
     }

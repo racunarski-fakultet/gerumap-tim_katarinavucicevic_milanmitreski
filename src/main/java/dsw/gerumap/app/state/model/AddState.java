@@ -31,10 +31,12 @@ public class AddState implements State {
                 (e.getPoint().getX()-source.getxTranslate())/source.getScalingFactor(),
                 (e.getPoint().getY()-source.getyTranslate())/source.getScalingFactor()
         );
+        t.addSubscriber(source);
         addElementCommand = new AddElementCommand(m, t);
         m.getCommandManager().addCommand(addElementCommand);
+        System.out.println("Komande: " + m.getCommandManager().getCommands());
         //m.addChild(t);
-        t.addSubscriber(source);
+        //t.addSubscriber(source);
         ElementView tv = null;
         for(ElementView ev : source.getElementViews()) {
             if(ev.getElement().equals(t)) tv = ev;

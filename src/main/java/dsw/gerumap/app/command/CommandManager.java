@@ -41,4 +41,7 @@ public class CommandManager {
         }
     }
 
+    public List<AbstractCommand> getCommands() {
+        return commands;
+    }
 }

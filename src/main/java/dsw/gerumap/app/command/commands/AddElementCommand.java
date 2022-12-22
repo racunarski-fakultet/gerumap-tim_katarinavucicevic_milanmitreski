@@ -12,16 +12,16 @@ public class AddElementCommand extends AbstractCommand {
     public AddElementCommand(MindMap mindMap, Element element){
         this.element = element;
         this.mindMap = mindMap;
-        mindMap.notifySubscriber(element);
     }
     @Override
     public void doCommand() {
         // pozivaju se metode primaoca
-        mindMap.addChild(element);
+        mindMap.removeChild(element);
     }
 
     @Override
     public void undoCommand() {
-        mindMap.removeChild(element);
+        mindMap.addChild(element);
+        // Nas observer radi obrnuto :)
     }
 }

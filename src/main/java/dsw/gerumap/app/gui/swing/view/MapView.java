@@ -1,5 +1,6 @@
 package dsw.gerumap.app.gui.swing.view;
 
+import dsw.gerumap.app.command.commands.AddElementCommand;
 import dsw.gerumap.app.mapRepository.composite.MapNode;
 import dsw.gerumap.app.mapRepository.implementation.Element;
 import dsw.gerumap.app.mapRepository.implementation.MindMap;
@@ -92,9 +93,11 @@ public class MapView extends JPanel implements ISubscriber {
                     TermView tv = new TermView((Term) notification);
                     elementViews.add(tv);
                     this.addSelected(tv);
+
                 } else {
                     elementViews.remove(contains);
                     this.removeSelected(contains);
+
                 }
             }
             repaint();

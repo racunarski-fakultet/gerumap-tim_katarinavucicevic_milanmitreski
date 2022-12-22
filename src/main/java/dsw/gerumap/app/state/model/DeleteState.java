@@ -1,5 +1,6 @@
 package dsw.gerumap.app.state.model;
 
+import dsw.gerumap.app.command.commands.DeleteElementCommand;
 import dsw.gerumap.app.gui.swing.view.ElementView;
 import dsw.gerumap.app.gui.swing.view.MapView;
 import dsw.gerumap.app.gui.swing.view.RelationView;
@@ -15,6 +16,9 @@ import java.util.Iterator;
 import java.util.List;
 
 public class DeleteState implements State {
+
+    private DeleteElementCommand deleteElementCommand;
+
     @Override
     public void mousePressed(MouseEvent e) {
         if(e.getButton() != MouseEvent.BUTTON1) return;
@@ -27,7 +31,8 @@ public class DeleteState implements State {
             ElementView elementView = it.next();
             if (elementView.elementAt(pos)) {
                 if(mapView.getSelectedElements().contains(elementView)) mapView.addSelected(null);
-                mindMap.removeChild(elementView.getElement());
+                deleteElementCommand = new DeleteElementCommand(mindMap, elementView.getElement());
+                mindMap.getCommandManager().addCommand(deleteElementCommand);
                 deleted = elementView;
                 break;
             }
@@ -46,7 +51,9 @@ public class DeleteState implements State {
                 }
             }
             for(Relation r : relationList) {
-                mindMap.removeChild(r);
+                deleteElementCommand = new DeleteElementCommand(mindMap, r);
+                mindMap.getCommandManager().addCommand(deleteElementCommand);
+                //mindMap.removeChild(r);
             }
         }
     }
