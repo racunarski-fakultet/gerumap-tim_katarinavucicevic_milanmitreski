@@ -98,4 +98,9 @@ public class MapTreeImplementation implements MapTree {
         treeView.expandPath(treeView.getSelectionPath());
         SwingUtilities.updateComponentTreeUI(treeView);
     }
+
+    @Override
+    public void loadTemplate(Project project, MindMap template) {
+
+    }
 }

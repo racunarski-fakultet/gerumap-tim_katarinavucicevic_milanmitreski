@@ -54,4 +54,18 @@ public class GsonSerializer implements Serializer {
             e.printStackTrace();
         }
     }
+
+    @Override
+    public MindMap loadTemplate(File file) {
+        return null;
+    }
+
+    @Override
+    public void saveTemplate(MindMap mindMap) {
+        try (FileWriter writer = new FileWriter(MindMap.getTemplatePath() + System.getProperty("file.separator") + mindMap.getName()+".json")) {
+            gson.toJson(mindMap, writer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
