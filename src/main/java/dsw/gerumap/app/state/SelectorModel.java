@@ -12,7 +12,7 @@ public class SelectorModel extends Rectangle implements IPublisher {
     private Point startPoint;
     private Point currentPoint;
 
-    private List <ISubscriber> subscribers;
+    private final List <ISubscriber> subscribers;
 
     public SelectorModel(Point startPoint) {
         this.startPoint = startPoint;
