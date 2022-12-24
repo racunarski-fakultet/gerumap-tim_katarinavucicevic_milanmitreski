@@ -6,27 +6,34 @@ import dsw.gerumap.app.mapRepository.implementation.MindMap;
 import dsw.gerumap.app.mapRepository.implementation.Term;
 
 import java.awt.*;
+import java.util.List;
+import java.util.Map;
 
 public class MoveSelectedCommand extends AbstractCommand {
 
-    private Point point;
-    private Term term;
+
+    private Map<Term, Point> startPoints;
+    private Map<Term, Point> currentPoints;
     private MindMap mindMap;
 
-    public MoveSelectedCommand(MindMap mindMap, Term term, Point p) {
+    public MoveSelectedCommand(MindMap mindMap, Map<Term, Point> startPoints) {
         this.mindMap = mindMap;
-        this.term = term;
-        this.point = p;
+        this.startPoints = startPoints;
+        this.currentPoints = startPoints;
     }
     @Override
     public void doCommand() {
-        mindMap.moveSelected(term, point.getX(), point.getY());
+        mindMap.moveSelected(currentPoints);
         // isto sto i u undo, to ce biti mapin moveMap
         // ili setCoordinates Termov
     }
 
     @Override
     public void undoCommand() {
-        mindMap.moveSelected(term, point.getX(), point.getY());
+        mindMap.moveSelected(startPoints);
+    }
+
+    public void setCurrentPoint(Map<Term, Point> currentPoints) {
+        this.currentPoints = currentPoints;
     }
 }

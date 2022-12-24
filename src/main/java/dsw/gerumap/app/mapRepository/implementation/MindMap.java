@@ -5,6 +5,8 @@ import dsw.gerumap.app.mapRepository.composite.MapNode;
 import dsw.gerumap.app.mapRepository.composite.MapNodeComposite;
 
 import java.awt.*;
+import java.util.List;
+import java.util.Map;
 
 public class MindMap extends MapNodeComposite {
     private boolean template;
@@ -45,9 +47,11 @@ public class MindMap extends MapNodeComposite {
         ((Project)getParent()).setChanged(true);
     }
 
-    public void moveSelected(Term t, double x, double y){
-        t.setXCoordinate(x);
-        t.setYCoordinate(y);
+    public void moveSelected(Map<Term, Point> points){
+        for(Term term : points.keySet()) {
+            term.setXCoordinate(points.get(term).getX());
+            term.setYCoordinate(points.get(term).getY());
+        }
     }
 
     public void setTemplate(boolean template) { this.template = template; }

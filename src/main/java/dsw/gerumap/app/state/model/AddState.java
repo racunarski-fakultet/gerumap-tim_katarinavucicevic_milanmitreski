@@ -34,7 +34,6 @@ public class AddState implements State {
         t.addSubscriber(source);
         addElementCommand = new AddElementCommand(m, t);
         m.getCommandManager().addCommand(addElementCommand);
-        System.out.println("Komande: " + m.getCommandManager().getCommands());
 
         ElementView tv = null;
         for(ElementView ev : source.getElementViews()) {
