@@ -54,7 +54,6 @@ public class ProjectView extends JPanel implements ISubscriber{
             MapView mv = new MapView(m);
             this.mapsTabbedPane.addTab(m.getName(), mv);
         } else {
-            System.out.println(mapsTabbedPane);
             for(int i = 0; i < mapsTabbedPane.getTabCount(); i++) {
                 MapView mv = (MapView) mapsTabbedPane.getComponentAt(i);
                 if(mv.getMindMap().equals(m))

@@ -32,9 +32,6 @@ public class GsonSerializer implements Serializer {
                         Relation relation = (Relation) grandchild;
                         relation.setTermFrom((Term)childComposite.getChildByName(relation.getTermFrom().getName()));
                         relation.setTermTo((Term)childComposite.getChildByName(relation.getTermTo().getName()));
-                        System.out.println(relation.getTermFrom() + " " + relation.getTermTo());
-                    } else {
-                        System.out.println(grandchild);
                     }
                     grandchild.setParent(childComposite);
                 }
@@ -64,9 +61,6 @@ public class GsonSerializer implements Serializer {
                     Relation relation = (Relation) child;
                     relation.setTermFrom((Term)map.getChildByName(relation.getTermFrom().getName()));
                     relation.setTermTo((Term)map.getChildByName(relation.getTermTo().getName()));
-                    System.out.println(relation.getTermFrom() + " " + relation.getTermTo());
-                } else {
-                    System.out.println(map);
                 }
                 child.setParent(map);
             }
@@ -79,7 +73,6 @@ public class GsonSerializer implements Serializer {
 
     @Override
     public void saveTemplate(MindMap mindMap) {
-        System.out.println(getClass().getResource(MindMap.getTemplatePath()));
         try (FileWriter writer = new FileWriter(Objects.requireNonNull(getClass().getResource(MindMap.getTemplatePath())).getPath()+ System.getProperty("file.separator") + mindMap.getName() + ".json")) {
             gson.toJson(mindMap, writer);
         } catch (IOException e) {

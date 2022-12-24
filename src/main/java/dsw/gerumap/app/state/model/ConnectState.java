@@ -55,8 +55,6 @@ public class ConnectState implements State {
             }
         }
         if(termTo != null && termFrom != null && termTo != termFrom) {
-            System.out.println(termTo);
-            System.out.println(termFrom);
             for(ElementView ev : source.getElementViews()) {
                 if(ev instanceof RelationView) {
                     RelationView rv = (RelationView) ev;

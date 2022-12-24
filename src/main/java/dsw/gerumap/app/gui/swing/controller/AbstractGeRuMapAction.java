@@ -1,5 +1,8 @@
 package dsw.gerumap.app.gui.swing.controller;
 
+import dsw.gerumap.app.AppCore;
+import dsw.gerumap.app.message.MessageType;
+
 import javax.swing.*;
 import java.awt.*;
 import java.net.URL;
@@ -9,7 +12,6 @@ public abstract class AbstractGeRuMapAction extends AbstractAction {
     public Icon loadIcon(String fileName){
 
         URL imageURL = getClass().getResource(fileName);
-        System.out.println(imageURL);
         Icon icon = null;
 
         if (imageURL != null) {
@@ -31,7 +33,7 @@ public abstract class AbstractGeRuMapAction extends AbstractAction {
             };
         }
         else {
-            System.err.println("Resource not found: " + fileName);
+            AppCore.getInstance().getMessageGenerator().getMessage("Resource " + fileName + "not found", MessageType.RESOURCE_NOT_FOUND);
         }
         return icon;
     }

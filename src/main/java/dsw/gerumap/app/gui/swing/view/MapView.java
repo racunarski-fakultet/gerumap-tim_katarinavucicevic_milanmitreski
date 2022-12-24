@@ -135,7 +135,6 @@ public class MapView extends JPanel implements ISubscriber {
         if(scalingFactor > 5) {
             scalingFactor = 5;
         }
-        System.out.println(scalingFactor);
         setupTransform();
     }
 
@@ -144,7 +143,6 @@ public class MapView extends JPanel implements ISubscriber {
         if(scalingFactor < 0.2) {
             scalingFactor = 0.2;
         }
-        System.out.println(scalingFactor);
         setupTransform();
     }
 

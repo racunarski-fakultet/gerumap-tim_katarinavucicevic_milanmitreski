@@ -43,7 +43,6 @@ public class DeleteNodeAction extends AbstractGeRuMapAction{
                 MainFrame.getInstance().getProjectViews().remove(projectView);
                 MainFrame.getInstance().getSplit().setRightComponent(new JPanel());
             }
-            System.out.println(selectedNode.getMapNode().getName());
             MainFrame.getInstance().getMapTree().removeChild(selectedNode);
         } else {
             AppCore.getInstance().getMessageGenerator().getMessage("Unable to delete ProjectExplorer.", MessageType.NODE_CANNOT_BE_DELETED);
