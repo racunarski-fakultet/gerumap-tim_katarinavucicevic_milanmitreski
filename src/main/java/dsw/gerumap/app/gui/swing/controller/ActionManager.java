@@ -9,7 +9,6 @@ public class ActionManager {
     private NewProjectAction newProjectAction;
     private ChangeAuthorAction  changeAuthorAction;
     private InfoAction infoAction;
-    private EditAction editAction;
     private DeleteNodeAction deleteNodeAction;
     private AddAction addAction;
     private MyMouseListener myMouseListener;
@@ -43,7 +42,6 @@ public class ActionManager {
         exitAction = new ExitAction();
         newProjectAction = new NewProjectAction();
         infoAction = new InfoAction();
-        editAction = new EditAction();
         deleteNodeAction = new DeleteNodeAction();
         addAction = new AddAction();
         changeAuthorAction = new ChangeAuthorAction();

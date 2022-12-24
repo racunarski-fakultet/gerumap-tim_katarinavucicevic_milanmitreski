@@ -1,7 +1,5 @@
 package dsw.gerumap.app.gui.swing.view;
 
-import com.sun.tools.javac.Main;
-
 import javax.swing.*;
 
 public class SideToolbar extends JToolBar {

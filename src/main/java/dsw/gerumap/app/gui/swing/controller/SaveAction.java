@@ -26,7 +26,7 @@ public class SaveAction extends AbstractGeRuMapAction{
         }
 
         Project project = (Project) MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode();
-        File projectFile = null;
+        File projectFile;
 
         if (!project.isChanged()) {
             return;

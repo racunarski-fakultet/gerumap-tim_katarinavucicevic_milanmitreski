@@ -26,7 +26,7 @@ public class SaveAsAction extends AbstractGeRuMapAction{
         }
 
         Project project = (Project) MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode();
-        File projectFile = null;
+        File projectFile;
 
         if (jfc.showSaveDialog(MainFrame.getInstance()) == JFileChooser.APPROVE_OPTION) {
             projectFile = jfc.getSelectedFile();

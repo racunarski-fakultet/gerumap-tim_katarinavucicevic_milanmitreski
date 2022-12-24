@@ -1,8 +1,6 @@
 package dsw.gerumap.app.gui.swing.view;
 
 import dsw.gerumap.app.mapRepository.implementation.Term;
-import dsw.gerumap.app.observer.ISubscriber;
-
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
 

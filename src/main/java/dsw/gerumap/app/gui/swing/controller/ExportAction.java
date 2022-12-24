@@ -4,7 +4,6 @@ import dsw.gerumap.app.AppCore;
 import dsw.gerumap.app.gui.swing.view.MainFrame;
 import dsw.gerumap.app.gui.swing.view.MapView;
 import dsw.gerumap.app.gui.swing.view.ProjectView;
-import dsw.gerumap.app.mapRepository.implementation.MindMap;
 import dsw.gerumap.app.message.MessageType;
 
 import javax.swing.*;

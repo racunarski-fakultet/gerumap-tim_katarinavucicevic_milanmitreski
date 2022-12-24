@@ -8,6 +8,7 @@ import java.io.FileOutputStream;
 import java.io.PrintWriter;
 import java.util.Objects;
 
+@SuppressWarnings("unused")
 public class FileLogger implements Logger {
 
     @Override
@@ -18,10 +19,8 @@ public class FileLogger implements Logger {
 
     @Override
     public void log(Message message) {
-        try {
-           PrintWriter pw = new PrintWriter(new FileOutputStream(Objects.requireNonNull(getClass().getResource("/log.txt")).getFile(), true));
+        try (PrintWriter pw = new PrintWriter(new FileOutputStream(Objects.requireNonNull(getClass().getResource("/log.txt")).getFile(), true))) {
            pw.println(message.toString());
-           pw.close();
         } catch (FileNotFoundException e) {
             System.out.println("File log.txt not found.");
         }

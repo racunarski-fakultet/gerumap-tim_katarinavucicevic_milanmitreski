@@ -12,10 +12,9 @@ import java.util.List;
 
 public class DeleteElementCommand extends AbstractCommand {
 
-    private MindMap mindMap;
-    private Element element;
-
-    private List<Relation> relationList;
+    private final MindMap mindMap;
+    private final Element element;
+    private final List<Relation> relationList;
     public DeleteElementCommand(MindMap parent, Element child) {
         this.element = child;
         this.mindMap = parent;

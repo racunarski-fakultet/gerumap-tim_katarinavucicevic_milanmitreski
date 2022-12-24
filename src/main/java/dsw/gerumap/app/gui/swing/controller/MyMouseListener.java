@@ -1,32 +1,15 @@
 package dsw.gerumap.app.gui.swing.controller;
 
-import com.sun.tools.javac.Main;
-import dsw.gerumap.app.AppCore;
 import dsw.gerumap.app.gui.swing.view.MainFrame;
 import dsw.gerumap.app.gui.swing.view.ProjectView;
 import dsw.gerumap.app.mapRepository.implementation.Project;
-import dsw.gerumap.app.message.MessageType;
-
-import javax.swing.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class MyMouseListener implements MouseListener {
 
-    private boolean isMouseOut = false;
-
     public void mouseExited(MouseEvent e) {
-        isMouseOut = true;
-    }
 
-
-    public void mouseEntered(MouseEvent e) {
-        isMouseOut = false;
-        Object eSource = e.getSource();
-        if (eSource instanceof EditAction) {
-            System.out.println("Nesto");
-            ((JMenuItem) eSource).doClick();
-        }
     }
 
     @Override
@@ -57,6 +40,11 @@ public class MyMouseListener implements MouseListener {
 
     @Override
     public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent mouseEvent) {
 
     }
 }

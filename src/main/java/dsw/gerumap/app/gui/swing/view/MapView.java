@@ -1,6 +1,5 @@
 package dsw.gerumap.app.gui.swing.view;
 
-import dsw.gerumap.app.command.commands.AddElementCommand;
 import dsw.gerumap.app.mapRepository.composite.MapNode;
 import dsw.gerumap.app.mapRepository.implementation.Element;
 import dsw.gerumap.app.mapRepository.implementation.MindMap;
@@ -14,23 +13,21 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
-import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class MapView extends JPanel implements ISubscriber {
 
-    private MindMap mindMap;
-    private List<ElementView> elementViews;
+    private final MindMap mindMap;
+    private final List<ElementView> elementViews;
     private int stroke;
     private int color;
-    private List<ElementView>  selectedElements;
+    private final List<ElementView>  selectedElements;
     private TermView centralTerm;
     private SelectorView selectorView;
-    private AffineTransform transform; // na tabbedPane se dodaje ScrollPane koji ce imati mapView
+    private final AffineTransform transform; // na tabbedPane se dodaje ScrollPane koji ce imati mapView
     private double scalingFactor;
     private double xTranslate;
     private double yTranslate;

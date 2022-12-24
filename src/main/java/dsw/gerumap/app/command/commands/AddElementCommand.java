@@ -6,8 +6,8 @@ import dsw.gerumap.app.mapRepository.implementation.MindMap;
 
 public class AddElementCommand extends AbstractCommand {
 
-    private MindMap mindMap;
-    private Element element;
+    private final MindMap mindMap;
+    private final Element element;
 
     public AddElementCommand(MindMap mindMap, Element element){
         this.element = element;

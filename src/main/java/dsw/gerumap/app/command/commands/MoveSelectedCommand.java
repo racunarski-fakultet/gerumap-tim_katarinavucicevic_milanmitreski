@@ -11,10 +11,10 @@ import java.util.Map;
 public class MoveSelectedCommand extends AbstractCommand {
 
 
-    private Map<Term, Point> startPoints;
+    private final Map<Term, Point> startPoints;
 
-    private Map<Term, Point> endPoints;
-    private MindMap mindMap;
+    private final Map<Term, Point> endPoints;
+    private final MindMap mindMap;
 
     public MoveSelectedCommand(MindMap mindMap, Map<Term, Point> startPoints) {
         this.mindMap = mindMap;

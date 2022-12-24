@@ -4,7 +4,6 @@ import dsw.gerumap.app.gui.swing.view.MainFrame;
 import dsw.gerumap.app.gui.swing.view.MapView;
 import dsw.gerumap.app.gui.swing.view.ProjectView;
 
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 
 public class ZoomInAction extends AbstractGeRuMapAction{

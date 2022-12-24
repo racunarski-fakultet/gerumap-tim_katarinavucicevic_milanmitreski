@@ -7,7 +7,7 @@ import java.util.List;
 
 public class CommandManager {
 
-    private List<AbstractCommand> commands = new ArrayList<>();
+    private final List<AbstractCommand> commands = new ArrayList<>();
 
     private int pointer = 0;
 
@@ -39,9 +39,5 @@ public class CommandManager {
         if(pointer == 0){
             AppCore.getInstance().getGui().disableUndo();
         }
-    }
-
-    public List<AbstractCommand> getCommands() {
-        return commands;
     }
 }

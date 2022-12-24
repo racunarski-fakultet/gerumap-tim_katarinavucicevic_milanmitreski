@@ -1,6 +1,5 @@
 package dsw.gerumap.app.gui.swing.controller;
 
-import dsw.gerumap.app.AppCore;
 import dsw.gerumap.app.gui.swing.view.MainFrame;
 import dsw.gerumap.app.gui.swing.view.MapView;
 

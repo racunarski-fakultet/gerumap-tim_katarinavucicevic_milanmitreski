@@ -7,7 +7,6 @@ import dsw.gerumap.app.observer.ISubscriber;
 import dsw.gerumap.app.state.StateManager;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class ProjectView extends JPanel implements ISubscriber{
 // Mediator
@@ -19,19 +18,15 @@ public class ProjectView extends JPanel implements ISubscriber{
 
     //private JScrollPane scrollPane;
 
-    private MyTabbedPane mapsTabbedPane;
+    private final MyTabbedPane mapsTabbedPane;
 
-    private StateManager stateManager;
+    private final StateManager stateManager;
 
     public ProjectView() {
         this.project = (Project) MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode();
         this.project.addSubscriber(this);
         this.projName = new JLabel(this.project.getName());
         this.autor = new JLabel(this.project.getAuthor());
-        //this.scrollPane = new JScrollPane();
-        //scrollPane.setMinimumSize(new Dimension(200, 300));
-        //scrollPane.createHorizontalScrollBar();
-        //scrollPane.createVerticalScrollBar();
         this.mapsTabbedPane = new MyTabbedPane(SwingConstants.TOP, JTabbedPane.SCROLL_TAB_LAYOUT);
         for(MapNode m : project.getChildren()) {
             revalidateTabbedPane((MindMap) m);

@@ -1,7 +1,6 @@
 package dsw.gerumap.app.gui.swing.view;
 
 import dsw.gerumap.app.AppCore;
-import dsw.gerumap.app.gui.swing.tree.MapTreeImplementation;
 import dsw.gerumap.app.gui.swing.tree.model.MapTreeItem;
 import dsw.gerumap.app.message.MessageType;
 

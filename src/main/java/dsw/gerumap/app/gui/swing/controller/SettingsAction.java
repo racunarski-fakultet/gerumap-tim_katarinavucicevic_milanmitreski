@@ -3,9 +3,7 @@ package dsw.gerumap.app.gui.swing.controller;
 import dsw.gerumap.app.AppCore;
 import dsw.gerumap.app.gui.swing.view.MainFrame;
 import dsw.gerumap.app.gui.swing.view.ProjectView;
-import dsw.gerumap.app.gui.swing.view.RenameDialog;
 import dsw.gerumap.app.gui.swing.view.SettingsDialog;
-import dsw.gerumap.app.mapRepository.implementation.ProjectExplorer;
 import dsw.gerumap.app.message.MessageType;
 
 import java.awt.event.ActionEvent;

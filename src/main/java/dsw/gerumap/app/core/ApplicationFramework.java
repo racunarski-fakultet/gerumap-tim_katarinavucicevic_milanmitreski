@@ -10,8 +10,6 @@ public abstract class ApplicationFramework {
     private MapRepository mapRepository;
 
     private MessageGenerator messageGenerator;
-    private Logger logger;
-
     private Serializer serializer;
 
     public abstract void run(); // pokretanje aplikacije
@@ -21,7 +19,6 @@ public abstract class ApplicationFramework {
         this.mapRepository = mapRepository;
         this.gui = gui;
         this.messageGenerator = messageGenerator;
-        this.logger = logger;
         this.serializer = serializer;
         messageGenerator.addSubscriber(logger);
         messageGenerator.addSubscriber(gui);
@@ -33,10 +30,6 @@ public abstract class ApplicationFramework {
 
     public MessageGenerator getMessageGenerator() {
         return messageGenerator;
-    }
-
-    public Logger getLogger() {
-        return logger;
     }
 
     public Serializer getSerializer() { return serializer; }

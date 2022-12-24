@@ -29,9 +29,6 @@ public abstract class AbstractGeRuMapAction extends AbstractAction {
                     g.drawImage(getImage(), x, y, 25, 25, null);
                 }
             };
-            // Image image = ((ImageIcon)icon).getImage();
-            // Image newImage = image.getScaledInstance(30, 30, Image.SCALE_FAST);
-            // icon = new ImageIcon(newImage);
         }
         else {
             System.err.println("Resource not found: " + fileName);
