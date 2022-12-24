@@ -8,8 +8,9 @@ import java.awt.event.ActionEvent;
 public class UndoAction extends AbstractGeRuMapAction{
 
     public UndoAction(){
-        putValue(NAME, "UNDO");
-        putValue(SHORT_DESCRIPTION, "UNDO");
+        putValue(SMALL_ICON, loadIcon("/undoBtn.png"));
+        putValue(SHORT_DESCRIPTION, "Undo");
+
     }
 
     @Override
