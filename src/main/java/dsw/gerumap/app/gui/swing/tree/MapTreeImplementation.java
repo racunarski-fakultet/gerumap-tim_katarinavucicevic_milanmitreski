@@ -86,7 +86,6 @@ public class MapTreeImplementation implements MapTree {
     @Override
     public void loadProject(Project project) {
         ProjectExplorer projectExplorer = (ProjectExplorer) ((MapTreeItem) treeModel.getRoot()).getMapNode();
-        System.out.println(project.getChildren());
         projectExplorer.addChild(project);
         MapTreeItem projectItem = new MapTreeItem(project);
         for(MapNode child : project.getChildren()) {
@@ -100,7 +99,11 @@ public class MapTreeImplementation implements MapTree {
     }
 
     @Override
-    public void loadTemplate(Project project, MindMap template) {
-
+    public void loadTemplate(MindMap template) {
+        Project project = (Project)this.getSelectedNode().getMapNode();
+        project.addChild(template);
+        this.getSelectedNode().add(new MapTreeItem(template));
+        treeView.expandPath(treeView.getSelectionPath());
+        SwingUtilities.updateComponentTreeUI(treeView);
     }
 }

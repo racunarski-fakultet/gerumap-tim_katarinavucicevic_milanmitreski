@@ -15,6 +15,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.util.Objects;
 
 public class GsonSerializer implements Serializer {
     private final Gson gson = new GsonBuilder().registerTypeAdapter(MapNode.class, new ProjectDeserializer()).create();
@@ -57,12 +58,30 @@ public class GsonSerializer implements Serializer {
 
     @Override
     public MindMap loadTemplate(File file) {
-        return null;
+        try (FileReader fileReader = new FileReader(file)) {
+            MindMap map = gson.fromJson(fileReader, MindMap.class);
+            for(MapNode child : map.getChildren()) {
+                if(child instanceof Relation) {
+                    Relation relation = (Relation) child;
+                    relation.setTermFrom((Term)map.getChildByName(relation.getTermFrom().getName()));
+                    relation.setTermTo((Term)map.getChildByName(relation.getTermTo().getName()));
+                    System.out.println(relation.getTermFrom() + " " + relation.getTermTo());
+                } else {
+                    System.out.println(map);
+                }
+                child.setParent(map);
+            }
+            return map;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     @Override
     public void saveTemplate(MindMap mindMap) {
-        try (FileWriter writer = new FileWriter(MindMap.getTemplatePath() + System.getProperty("file.separator") + mindMap.getName()+".json")) {
+        System.out.println(getClass().getResource(MindMap.getTemplatePath()));
+        try (FileWriter writer = new FileWriter(Objects.requireNonNull(getClass().getResource(MindMap.getTemplatePath())).getPath()+ System.getProperty("file.separator") + mindMap.getName() + ".json")) {
             gson.toJson(mindMap, writer);
         } catch (IOException e) {
             e.printStackTrace();

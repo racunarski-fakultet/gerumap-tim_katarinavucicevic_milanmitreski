@@ -6,8 +6,6 @@ public abstract class Element extends MapNode {
 
     private int stroke;
     private int color;
-
-    private final String type = "Element";
     public Element(String ime, MapNode parent, int stroke, int color) {
         super(ime, parent);
         this.stroke = stroke;

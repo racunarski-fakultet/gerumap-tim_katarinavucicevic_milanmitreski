@@ -20,13 +20,13 @@ public class MoveSelectedCommand extends AbstractCommand {
     }
     @Override
     public void doCommand() {
-        mindMap.moveSelected(term, point);
+        mindMap.moveSelected(term, point.getX(), point.getY());
         // isto sto i u undo, to ce biti mapin moveMap
         // ili setCoordinates Termov
     }
 
     @Override
     public void undoCommand() {
-        mindMap.moveSelected(term, point);
+        mindMap.moveSelected(term, point.getX(), point.getY());
     }
 }

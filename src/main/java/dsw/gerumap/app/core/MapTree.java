@@ -24,5 +24,5 @@ public interface MapTree {
 
     void loadProject(Project project);
 
-    void loadTemplate(Project project, MindMap template);
+    void loadTemplate(MindMap template);
 }

@@ -19,6 +19,7 @@ public class ProjectExplorer extends MapNodeComposite {
             Project project = (Project) child;
             if(!this.getChildren().contains(project)) {
                 this.getChildren().add(project);
+                child.setParent(this);
             }
         }
     }
@@ -27,11 +28,6 @@ public class ProjectExplorer extends MapNodeComposite {
         if(child instanceof Project) {
             Project element = (Project) child;
             this.getChildren().remove(element);
-            if(MainFrame.getInstance().getSplit().getRightComponent() instanceof ProjectView) {
-                if(((ProjectView) MainFrame.getInstance().getSplit().getRightComponent()).getProject().equals(element)) {
-                    MainFrame.getInstance().getSplit().setRightComponent(new JPanel());
-                }
-            } /* IDEJA: Implementirati MySplitPane koji je observer */
         }
     }
 

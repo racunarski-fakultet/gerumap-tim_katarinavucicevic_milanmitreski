@@ -1,10 +1,6 @@
 package dsw.gerumap.app.mapRepository.implementation;
 
-import dsw.gerumap.app.AppCore;
-import dsw.gerumap.app.command.AbstractCommand;
 import dsw.gerumap.app.command.CommandManager;
-import dsw.gerumap.app.command.commands.AddElementCommand;
-import dsw.gerumap.app.command.commands.DeleteElementCommand;
 import dsw.gerumap.app.mapRepository.composite.MapNode;
 import dsw.gerumap.app.mapRepository.composite.MapNodeComposite;
 
@@ -12,7 +8,7 @@ import java.awt.*;
 
 public class MindMap extends MapNodeComposite {
     private boolean template;
-    private static final String templatePath = System.getProperty("user.home") + System.getProperty("file.separator")+"GeRuMapTemplates";
+    private static final String templatePath = "/GeRuMapTemplates";
     private final String type = "MindMap";
 
     private transient CommandManager commandManager;
@@ -27,9 +23,9 @@ public class MindMap extends MapNodeComposite {
     public void addChild(MapNode child) {
         if(child instanceof Element){
             Element element = (Element) child;
-
             if(!this.getChildren().contains(element)) {
                 this.getChildren().add(element);
+                child.setParent(this);
                 notifySubscriber(child);
             }
 
@@ -49,20 +45,19 @@ public class MindMap extends MapNodeComposite {
         ((Project)getParent()).setChanged(true);
     }
 
-    public void moveSelected(Term t, Point p){
-        t.setXCoordinate(p.getX());
-        t.setYCoordinate(p.getY());
+    public void moveSelected(Term t, double x, double y){
+        t.setXCoordinate(x);
+        t.setYCoordinate(y);
     }
 
-    public void setTemplate(boolean template) {
-        this.template = template;
-    }
+    public void setTemplate(boolean template) { this.template = template; }
 
     public static String getTemplatePath() {
         return templatePath;
     }
 
     public CommandManager getCommandManager() {
+        if(commandManager == null) commandManager = new CommandManager();
         return commandManager;
     }
 }
