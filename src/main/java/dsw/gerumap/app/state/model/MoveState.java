@@ -32,8 +32,8 @@ public class MoveState implements State {
                 Term t = (Term) ev.getElement();
                 Point p = new Point((int) t.getXCoordinate(), (int) t.getYCoordinate());
                 map.put(t, p);
-                moveSelectedCommand = new MoveSelectedCommand(mapView.getMindMap(), t, p);
-                mapView.getMindMap().getCommandManager().addCommand(moveSelectedCommand);
+                //moveSelectedCommand = new MoveSelectedCommand(mapView.getMindMap(), t, p);
+                //mapView.getMindMap().getCommandManager().addCommand(moveSelectedCommand);
             }
         }
     }
@@ -45,8 +45,11 @@ public class MoveState implements State {
             for(ElementView ev : mapView.getElementViews()) {
                 if(ev instanceof TermView && elementView instanceof TermView && !mapView.getSelectedElements().contains(ev) && elementView.getShape().intersects(ev.getShape().getBounds())) {
                     for(Term t : map.keySet()) {
-                        t.setXCoordinate(map.get(t).getX());
-                        t.setYCoordinate(map.get(t).getY());
+                        //t.setXCoordinate(map.get(t).getX());
+                        //t.setYCoordinate(map.get(t).getY());
+                        //Point p =  new Point((int)t.getXCoordinate(), (int)t.getYCoordinate());
+                        moveSelectedCommand = new MoveSelectedCommand(mapView.getMindMap(), t, new Point((int)t.getXCoordinate(), (int)t.getYCoordinate()));
+                        mapView.getMindMap().getCommandManager().addCommand(moveSelectedCommand);
                         Point p =  new Point((int)t.getXCoordinate(), (int)t.getYCoordinate());
                         moveSelectedCommand = new MoveSelectedCommand(mapView.getMindMap(), t, p);
                         mapView.getMindMap().getCommandManager().addCommand(moveSelectedCommand);

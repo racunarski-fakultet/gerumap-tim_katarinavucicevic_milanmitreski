@@ -8,6 +8,8 @@ import dsw.gerumap.app.command.commands.DeleteElementCommand;
 import dsw.gerumap.app.mapRepository.composite.MapNode;
 import dsw.gerumap.app.mapRepository.composite.MapNodeComposite;
 
+import java.awt.*;
+
 public class MindMap extends MapNodeComposite {
     private boolean template;
     private static final String templatePath = System.getProperty("user.home") + System.getProperty("file.separator")+"GeRuMapTemplates";
@@ -45,6 +47,11 @@ public class MindMap extends MapNodeComposite {
         }
 
         ((Project)getParent()).setChanged(true);
+    }
+
+    public void moveSelected(Term t, Point p){
+        t.setXCoordinate(p.getX());
+        t.setYCoordinate(p.getY());
     }
 
     public void setTemplate(boolean template) {
