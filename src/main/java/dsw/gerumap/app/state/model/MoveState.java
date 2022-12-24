@@ -19,7 +19,6 @@ import static java.lang.Math.abs;
 public class MoveState implements State {
     private Point startPoint;
     private HashMap<Term, Point> map = new HashMap<>();
-
     private MoveSelectedCommand moveSelectedCommand;
 
     @Override
@@ -34,8 +33,6 @@ public class MoveState implements State {
                 map.put(t, p);
             }
         }
-        moveSelectedCommand = new MoveSelectedCommand(mapView.getMindMap(), map);
-        mapView.getMindMap().getCommandManager().addCommand(moveSelectedCommand);
     }
 
     @Override
@@ -44,13 +41,18 @@ public class MoveState implements State {
         for (ElementView elementView : mapView.getSelectedElements()) {
             for(ElementView ev : mapView.getElementViews()) {
                 if(ev instanceof TermView && elementView instanceof TermView && !mapView.getSelectedElements().contains(ev) && elementView.getShape().intersects(ev.getShape().getBounds())) {
-                    moveSelectedCommand.undoCommand();
+                    for(Term t : map.keySet()) {
+                        t.setXCoordinate(map.get(t).getX());
+                        t.setYCoordinate(map.get(t).getY());
+                    }
                     mapView.getSelectedElements().clear();
                     mapView.repaint();
                     return;
                 }
             }
         }
+        moveSelectedCommand = new MoveSelectedCommand(mapView.getMindMap(), map);
+        mapView.getMindMap().getCommandManager().addCommand(moveSelectedCommand);
         mapView.getSelectedElements().clear();
         mapView.repaint();
     }
@@ -67,8 +69,8 @@ public class MoveState implements State {
             }
         }
         for (Term t : help.keySet()) {
-            moveSelectedCommand.setCurrentPoint(help);
-            moveSelectedCommand.doCommand();
+            t.setXCoordinate(help.get(t).getX());
+            t.setYCoordinate(help.get(t).getY());
         }
         mapView.repaint();
     }

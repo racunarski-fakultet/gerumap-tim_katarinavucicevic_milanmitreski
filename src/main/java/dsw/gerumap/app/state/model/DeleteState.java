@@ -18,6 +18,7 @@ import java.util.List;
 public class DeleteState implements State {
 
     private DeleteElementCommand deleteElementCommand;
+    private List<Relation> relationList = new ArrayList<>();
 
     @Override
     public void mousePressed(MouseEvent e) {
@@ -40,8 +41,7 @@ public class DeleteState implements State {
                 break;
             }
         }
-        if(deleted instanceof TermView) {
-            List<Relation> relationList = new ArrayList<>();
+        /* if(deleted instanceof TermView) {
             it = mapView.getElementViews().iterator();
             while (it.hasNext()) {
                 ElementView elementView = it.next();
@@ -58,7 +58,7 @@ public class DeleteState implements State {
                 mindMap.getCommandManager().addCommand(deleteElementCommand);
                 //mindMap.removeChild(r);
             }
-        }
+        } */
     }
 
     @Override

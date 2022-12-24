@@ -5,7 +5,6 @@ import dsw.gerumap.app.mapRepository.composite.MapNode;
 import dsw.gerumap.app.mapRepository.composite.MapNodeComposite;
 
 import java.awt.*;
-import java.util.List;
 import java.util.Map;
 
 public class MindMap extends MapNodeComposite {
