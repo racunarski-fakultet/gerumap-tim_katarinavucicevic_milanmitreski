@@ -4,7 +4,7 @@ import java.awt.*;
 
 public class SelectorView{
 
-    private SelectorModel selectorModel;
+    private final SelectorModel selectorModel;
 
     public SelectorView(SelectorModel selectorModel) {
         this.selectorModel = selectorModel;

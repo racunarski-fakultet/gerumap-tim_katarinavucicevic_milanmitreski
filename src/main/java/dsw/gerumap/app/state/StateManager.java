@@ -5,14 +5,14 @@ import dsw.gerumap.app.state.model.*;
 public class StateManager {
 
     private State current;
-    private AddState addState;
-    private DeleteState deleteState;
-    private SelectState selectState;
-    private MoveState moveState;
-    private RefactorState refactorState;
-    private ConnectState connectState;
-    private MoveMapState moveMapState;
-    private SetCentralTermState setCentralTermState;
+    private final AddState addState;
+    private final DeleteState deleteState;
+    private final SelectState selectState;
+    private final MoveState moveState;
+    private final RefactorState refactorState;
+    private final ConnectState connectState;
+    private final MoveMapState moveMapState;
+    private final SetCentralTermState setCentralTermState;
 
 
     public StateManager() {

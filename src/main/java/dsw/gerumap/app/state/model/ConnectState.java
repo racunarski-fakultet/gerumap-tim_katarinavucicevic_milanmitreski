@@ -18,13 +18,10 @@ import java.awt.geom.GeneralPath;
 
 public class ConnectState implements State {
 
-    private static int count = 0;
-
     private GeneralPath generalPath;
     private TermView termFrom;
     private TermView termTo;
 
-    private AddElementCommand addElementCommand;
     @Override
     public void mousePressed(MouseEvent e) {
         if(e.getButton() != MouseEvent.BUTTON1) return;
@@ -76,7 +73,7 @@ public class ConnectState implements State {
                     source.getColor(),
                     (Term) termFrom.getElement(),
                     (Term) termTo.getElement());
-            addElementCommand = new AddElementCommand(m , r);
+            AddElementCommand addElementCommand = new AddElementCommand(m, r);
             m.getCommandManager().addCommand(addElementCommand);
 
             //m.addChild(r);

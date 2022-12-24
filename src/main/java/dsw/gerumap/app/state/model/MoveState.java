@@ -9,17 +9,11 @@ import dsw.gerumap.app.state.State;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-
-import static java.lang.Math.abs;
 
 public class MoveState implements State {
     private Point startPoint;
-    private HashMap<Term, Point> map = new HashMap<>();
-    private MoveSelectedCommand moveSelectedCommand;
+    private final HashMap<Term, Point> map = new HashMap<>();
 
     @Override
     public void mousePressed(MouseEvent e) {
@@ -51,7 +45,7 @@ public class MoveState implements State {
                 }
             }
         }
-        moveSelectedCommand = new MoveSelectedCommand(mapView.getMindMap(), map);
+        MoveSelectedCommand moveSelectedCommand = new MoveSelectedCommand(mapView.getMindMap(), map);
         mapView.getMindMap().getCommandManager().addCommand(moveSelectedCommand);
         mapView.getSelectedElements().clear();
         mapView.repaint();

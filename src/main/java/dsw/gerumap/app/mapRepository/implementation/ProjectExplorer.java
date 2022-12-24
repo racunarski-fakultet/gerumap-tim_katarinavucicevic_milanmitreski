@@ -1,11 +1,7 @@
 package dsw.gerumap.app.mapRepository.implementation;
 
-import dsw.gerumap.app.gui.swing.view.MainFrame;
-import dsw.gerumap.app.gui.swing.view.ProjectView;
 import dsw.gerumap.app.mapRepository.composite.MapNode;
 import dsw.gerumap.app.mapRepository.composite.MapNodeComposite;
-
-import javax.swing.*;
 
 public class ProjectExplorer extends MapNodeComposite {
 

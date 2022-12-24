@@ -8,7 +8,6 @@ import dsw.gerumap.app.state.State;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
-import java.awt.geom.GeneralPath;
 
 public class SetCentralTermState implements State {
 

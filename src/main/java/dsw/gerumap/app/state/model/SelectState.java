@@ -3,7 +3,6 @@ package dsw.gerumap.app.state.model;
 import dsw.gerumap.app.gui.swing.view.ElementView;
 import dsw.gerumap.app.gui.swing.view.MapView;
 import dsw.gerumap.app.state.SelectorModel;
-import dsw.gerumap.app.state.SelectorView;
 import dsw.gerumap.app.state.State;
 
 import java.awt.*;
