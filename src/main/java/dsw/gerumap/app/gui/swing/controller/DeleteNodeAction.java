@@ -10,6 +10,7 @@ import dsw.gerumap.app.mapRepository.implementation.Project;
 import dsw.gerumap.app.mapRepository.implementation.ProjectExplorer;
 import dsw.gerumap.app.message.MessageType;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 
 
@@ -41,6 +42,7 @@ public class DeleteNodeAction extends AbstractGeRuMapAction{
                     }
                 }
                 MainFrame.getInstance().getProjectViews().remove(projectView);
+                MainFrame.getInstance().getSplit().setRightComponent(new JPanel());
             }
             System.out.println(selectedNode.getMapNode().getName());
             MainFrame.getInstance().getMapTree().removeChild(selectedNode);

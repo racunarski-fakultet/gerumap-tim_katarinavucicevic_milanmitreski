@@ -9,6 +9,7 @@ import dsw.gerumap.app.message.MessageType;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.io.File;
+import java.util.Objects;
 
 public class LoadTemplateAction extends AbstractGeRuMapAction{
 
@@ -19,7 +20,7 @@ public class LoadTemplateAction extends AbstractGeRuMapAction{
 
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
-        JFileChooser jfc = new JFileChooser(MindMap.getTemplatePath());
+        JFileChooser jfc = new JFileChooser(Objects.requireNonNull(getClass().getResource(MindMap.getTemplatePath())).getPath());
         if(!(MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode() instanceof Project)) {
             AppCore.getInstance().getMessageGenerator().getMessage("No selected Project to make MindMap for", MessageType.NO_PROJECT_SELECTED);
         }
@@ -27,9 +28,9 @@ public class LoadTemplateAction extends AbstractGeRuMapAction{
         if (jfc.showOpenDialog(MainFrame.getInstance()) == JFileChooser.APPROVE_OPTION) {
             try {
                 File file = jfc.getSelectedFile();
-                if(file.getParent().equals(MindMap.getTemplatePath())) {
+                if(file.getParent().equals(Objects.requireNonNull(getClass().getResource(MindMap.getTemplatePath())).getPath())) {
                     MindMap mindMap = AppCore.getInstance().getSerializer().loadTemplate(file);
-                    MainFrame.getInstance().getMapTree().loadTemplate(project, mindMap);
+                    MainFrame.getInstance().getMapTree().loadTemplate(mindMap);
                 }
             } catch (Exception exception) {
                 exception.printStackTrace();

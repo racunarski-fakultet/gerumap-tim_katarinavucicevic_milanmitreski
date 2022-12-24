@@ -9,6 +9,7 @@ public abstract class AbstractGeRuMapAction extends AbstractAction {
     public Icon loadIcon(String fileName){
 
         URL imageURL = getClass().getResource(fileName);
+        System.out.println(imageURL);
         Icon icon = null;
 
         if (imageURL != null) {

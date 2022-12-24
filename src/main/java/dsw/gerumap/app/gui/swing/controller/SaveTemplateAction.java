@@ -22,12 +22,7 @@ public class SaveTemplateAction extends AbstractGeRuMapAction{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        JFileChooser jfc = new JFileChooser() {
-            @Override
-            public boolean isDirectorySelectionEnabled() {
-                return false;
-            }
-        };
+        JFileChooser jfc = new JFileChooser();
         if (!(MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode() instanceof MindMap)) {
             AppCore.getInstance().getMessageGenerator().getMessage("Only MindMaps can be saved as template", MessageType.ONLY_MIND_MAPS_ARE_TEMPLATES);
             return;
@@ -35,14 +30,6 @@ public class SaveTemplateAction extends AbstractGeRuMapAction{
 
         MindMap mindMap = (MindMap) MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode();
         mindMap.setTemplate(true);
-
-        try {
-            System.out.println(System.getProperty("file.separator"));
-            Files.createDirectories(Paths.get(MindMap.getTemplatePath()));
-        } catch (IOException ex) {
-            throw new RuntimeException(ex);
-        }
-
         AppCore.getInstance().getSerializer().saveTemplate(mindMap);
     }
 }
