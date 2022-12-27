@@ -30,7 +30,7 @@ public class SettingsDialog extends JDialog {
         JButton saveBtn = new JButton("Save");
         JButton closeBtn = new JButton("Close");
         JColorChooser colorChooser;
-        colorChooser = new JColorChooser(Color.BLACK); // defaultna boja je crna
+        colorChooser = new JColorChooser(new Color(mv.getColor())); // defaultna boja je crna
         colorChooser.setColor(mv.getColor());
         saveBtn.setAction(new AbstractAction("Save") {
             @Override

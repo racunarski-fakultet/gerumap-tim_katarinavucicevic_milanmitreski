@@ -10,6 +10,7 @@ import dsw.gerumap.app.state.State;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.util.HashMap;
+import java.util.Map;
 
 public class MoveState implements State {
     private Point startPoint;
@@ -45,7 +46,7 @@ public class MoveState implements State {
                 }
             }
         }
-        MoveSelectedCommand moveSelectedCommand = new MoveSelectedCommand(mapView.getMindMap(), map);
+        MoveSelectedCommand moveSelectedCommand = new MoveSelectedCommand(mapView.getMindMap(), Map.copyOf(map));
         mapView.getMindMap().getCommandManager().addCommand(moveSelectedCommand);
         mapView.getSelectedElements().clear();
         mapView.repaint();
