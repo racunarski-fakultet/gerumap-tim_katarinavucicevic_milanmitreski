@@ -6,6 +6,7 @@ import dsw.gerumap.app.state.State;
 import java.awt.event.MouseEvent;
 
 public class RefactorState implements State {
+
     @Override
     public void mousePressed(MouseEvent e) {
         MapView source = (MapView) e.getSource();
