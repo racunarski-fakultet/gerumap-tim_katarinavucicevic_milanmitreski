@@ -13,6 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MoveState implements State {
+
     private Point startPoint;
     private final HashMap<Term, Point> map = new HashMap<>();
 

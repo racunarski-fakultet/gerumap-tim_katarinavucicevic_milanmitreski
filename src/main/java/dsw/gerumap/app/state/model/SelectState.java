@@ -11,7 +11,6 @@ import java.awt.event.MouseEvent;
 public class SelectState implements State {
 
     private boolean drag;
-
     private SelectorModel selectorModel = null;
 
     @Override
@@ -26,7 +25,6 @@ public class SelectState implements State {
                 mapView.getSelectedElements().removeAll(mapView.getSelectedElements());
                 mapView.repaint();
             }
-
         }
 
         if(!drag) {
