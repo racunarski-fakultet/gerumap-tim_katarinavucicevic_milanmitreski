@@ -24,6 +24,8 @@ public class ConnectState implements State {
 
     @Override
     public void mousePressed(MouseEvent e) {
+        termFrom = null;
+        termTo = null;
         if(e.getButton() != MouseEvent.BUTTON1) return;
         MapView source = (MapView) e.getSource();
         Point realPoint =  new Point((int) ((e.getPoint().getX()-source.getxTranslate())/source.getScalingFactor()), (int) ((e.getPoint().getY()-source.getyTranslate())/source.getScalingFactor()));
@@ -73,8 +75,6 @@ public class ConnectState implements State {
                     (Term) termTo.getElement());
             AddElementCommand addElementCommand = new AddElementCommand(m, r);
             m.getCommandManager().addCommand(addElementCommand);
-
-            //m.addChild(r);
             r.notifySubscriber(source);
         }
     }
@@ -114,7 +114,6 @@ public class ConnectState implements State {
                 xCoordinateTo = xTo;
                 yCoordinateTo = yTo;
             }
-
             generalPath.moveTo(xCoordinateFrom, yCoordinateFrom);
             generalPath.lineTo(xCoordinateTo, yCoordinateTo);
             generalPath.closePath();
