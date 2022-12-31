@@ -20,7 +20,6 @@ public class DeleteState implements State {
         for (ElementView elementView : mapView.getElementViews()) {
             if (elementView.elementAt(pos)) {
                 if (mapView.getSelectedElements().contains(elementView)) {
-                    mapView.addSelected(null);
                     break;
                 }
                 DeleteElementCommand deleteElementCommand = new DeleteElementCommand(mindMap, elementView.getElement());

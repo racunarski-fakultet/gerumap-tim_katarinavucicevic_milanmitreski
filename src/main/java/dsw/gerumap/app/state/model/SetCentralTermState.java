@@ -30,19 +30,16 @@ public class SetCentralTermState implements State {
         /* Priprema za BFS */
         Term centralTerm = null;
         TermView centralTermView = null;
-        Map<Term, List<Term>> tree = new HashMap<>();
-        Map<Term, Boolean> visited = new HashMap<>();
         for(ElementView ev : source.getElementViews()) {
             if(ev instanceof TermView) {
                 if(ev.elementAt(realPoint)) {
                     centralTerm = (Term) ev.getElement();
                     centralTermView = (TermView) ev;
                 }
-                tree.put((Term) ev.getElement(), new ArrayList<>());
-                visited.put((Term) ev.getElement(), false);
+                ((Term)ev.getElement()).setTreeChildren(new ArrayList<>());
             }
         }
-        if(centralTerm == null || centralTermView == null) {
+        if(centralTerm == null) {
             AppCore.getInstance().getMessageGenerator().getMessage("No selected term to center", MessageType.NO_TERM_SELECTED);
             return;
         }
@@ -50,44 +47,55 @@ public class SetCentralTermState implements State {
             if(ev instanceof RelationView) {
                 Term termTo = ((Relation)ev.getElement()).getTermTo();
                 Term termFrom = ((Relation)ev.getElement()).getTermFrom();
-                tree.get(termTo).add(termFrom);
-                tree.get(termFrom).add(termTo);
+                termTo.getTreeChildren().add(termFrom);
+                termFrom.getTreeChildren().add(termTo);
             }
         }
 
         /* BFS deo */
         Map<Term, Integer> level = new HashMap<>();
         Queue<Term> queue = new LinkedList<>();
+        List<Term> left = new ArrayList<>();
+        List<Term> right = new ArrayList<>();
 
         level.put(centralTerm, 0);
-        visited.put(centralTerm, true);
         queue.add(centralTerm);
-        Term current = null;
+        centralTerm.setTreeParent(null);
+        Term current;
 
-        int left = -1;
+        /* Ovaj BFS postavlja polje treeParent, odredjuje dubine, rasporedjuje "prvu" decu na levo i desno */
+        int isLeft = -1;
         while(!queue.isEmpty()) {
             current = queue.remove();
-            for(Term neighbour : tree.get(current)) {
-                if(!visited.get(neighbour)) {
+            if(current.getTreeChildren().isEmpty()) {
+                current.spaceNeeded(120);
+            } else {
+                for (Term neighbour : current.getTreeChildren()) {
+                    neighbour.getTreeChildren().remove(current);
                     level.put(neighbour, level.get(current) + 1);
-                    visited.put(neighbour, true);
-                    if(level.get(neighbour) == 1) {
-                        neighbour.setXCoordinate(centralTerm.getXCoordinate() + left * 200);
-                        neighbour.setYCoordinate(centralTerm.getYCoordinate());
-                        left *= -1;
-                    } else {
-                        if(current.getXCoordinate() < centralTerm.getXCoordinate()) {
-                            neighbour.setXCoordinate(current.getXCoordinate() - 200);
-                            neighbour.setYCoordinate(centralTerm.getYCoordinate());
+                    if (level.get(neighbour) == 1) {
+                        if(isLeft == -1) {
+                            left.add(neighbour);
                         } else {
-                            neighbour.setXCoordinate(current.getXCoordinate() + 200);
-                            neighbour.setYCoordinate(centralTerm.getYCoordinate());
+                            right.add(neighbour);
                         }
+                        isLeft *= -1;
                     }
+                    neighbour.setTreeParent(current);
                     queue.add(neighbour);
                 }
             }
         }
+        int leftSpaceNeeded = 0;
+        int rightSpaceNeeded = 0;
+        for(Term t : left) {
+            leftSpaceNeeded += t.getSpaceNeeded();
+        }
+        for(Term t : right) {
+            rightSpaceNeeded += t.getSpaceNeeded();
+        }
+        centralTerm.distributeChildren(right, (int) (centralTerm.getYCoordinate() + rightSpaceNeeded/2), 1);
+        centralTerm.distributeChildren(left, (int) (centralTerm.getYCoordinate() + leftSpaceNeeded/2), -1);
 
         double x = source.getVisibleRect().getWidth()/2;
         double y = source.getVisibleRect().getHeight()/2;

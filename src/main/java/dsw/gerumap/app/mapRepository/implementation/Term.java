@@ -2,12 +2,15 @@ package dsw.gerumap.app.mapRepository.implementation;
 
 import dsw.gerumap.app.mapRepository.composite.MapNode;
 
-public class Term extends Element{
+import java.util.List;
 
+public class Term extends Element{
     private double xCoordinate;
     private double yCoordinate;
     private final String type = "Term";
-
+    private transient Term treeParent;
+    private transient List<Term> treeChildren;
+    private transient int spaceNeeded;
 
     public Term(String ime, MapNode parent, int stroke, int color, double xCoordinate,  double yCoordinate) {
         super(ime, parent, stroke, color);
@@ -35,4 +38,39 @@ public class Term extends Element{
         notifySubscriber(this);
     }
 
+    public void setTreeParent(Term treeParent) {
+        this.treeParent = treeParent;
+        this.spaceNeeded = 0;
+    }
+
+    public void spaceNeeded(int newSpaceNeeded) {
+        if(treeParent != null) {
+            this.spaceNeeded += newSpaceNeeded;
+            treeParent.spaceNeeded(newSpaceNeeded);
+            if(treeParent.treeParent == null) {
+                System.out.println(this.getName() + " " + spaceNeeded);
+            }
+        }
+    }
+
+    public void setTreeChildren(List<Term> treeChildren) {
+        this.treeChildren = treeChildren;
+    }
+
+    public List<Term> getTreeChildren() {
+        return treeChildren;
+    }
+
+    public int getSpaceNeeded() {
+        return spaceNeeded;
+    }
+
+    public void distributeChildren(List<Term> children, int bound, int left) {
+        for(Term child : children) {
+            child.setXCoordinate(this.getXCoordinate() + left * 200);
+            child.setYCoordinate(bound - child.spaceNeeded/2.0);
+            child.distributeChildren(child.treeChildren, bound, left);
+            bound -= child.spaceNeeded;
+        }
+    }
 }
