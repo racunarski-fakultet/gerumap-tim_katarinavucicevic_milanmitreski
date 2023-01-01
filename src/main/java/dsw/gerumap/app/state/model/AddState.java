@@ -13,15 +13,15 @@ import java.awt.event.MouseEvent;
 
 public class AddState implements State {
 
-    private static int count = 0;
-
+    private static int count = -1;
     @Override
     public void mousePressed(MouseEvent e) {
         if(e.getButton() != MouseEvent.BUTTON1) return;
         MapView source = (MapView) e.getSource();
         MindMap m = source.getMindMap();
+        if(count == -1) count = source.getElementViews().size();
         Term t = new Term(
-                "Element" + count++, m, source.getStroke(), source.getColor(),
+                "Element" + (++count), m, source.getStroke(), source.getColor(),
                 (e.getPoint().getX()-source.getxTranslate())/source.getScalingFactor(),
                 (e.getPoint().getY()-source.getyTranslate())/source.getScalingFactor()
         );

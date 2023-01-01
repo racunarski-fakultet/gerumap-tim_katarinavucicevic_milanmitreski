@@ -29,7 +29,6 @@ public class MindMap extends MapNodeComposite {
                 child.setParent(this);
                 notifySubscriber(child);
             }
-
             ((Project)getParent()).setChanged(true);
         }
 
@@ -42,7 +41,6 @@ public class MindMap extends MapNodeComposite {
             this.getChildren().remove(element);
             notifySubscriber(child);
         }
-
         ((Project)getParent()).setChanged(true);
     }
 

@@ -22,6 +22,8 @@ public class ConnectState implements State {
     private TermView termFrom;
     private TermView termTo;
 
+    private static int count = -1;
+
     @Override
     public void mousePressed(MouseEvent e) {
         termFrom = null;
@@ -68,14 +70,15 @@ public class ConnectState implements State {
                 }
             }
             MindMap m = source.getMindMap();
-            Relation r = new Relation("Connection " + source.getElementViews().size(),
+            if(count == -1) count = source.getElementViews().size();
+            Relation r = new Relation("Connection " + (++count),
                     m, source.getStroke(),
                     source.getColor(),
                     (Term) termFrom.getElement(),
                     (Term) termTo.getElement());
+            r.addSubscriber(source);
             AddElementCommand addElementCommand = new AddElementCommand(m, r);
             m.getCommandManager().addCommand(addElementCommand);
-            r.notifySubscriber(source);
         }
     }
 

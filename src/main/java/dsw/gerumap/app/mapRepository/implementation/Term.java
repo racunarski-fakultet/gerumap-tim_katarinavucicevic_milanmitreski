@@ -67,7 +67,7 @@ public class Term extends Element{
 
     public void distributeChildren(List<Term> children, int bound, int left) {
         for(Term child : children) {
-            child.setXCoordinate(this.getXCoordinate() + left * 200);
+            child.setXCoordinate(this.getXCoordinate() + left * 250);
             child.setYCoordinate(bound - child.spaceNeeded/2.0);
             child.distributeChildren(child.treeChildren, bound, left);
             bound -= child.spaceNeeded;
