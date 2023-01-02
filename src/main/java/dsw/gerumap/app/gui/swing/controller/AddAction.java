@@ -21,6 +21,7 @@ public class AddAction extends AbstractGeRuMapAction{
     public void actionPerformed(ActionEvent e) {
         if(MainFrame.getInstance().getMapTree().getSelectedNode() == null ) {
             AppCore.getInstance().getMessageGenerator().getMessage("No selected node", MessageType.NODE_NOT_SELECTED);
+            return;
         }
         else if(MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode() instanceof MapNodeComposite) {
             if(MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode() instanceof MindMap) {

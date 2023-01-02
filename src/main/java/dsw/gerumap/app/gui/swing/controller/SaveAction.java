@@ -27,6 +27,7 @@ public class SaveAction extends AbstractGeRuMapAction{
             }
         } else {
             AppCore.getInstance().getMessageGenerator().getMessage("No selected project", MessageType.NODE_NOT_SELECTED);
+            return;
         }
 
         Project project = (Project) MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode();

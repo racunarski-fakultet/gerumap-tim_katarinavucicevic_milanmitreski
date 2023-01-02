@@ -20,13 +20,14 @@ public class SaveAsAction extends AbstractGeRuMapAction{
     public void actionPerformed(ActionEvent e) {
         JFileChooser jfc = new JFileChooser();
 
-        if(MainFrame.getInstance().getMapTree().getSelectedNode() != null) {
+        if(MainFrame.getInstance().getMapTree().getSelectedNode() == null) {
+            AppCore.getInstance().getMessageGenerator().getMessage("No selected project", MessageType.NODE_NOT_SELECTED);
+            return;
+        } else {
             if (!(MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode() instanceof Project)) {
                 AppCore.getInstance().getMessageGenerator().getMessage("Only Projects can be saved", MessageType.ONLY_PROJECT_SERIALIZABLE);
                 return;
             }
-        } else {
-            AppCore.getInstance().getMessageGenerator().getMessage("No selected project", MessageType.NODE_NOT_SELECTED);
         }
 
         Project project = (Project) MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode();

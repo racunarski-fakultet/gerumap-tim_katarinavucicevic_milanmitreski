@@ -25,6 +25,7 @@ public class SaveTemplateAction extends AbstractGeRuMapAction{
             }
         } else {
             AppCore.getInstance().getMessageGenerator().getMessage("No selected map", MessageType.NODE_NOT_SELECTED);
+            return;
         }
 
         MindMap mindMap = (MindMap) MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode();

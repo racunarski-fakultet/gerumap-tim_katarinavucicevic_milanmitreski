@@ -20,10 +20,13 @@ public class LoadTemplateAction extends AbstractGeRuMapAction{
 
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
-        JFileChooser jfc = new JFileChooser(Objects.requireNonNull(getClass().getResource(MindMap.getTemplatePath())).getPath());
-        if(!(MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode() instanceof Project)) {
+
+        if((!(MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode() instanceof Project)) ||
+            MainFrame.getInstance().getMapTree().getSelectedNode() == null) {
             AppCore.getInstance().getMessageGenerator().getMessage("No selected Project to make MindMap for", MessageType.NO_PROJECT_SELECTED);
+            return;
         }
+        JFileChooser jfc = new JFileChooser(Objects.requireNonNull(getClass().getResource(MindMap.getTemplatePath())).getPath());
         if (jfc.showOpenDialog(MainFrame.getInstance()) == JFileChooser.APPROVE_OPTION) {
             try {
                 File file = jfc.getSelectedFile();
