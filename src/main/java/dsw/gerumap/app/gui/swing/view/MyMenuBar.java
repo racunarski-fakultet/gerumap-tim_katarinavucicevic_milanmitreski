@@ -13,7 +13,6 @@ public class MyMenuBar extends JMenuBar {
         fileMenu.setMnemonic(KeyEvent.VK_F);
 
         JMenuItem newProject = new JMenuItem();
-        JMenuItem exit = new JMenuItem();
         JMenuItem save = new JMenuItem();
         JMenuItem saveAs = new JMenuItem();
         JMenuItem saveTemplate = new JMenuItem();
@@ -23,8 +22,6 @@ public class MyMenuBar extends JMenuBar {
         JMenuItem changeAuthorItem = new JMenuItem("Change author");
         newProject.setAction(MainFrame.getInstance().getActionManager().getNewProjectAction());
         newProject.setIcon(null);
-        exit.setAction(MainFrame.getInstance().getActionManager().getExitAction());
-        exit.setIcon(null);
         changeAuthorItem.setAction(MainFrame.getInstance().getActionManager().getChangeAuthorAction());
         changeAuthorItem.setIcon(null);
         save.setAction(MainFrame.getInstance().getActionManager().getSaveAction());
@@ -41,7 +38,6 @@ public class MyMenuBar extends JMenuBar {
         export.setIcon(null);
 
         fileMenu.add(newProject);
-        fileMenu.add(exit);
         fileMenu.add(changeAuthorItem);
         fileMenu.add(save);
         fileMenu.add(saveAs);
@@ -52,7 +48,7 @@ public class MyMenuBar extends JMenuBar {
 
         JMenu editMenu = new JMenu("Edit");
 
-        JMenuItem renameItem = new JMenuItem("Rename");  /// ovo mora da se menja koa ovo ispod
+        JMenuItem renameItem = new JMenuItem("Rename");
         JMenuItem addItem = new JMenuItem("Add");
         JMenuItem deleteItem = new JMenuItem("Delete");
 

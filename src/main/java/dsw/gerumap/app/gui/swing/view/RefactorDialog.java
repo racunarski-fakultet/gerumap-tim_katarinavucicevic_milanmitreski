@@ -21,7 +21,7 @@ public class RefactorDialog extends JDialog {
         Container dialogContent = getContentPane();
         FlowLayout flowLayout = new FlowLayout();
         flowLayout.setHgap(10);
-        dialogContent.setLayout(flowLayout); /// ako se promeni ovaj FlowLayout onda moze da se menja raspored komponenti
+        dialogContent.setLayout(flowLayout);
         ProjectView pv = (ProjectView) MainFrame.getInstance().getSplit().getRightComponent();
         MapView mv = (MapView)pv.getMapsTabbedPane().getSelectedComponent();
         List<ElementView> currents = mv.getSelectedElements();

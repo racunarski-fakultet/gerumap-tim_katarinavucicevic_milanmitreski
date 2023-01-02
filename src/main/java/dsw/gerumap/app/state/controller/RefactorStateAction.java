@@ -11,8 +11,6 @@ import java.awt.event.ActionEvent;
 public class RefactorStateAction extends AbstractGeRuMapAction {
 
     public RefactorStateAction(){
-
-        putValue(NAME, "R");
         putValue(SHORT_DESCRIPTION, "refactor");
         putValue(SMALL_ICON, loadIcon("/refactorBtn.png"));
     }

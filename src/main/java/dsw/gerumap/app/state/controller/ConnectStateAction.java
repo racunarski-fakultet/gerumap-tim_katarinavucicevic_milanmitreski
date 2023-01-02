@@ -11,8 +11,6 @@ import java.awt.event.ActionEvent;
 public class ConnectStateAction extends AbstractGeRuMapAction {
 
     public ConnectStateAction() {
-
-        putValue(NAME, "C");
         putValue(SHORT_DESCRIPTION, "connect");
         putValue(SMALL_ICON, loadIcon("/connect.png"));
     }

@@ -6,6 +6,7 @@ import dsw.gerumap.app.mapRepository.composite.MapNode;
 import java.lang.reflect.Type;
 
 public class ProjectDeserializer implements JsonDeserializer<MapNode>, JsonSerializer<MapNode> {
+
     @Override
     public final JsonElement serialize(final MapNode object, final Type interfaceType, final JsonSerializationContext context)
     {

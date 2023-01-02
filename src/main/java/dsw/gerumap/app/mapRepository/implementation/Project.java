@@ -8,6 +8,7 @@ public class Project extends MapNodeComposite {
     private String author;
     private String filePath;
     private boolean changed;
+
     public Project(String name, MapNode mapNode) {
         super(name, mapNode);
         this.changed = true;
@@ -45,7 +46,6 @@ public class Project extends MapNodeComposite {
         this.filePath = filePath;
         changed = true;
     }
-
 
     public String getAuthor() {
         return author;

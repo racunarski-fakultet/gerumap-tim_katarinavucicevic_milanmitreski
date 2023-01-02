@@ -11,7 +11,6 @@ public class SelectorModel extends Rectangle implements IPublisher {
 
     private Point startPoint;
     private Point currentPoint;
-
     private final List <ISubscriber> subscribers;
 
     public SelectorModel(Point startPoint) {

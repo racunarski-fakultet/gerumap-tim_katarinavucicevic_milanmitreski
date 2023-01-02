@@ -27,7 +27,7 @@ public class MapView extends JPanel implements ISubscriber {
     private final List<ElementView>  selectedElements;
     private TermView centralTerm;
     private SelectorView selectorView;
-    private final AffineTransform transform; // na tabbedPane se dodaje ScrollPane koji ce imati mapView
+    private final AffineTransform transform;
     private double scalingFactor;
     private double xTranslate;
     private double yTranslate;

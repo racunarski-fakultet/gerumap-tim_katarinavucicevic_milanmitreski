@@ -5,7 +5,6 @@ import dsw.gerumap.app.state.controller.*;
 
 public class ActionManager {
 
-    private ExitAction exitAction;
     private NewProjectAction newProjectAction;
     private ChangeAuthorAction  changeAuthorAction;
     private InfoAction infoAction;
@@ -39,7 +38,6 @@ public class ActionManager {
     }
 
     private void initialiseActions() {
-        exitAction = new ExitAction();
         newProjectAction = new NewProjectAction();
         infoAction = new InfoAction();
         deleteNodeAction = new DeleteNodeAction();
@@ -69,9 +67,6 @@ public class ActionManager {
         loadTemplateAction = new LoadTemplateAction();
     }
 
-    public ExitAction getExitAction() {
-        return exitAction;
-    }
 
     public NewProjectAction getNewProjectAction() {
         return newProjectAction;
@@ -80,7 +75,6 @@ public class ActionManager {
     public InfoAction getInfoAction() {
         return infoAction;
     }
-    
 
     public DeleteNodeAction getDeleteNodeAction() {
         return deleteNodeAction;

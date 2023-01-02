@@ -8,8 +8,6 @@ import java.awt.event.ActionEvent;
 public class InfoAction extends AbstractGeRuMapAction{
 
     public InfoAction(){
-
-        putValue(NAME, "Info");
         putValue(SMALL_ICON, loadIcon("/infoBtn.png"));
         putValue(SHORT_DESCRIPTION, "Info");
     }

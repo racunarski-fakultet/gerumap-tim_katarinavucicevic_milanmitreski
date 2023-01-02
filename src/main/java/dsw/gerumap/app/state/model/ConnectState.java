@@ -21,7 +21,6 @@ public class ConnectState implements State {
     private GeneralPath generalPath;
     private TermView termFrom;
     private TermView termTo;
-
     private static int count = -1;
 
     @Override
@@ -92,8 +91,8 @@ public class ConnectState implements State {
             double xFrom = ((Term)termFrom.getElement()).getXCoordinate()*source.getScalingFactor() + source.getxTranslate();
             double yFrom = ((Term)termFrom.getElement()).getYCoordinate()*source.getScalingFactor() + source.getyTranslate();
 
-            double xTo = (point.getX());//source.getScalingFactor() - source.getxTranslate();
-            double yTo = (point.getY());//source.getScalingFactor() - source.getyTranslate();
+            double xTo = (point.getX());
+            double yTo = (point.getY());
 
             double A = (yTo - yFrom) / (xTo - xFrom);
             double B = 150 * source.getScalingFactor()/(Math.sqrt(4 + 9 * A * A));

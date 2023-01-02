@@ -10,8 +10,8 @@ public abstract class MapNode implements IPublisher {
 
     private String name;
     private transient MapNode parent;
-
     public transient List<ISubscriber> subscribers;
+
     public MapNode(String ime, MapNode parent) {
         this.name = ime;
         this.parent = parent;

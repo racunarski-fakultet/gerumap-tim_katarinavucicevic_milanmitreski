@@ -17,7 +17,6 @@ public class SaveTemplateAction extends AbstractGeRuMapAction{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
         if(MainFrame.getInstance().getMapTree().getSelectedNode() != null) {
             if (!(MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode() instanceof MindMap)) {
                 AppCore.getInstance().getMessageGenerator().getMessage("Only MindMaps can be saved as template", MessageType.ONLY_MIND_MAPS_ARE_TEMPLATES);

@@ -11,11 +11,8 @@ import java.awt.event.ActionEvent;
 public class MoveStateAction extends AbstractGeRuMapAction {
 
     public MoveStateAction() {
-
-        putValue(NAME, "M");
         putValue(SHORT_DESCRIPTION, "Move Element");
         putValue(SMALL_ICON, loadIcon("/moveBtn.png"));
-
     }
 
     @Override

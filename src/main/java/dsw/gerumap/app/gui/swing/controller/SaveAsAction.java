@@ -18,8 +18,6 @@ public class SaveAsAction extends AbstractGeRuMapAction{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        JFileChooser jfc = new JFileChooser();
-
         if(MainFrame.getInstance().getMapTree().getSelectedNode() == null) {
             AppCore.getInstance().getMessageGenerator().getMessage("No selected project", MessageType.NODE_NOT_SELECTED);
             return;
@@ -33,6 +31,7 @@ public class SaveAsAction extends AbstractGeRuMapAction{
         Project project = (Project) MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode();
         File projectFile;
 
+        JFileChooser jfc = new JFileChooser();
         if (jfc.showSaveDialog(MainFrame.getInstance()) == JFileChooser.APPROVE_OPTION) {
             projectFile = jfc.getSelectedFile();
             project.setFilePath(projectFile.getPath());

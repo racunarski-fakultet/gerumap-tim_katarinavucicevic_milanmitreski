@@ -3,6 +3,7 @@ package dsw.gerumap.app.mapRepository.implementation;
 import dsw.gerumap.app.mapRepository.composite.MapNode;
 
 public class Relation extends Element{
+
     private Term termFrom;
     private Term termTo;
 

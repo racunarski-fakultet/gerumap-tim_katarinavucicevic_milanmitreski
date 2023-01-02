@@ -10,7 +10,6 @@ import dsw.gerumap.app.serializer.GsonSerializer;
 
 public class AppCore extends ApplicationFramework {
 
-    // AppCore klasu konstruisemo preko Singleton Design Pattern - a
     private static AppCore instance = null;
 
     private AppCore() {

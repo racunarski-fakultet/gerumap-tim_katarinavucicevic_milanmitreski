@@ -16,7 +16,6 @@ public class StateManager {
 
 
     public StateManager() {
-
         addState = new AddState();
         deleteState = new DeleteState();
         moveState = new MoveState();

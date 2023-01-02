@@ -6,9 +6,6 @@ import java.awt.event.ActionEvent;
 
 public class InfoDialog extends JDialog {
 
-    /// klaza za Info dugme, implementira se u ActionbManager, Toolbar i InfoAction
-
-
     public InfoDialog(Frame owner, String title) {
         super(owner, title);
 
@@ -16,7 +13,7 @@ public class InfoDialog extends JDialog {
         setLocationRelativeTo(null);
         setResizable(false);
         Container dialogContent = getContentPane();
-        dialogContent.setLayout(new FlowLayout()); /// ako se promeni ovaj FlowLayout onda moze da se menja raspored komponenti
+        dialogContent.setLayout(new FlowLayout());
 
         JLabel podaciL1 = new JLabel("Student1: Milan Mitreski, 80/21rn");
         JLabel podaciL2 = new JLabel("Student2: Katarina Vučićević, 57/21rn");

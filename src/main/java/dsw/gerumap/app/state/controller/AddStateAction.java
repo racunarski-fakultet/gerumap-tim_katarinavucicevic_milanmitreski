@@ -11,11 +11,8 @@ import java.awt.event.ActionEvent;
 public class AddStateAction extends AbstractGeRuMapAction {
 
     public AddStateAction() {
-
-        putValue(NAME, "A");
         putValue(SHORT_DESCRIPTION, "Add Element");
         putValue(SMALL_ICON, loadIcon("/addBtn.png"));
-
     }
 
     @Override

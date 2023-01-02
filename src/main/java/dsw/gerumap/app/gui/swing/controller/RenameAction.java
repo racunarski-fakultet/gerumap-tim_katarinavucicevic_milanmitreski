@@ -11,7 +11,6 @@ import java.awt.event.ActionEvent;
 public class RenameAction extends AbstractGeRuMapAction{
 
     public RenameAction() {
-        putValue(NAME, "Rename");
         putValue(SMALL_ICON, loadIcon("/renameBtn.png"));
         putValue(SHORT_DESCRIPTION, "Rename");
     }

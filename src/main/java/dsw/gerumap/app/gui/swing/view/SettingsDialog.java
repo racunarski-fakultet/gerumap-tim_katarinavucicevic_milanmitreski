@@ -16,7 +16,7 @@ public class SettingsDialog extends JDialog {
         Container dialogContent = getContentPane();
         FlowLayout flowLayout = new FlowLayout();
         flowLayout.setHgap(10);
-        dialogContent.setLayout(flowLayout); /// ako se promeni ovaj FlowLayout onda moze da se menja raspored komponenti
+        dialogContent.setLayout(flowLayout);
         ProjectView pv = (ProjectView) MainFrame.getInstance().getSplit().getRightComponent();
         MapView mv = (MapView)pv.getMapsTabbedPane().getSelectedComponent();
 
@@ -30,7 +30,7 @@ public class SettingsDialog extends JDialog {
         JButton saveBtn = new JButton("Save");
         JButton closeBtn = new JButton("Close");
         JColorChooser colorChooser;
-        colorChooser = new JColorChooser(new Color(mv.getColor())); // defaultna boja je crna
+        colorChooser = new JColorChooser(new Color(mv.getColor()));
         colorChooser.setColor(mv.getColor());
         saveBtn.setAction(new AbstractAction("Save") {
             @Override

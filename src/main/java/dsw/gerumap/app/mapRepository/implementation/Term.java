@@ -5,9 +5,10 @@ import dsw.gerumap.app.mapRepository.composite.MapNode;
 import java.util.List;
 
 public class Term extends Element{
+
+    private final String type = "Term";
     private double xCoordinate;
     private double yCoordinate;
-    private final String type = "Term";
     private transient Term treeParent;
     private transient List<Term> treeChildren;
     private transient int spaceNeeded;

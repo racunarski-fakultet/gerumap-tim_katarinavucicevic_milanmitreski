@@ -15,14 +15,11 @@ import java.awt.event.ActionEvent;
 
 public class DeleteNodeAction extends AbstractGeRuMapAction{
 
-    /// kad se klikne dugme treba da se obrise selektovani node
-
     public DeleteNodeAction(){
         putValue(NAME, "Delete");
         putValue(SMALL_ICON, loadIcon("/deleteBtn.png"));
         putValue(SHORT_DESCRIPTION, "Delete");
     }
-
 
     @Override
     public void actionPerformed(ActionEvent e) {

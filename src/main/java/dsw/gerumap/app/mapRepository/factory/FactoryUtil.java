@@ -8,6 +8,7 @@ public class FactoryUtil {
 
     private static final ProjectFactory projectFactory;
     private static final MindMapFactory mindMapFactory;
+
     static {
         projectFactory = new ProjectFactory();
         mindMapFactory = new MindMapFactory();

@@ -11,8 +11,6 @@ import java.awt.event.ActionEvent;
 public class DeleteStateAction extends AbstractGeRuMapAction {
 
     public DeleteStateAction() {
-
-        putValue(NAME, "D");
         putValue(SHORT_DESCRIPTION, "Delete Element");
         putValue(SMALL_ICON, loadIcon("/deleteBtn.png"));
     }

@@ -5,6 +5,7 @@ import dsw.gerumap.app.mapRepository.implementation.Element;
 import java.awt.*;
 
 public abstract class ElementView {
+
     protected Element element;
     protected Shape shape;
 
@@ -13,7 +14,9 @@ public abstract class ElementView {
     }
 
     public abstract void paint(Graphics2D g);
+
     public abstract void paintSelected(Graphics2D g);
+
     public boolean elementAt(Point pos) {
         return shape.contains(pos) || shape.getBounds().contains(pos);
     }

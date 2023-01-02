@@ -9,8 +9,6 @@ import java.awt.event.ActionEvent;
 public class ZoomOutAction extends AbstractGeRuMapAction {
 
     public ZoomOutAction() {
-
-        putValue(NAME, "Z-");
         putValue(SMALL_ICON, loadIcon("/zoomOut.png"));
         putValue(SHORT_DESCRIPTION, "Zoom out");
     }

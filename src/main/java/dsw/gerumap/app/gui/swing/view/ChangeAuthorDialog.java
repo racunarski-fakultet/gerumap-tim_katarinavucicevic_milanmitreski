@@ -12,7 +12,6 @@ import java.awt.event.ActionListener;
 public class ChangeAuthorDialog extends JDialog implements ActionListener {
 
     private final JTextField authorData;
-
     private final Project project;
 
     public ChangeAuthorDialog(Frame owner, String title, Project project) {
@@ -22,7 +21,7 @@ public class ChangeAuthorDialog extends JDialog implements ActionListener {
         setLocationRelativeTo(null);
         setResizable(false);
         Container dialogContent = getContentPane();
-        dialogContent.setLayout(new FlowLayout()); /// ako se promeni ovaj FlowLayout onda moze da se menja raspored komponenti
+        dialogContent.setLayout(new FlowLayout());
 
         JLabel labelAuthor = new JLabel("Insert author name: ");
         authorData = new JTextField();

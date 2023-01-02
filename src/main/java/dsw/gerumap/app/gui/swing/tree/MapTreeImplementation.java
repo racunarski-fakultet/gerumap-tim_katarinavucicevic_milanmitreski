@@ -18,8 +18,6 @@ import javax.swing.tree.TreePath;
 
 public class MapTreeImplementation implements MapTree {
 
-    // Konkretna implementacija interfejsa MapTree
-
     // Polja su treeView (kontrola nad GUI-jem) i treeModel (definisanje root-a)
     private MapTreeView treeView;
     private DefaultTreeModel treeModel;
@@ -33,7 +31,6 @@ public class MapTreeImplementation implements MapTree {
         return treeView;
     }
 
-    // Dodaje cvor u drvo
     @Override
     public void addChild(MapTreeItem parent) {
         // Vec je provereno da li je parent == null ( u slucaju NewProject znamo da je ProjectExplorer vec instanciran prilikom pokretanja aplikacije)
@@ -48,7 +45,6 @@ public class MapTreeImplementation implements MapTree {
         SwingUtilities.updateComponentTreeUI(treeView);
     }
 
-    // Kreiranje child cvora
     private MapNode createChild(MapNodeComposite parent) {
         return AppCore.getInstance().getMapRepository().getNodeFactory(parent).getNode(parent);
     }
@@ -58,8 +54,6 @@ public class MapTreeImplementation implements MapTree {
         node.setName(newName);
         SwingUtilities.updateComponentTreeUI(treeView);
     }
-
-    // Uklanjanje datog cvora iz drveta
 
     @Override
     public void removeChild(DefaultMutableTreeNode root){

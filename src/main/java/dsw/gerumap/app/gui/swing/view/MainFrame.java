@@ -14,12 +14,9 @@ import java.util.List;
 public class MainFrame extends JFrame {
 
     private static MainFrame instance = null;
-
     private ActionManager actionManager;
     private MapTree mapTree;
-
     private WorkSpaceImplementation workspace;
-
     private JSplitPane split;
     private List<ProjectView> projectViews;
 

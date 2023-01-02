@@ -19,7 +19,7 @@ public class RenameDialog extends JDialog {
         setLocationRelativeTo(null);
         setResizable(false);
         Container dialogContent = getContentPane();
-        dialogContent.setLayout(new FlowLayout()); /// ako se promeni ovaj FlowLayout onda moze da se menja raspored komponenti
+        dialogContent.setLayout(new FlowLayout());
 
         JLabel lblProjectName = new JLabel("Insert new name: ");
         tf = new JTextField();

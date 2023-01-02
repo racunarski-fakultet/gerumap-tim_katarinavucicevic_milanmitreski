@@ -10,16 +10,10 @@ import javax.swing.*;
 
 public class ProjectView extends JPanel implements ISubscriber{
 // Mediator
-
     private final JLabel projName;
     private final JLabel autor;
-
     private Project project;
-
-    //private JScrollPane scrollPane;
-
-    private final MyTabbedPane mapsTabbedPane;
-
+     private final MyTabbedPane mapsTabbedPane;
     private final StateManager stateManager;
 
     public ProjectView() {
@@ -35,7 +29,6 @@ public class ProjectView extends JPanel implements ISubscriber{
         add(projName);
         add(autor);
         add(mapsTabbedPane);
-        //add(scrollPane);
         stateManager = new StateManager();
     }
 
