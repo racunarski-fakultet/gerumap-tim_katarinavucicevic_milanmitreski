@@ -2,6 +2,7 @@ package dsw.gerumap.app.serializer;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import dsw.gerumap.app.AppCore;
 import dsw.gerumap.app.core.Serializer;
 import dsw.gerumap.app.mapRepository.composite.MapNode;
 import dsw.gerumap.app.mapRepository.composite.MapNodeComposite;
@@ -9,6 +10,7 @@ import dsw.gerumap.app.mapRepository.implementation.MindMap;
 import dsw.gerumap.app.mapRepository.implementation.Project;
 import dsw.gerumap.app.mapRepository.implementation.Relation;
 import dsw.gerumap.app.mapRepository.implementation.Term;
+import dsw.gerumap.app.message.MessageType;
 
 import java.io.File;
 import java.io.FileReader;
@@ -38,7 +40,7 @@ public class GsonSerializer implements Serializer {
             }
             return project;
         } catch (IOException e) {
-            e.printStackTrace();
+            AppCore.getInstance().getMessageGenerator().getMessage("Selected file can't be opened", MessageType.SELECTED_FILE_IN_WRONG_FORMAT);
             return null;
         }
     }
@@ -48,7 +50,7 @@ public class GsonSerializer implements Serializer {
         try (FileWriter writer = new FileWriter(project.getFilePath())) {
             gson.toJson(project, writer);
         } catch (IOException e) {
-            e.printStackTrace();
+            AppCore.getInstance().getMessageGenerator().getMessage("Selected project can't be saved", MessageType.SAVE_ERROR);
         }
     }
 
@@ -66,7 +68,7 @@ public class GsonSerializer implements Serializer {
             }
             return map;
         } catch (IOException e) {
-            e.printStackTrace();
+            AppCore.getInstance().getMessageGenerator().getMessage("Selected file can't be opened", MessageType.SELECTED_FILE_IN_WRONG_FORMAT);
             return null;
         }
     }
@@ -76,7 +78,7 @@ public class GsonSerializer implements Serializer {
         try (FileWriter writer = new FileWriter(Objects.requireNonNull(getClass().getResource(MindMap.getTemplatePath())).getPath()+ System.getProperty("file.separator") + mindMap.getName() + ".json")) {
             gson.toJson(mindMap, writer);
         } catch (IOException e) {
-            e.printStackTrace();
+            AppCore.getInstance().getMessageGenerator().getMessage("Selected map can't be saved", MessageType.SAVE_ERROR);
         }
     }
 }

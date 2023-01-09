@@ -183,12 +183,14 @@ public class MapView extends JPanel implements ISubscriber {
     }
 
     public void exportImage(File imageFile) {
-        BufferedImage image = new BufferedImage(getWidth(),getHeight(), Transparency.TRANSLUCENT);
+        BufferedImage image = new BufferedImage(getWidth(),getHeight(), BufferedImage.TYPE_INT_RGB);
         Graphics2D g2 = image.createGraphics();
         g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
         g2.drawImage(image, 0, 0, getWidth(), getHeight(), null);
+        printAll(g2);
         g2.dispose();
         try{
+            System.out.println("Here also");
             ImageIO.write(image,"jpg", imageFile);
         } catch (Exception e) {
             e.printStackTrace();
